@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.clip-custom {
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+.clip_none {
+    clip-path: polygon(0 0 0 0);
+}
+.custom_payload2 {
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+.custom_payload3 {
+    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+.custom_clip4 {
+    clip-path: polygon(25% 25%, 75% 25%, 75% 57.01%, 50% 77%, 25% 57.01%);
+}
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+.clip_second_el {
+    /* Full screen clip-path */
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+.clip_first_el {
+    /* Full screen clip-path */
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+.clip_therd_el {
+    /* Full screen clip-path */
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+.clip_4_el {
+    /* Full screen clip-path */
+    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+@media (max-width: 768px) {
+    /* Small screens */
+    .clip_first_el {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%);
+    }
+    .clip_4_el {
+        clip-path: polygon(100% 75%, 50% 100%, 0% 75%, 0% 0%, 50% 25%, 100% 0%);
+    }
+    .clip_second_el {
+        clip-path: polygon(100% 75%, 50% 100%, 0% 75%, 0% 0%, 50% 25%, 100% 0%);
+    }
+    .clip_therd_el {
+        clip-path: polygon(100% 75%, 50% 100%, 0% 75%, 0% 0%, 50% 25%, 100% 0%);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+    /* Medium screens */
+    .clip_therd_el {
+        clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+    }
+    .clip_second_el {
+        clip-path: polygon(
+            100% 0,
+            100% 50%,
+            100% 100%,
+            0% 100%,
+            25% 50%,
+            0% 0%
+        ); /* Medium screen clip-path */
+    }
+}
