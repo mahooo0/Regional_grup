@@ -36,7 +36,7 @@ function scrollToElementById(id: string) {
 export default function Home() {
     // const [showebaut, setshowebaut] = useState<boolean>(false);
     return (
-        <div className="bg-white  relative ov">
+        <div className="bg-white  relative  overflow-hidden">
             <Header />
             <main className=" relative overflow-x-hidden mb-[120px] z-30">
                 <section className="  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  relative justify-center  ">
@@ -288,32 +288,32 @@ export default function Home() {
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[220vh] z-0"
+                className=" absolute top-[120vh] z-0"
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[300vh] -right-[300px]  z-0"
+                className=" absolute top-[200vh] -right-[300px]  z-0"
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[420vh]"
+                className=" absolute top-[320vh]"
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[500vh] -right-[300px] "
+                className=" absolute top-[400vh] -right-[300px] "
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[620vh]"
+                className=" absolute top-[520vh]"
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[700vh] -right-[300px] "
+                className=" absolute top-[600vh] -right-[300px] "
             />
             <Footer />
         </div>
