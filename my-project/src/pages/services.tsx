@@ -41,6 +41,7 @@ export default function Services() {
             <InfoSection direction="col" />
             <InfoSection direction="row" />
             <InfoSection direction="col" />
+            <div className="mb-[120px]"></div>
             <Footer />
         </div>
     );
