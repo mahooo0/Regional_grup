@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
+    const [sohowAside, setsohowAside] = useState(false);
     return (
         <div>
             <div className=" absolute  lg:block  hidden top-0 w-full z-50">
@@ -86,19 +87,54 @@ export default function Header() {
                     className="w-full max-h-[61px] lg:hidden md:hidden block"
                 />
                 <div className=" absolute top-0 w-full h-full flex lg:justify-around md:justify-between justify-around items-center lg:px-0 md:px-6 px-0">
-                    <div className="w-[33px] h-[33px] aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                    <div className="relative ml-3">
+                        <div onClick={() => setsohowAside((prew) => !prew)}>
+                            <div className="w-[33px] h-[33px] aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M4 17.27V16.27H20V17.27H4ZM4 12.5V11.5H20V12.5H4ZM4 7.72998V6.72998H20V7.72998H4Z"
+                                        fill="white"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div
+                            className={`absolute  ${
+                                sohowAside ? '' : 'hidden'
+                            }  right-[-160px] z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+                            role="menu"
+                            aria-orientation="vertical"
+                            aria-labelledby="user-menu-button"
+                            tabindex="-1"
                         >
-                            <path
-                                d="M4 17.27V16.27H20V17.27H4ZM4 12.5V11.5H20V12.5H4ZM4 7.72998V6.72998H20V7.72998H4Z"
-                                fill="white"
-                            />
-                        </svg>
+                            <div className="block px-4 py-2 text-sm text-gray-700">
+                                <Link to="/" className="w-full">
+                                    Əsas
+                                </Link>
+                            </div>
+                            <div className="block px-4 py-2 text-sm text-gray-700">
+                                <Link to="/about">Haqqımızda</Link>
+                            </div>
+                            <div className="block px-4 py-2 text-sm text-gray-700">
+                                <Link to="/services">Xidmətlər</Link>
+                            </div>
+                            <div className="block px-4 py-2 text-sm text-gray-700">
+                                <Link to="/news">Blog</Link>
+                            </div>
+                            <div className="block px-4 py-2 text-sm text-gray-700">
+                                <Link to="/galery">Galereya</Link>
+                            </div>
+                            <div className="block px-4 py-2 text-sm text-gray-700">
+                                <Link to="/contact">Əlaqə</Link>
+                            </div>
+                        </div>
                     </div>
                     <img
                         className="w-[64px] h-[64px] mt-[-3%] lg:block md:hidden block"
