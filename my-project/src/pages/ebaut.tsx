@@ -36,7 +36,7 @@ export default function Ebout() {
                             <h1 className="text-5xl font-semibold max-md:max-w-full max-md:text-4xl">
                                 Haqqımızda
                             </h1>
-                            <p className="mt-2 text-lg leading-6 max-md:max-w-full">
+                            <p className=" text-lg leading-6 max-md:max-w-full mt-5">
                                 Lorem ipsum dolor sit amet consectetur. Enim
                                 rutrum hac amet sagittis. Morbi enim integer
                                 odio varius bibendum. Ac mattis ullamcorper id

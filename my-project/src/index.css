@@ -44,7 +44,7 @@ code {
     /* Full screen clip-path */
     clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
 }
-@media (max-width: 768px) {
+@media (max-width: 770px) {
     /* Small screens */
     .clip_first_el {
         clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 50% 100%, 0% 75%);
@@ -75,4 +75,14 @@ code {
             0% 0%
         ); /* Medium screen clip-path */
     }
+}
+.scroll-element {
+    transition: transform 0.6s ease-in-out;
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+.scroll-element.visible {
+    transform: translateY(0);
+    opacity: 1;
 }

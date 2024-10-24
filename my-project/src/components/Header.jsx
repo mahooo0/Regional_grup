@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
@@ -20,10 +21,6 @@ export default function Header() {
                         />
                     </svg>
                     <div className=" w-[20%] h-full z-50 absolute top-0 left-0  flex justify-end">
-                        {/* <img
-                            className="h-full"
-                            src="https://s3-alpha-sig.figma.com/img/7e61/1388/9b68b91790cc47d8228cc0648b592052?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf7tNs0k0JK6liW9Gm52aTwdd0SQXAlNWQORiuQ4zaMudAA4cSH01x1X9NLbCD3VMUfwGGB0yY3BR9C8bQWEeGpUCqtZDKMXMPq5bx0mMglwjVR9QuYdaoOLAMLf4UI8WA~xWY9xCDROjWJbvo19ElF8Gj-ENWDuL5~dU1m4Cb4~ku6s6LCT~AhXh935AU3mXZiraGc~rRCf-z6YSBglItLTy-jNNieCp5b0FyXsjvGmnnjh6pzKtacVae3C2MhvKiWI1dKgAjnO76ANR3ikGxQWY1mZTmI1ydrtteVBd3zm0wpMDqp2cUPI8Rm46T8DZscN~qA7eTVbqgLFLiYnHQ__"
-                        /> */}
                         <img
                             className="h-full"
                             src="https://s3-alpha-sig.figma.com/img/7e61/1388/9b68b91790cc47d8228cc0648b592052?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf7tNs0k0JK6liW9Gm52aTwdd0SQXAlNWQORiuQ4zaMudAA4cSH01x1X9NLbCD3VMUfwGGB0yY3BR9C8bQWEeGpUCqtZDKMXMPq5bx0mMglwjVR9QuYdaoOLAMLf4UI8WA~xWY9xCDROjWJbvo19ElF8Gj-ENWDuL5~dU1m4Cb4~ku6s6LCT~AhXh935AU3mXZiraGc~rRCf-z6YSBglItLTy-jNNieCp5b0FyXsjvGmnnjh6pzKtacVae3C2MhvKiWI1dKgAjnO76ANR3ikGxQWY1mZTmI1ydrtteVBd3zm0wpMDqp2cUPI8Rm46T8DZscN~qA7eTVbqgLFLiYnHQ__"
@@ -31,12 +28,25 @@ export default function Header() {
                         />
                     </div>
                     <div className=" w-[50%] h-full z-50 absolute top-0 left-[20%]  flex items-center justify-center">
-                        <ul className="text-white gap-4 text-[16px] font-normal flex flex-row ">
-                            <li>Əsas</li>
-                            <li>Haqqımızda</li>
-                            <li>Xidmətlər</li>
-                            <li>Blog</li>
-                            <li>Əlaqə</li>
+                        <ul className="text-white gap-4 text-[16px] font-normal flex flex-row">
+                            <li>
+                                <Link to="/">Əsas</Link>
+                            </li>
+                            <li>
+                                <Link to="/about">Haqqımızda</Link>
+                            </li>
+                            <li>
+                                <Link to="/services">Xidmətlər</Link>
+                            </li>
+                            <li>
+                                <Link to="/news">Blog</Link>
+                            </li>
+                            <li>
+                                <Link to="/galery">Galereya</Link>
+                            </li>
+                            <li>
+                                <Link to="/contact">Əlaqə</Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="w-[30%] h-full absolute top-0 right-0 flex justify-center items-center">
@@ -75,7 +85,7 @@ export default function Header() {
                     alt=" "
                     className="w-full max-h-[61px] lg:hidden md:hidden block"
                 />
-                <div className=" absolute top-0 w-full h-full flex lg:justify-around md:justify-between justify-around items-center">
+                <div className=" absolute top-0 w-full h-full flex lg:justify-around md:justify-between justify-around items-center lg:px-0 md:px-6 px-0">
                     <div className="w-[33px] h-[33px] aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
                         <svg
                             width="24"
@@ -114,23 +124,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            {/* <div className="bg-white w-[38px]  aspect-square rounded-full lg:hidden flex justify-center items-center absolute top-3 right-3 z-40  ">
-                <svg
-                    className="w-[24px] aspect-square"
-                    width={24}
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="svg-icon"
-                    // style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
-                    viewBox="0 0 1024 1024"
-                    version="1.1"
-                >
-                    <path
-                        d="M960 288H64C44.8 288 32 275.2 32 256s12.8-32 32-32h896c19.2 0 32 12.8 32 32s-12.8 32-32 32zM960 544H64C44.8 544 32 531.2 32 512s12.8-32 32-32h896c19.2 0 32 12.8 32 32s-12.8 32-32 32zM960 800H64c-19.2 0-32-12.8-32-32s12.8-32 32-32h896c19.2 0 32 12.8 32 32s-12.8 32-32 32z"
-                        fill="#2F3448"
-                    />
-                </svg>
-            </div> */}
-            {/* <div></div> */}
         </div>
     );
 }

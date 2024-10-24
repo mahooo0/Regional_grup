@@ -41,7 +41,7 @@ const servicesData = [
 
 export const ServicesLayout: React.FC = () => {
     return (
-        <div className="flex flex-col items-center pr-2 mb-[120px]">
+        <div className="flex flex-col items-center pr-2 mb-[120px] mt-[120px]">
             <h1 className="text-5xl font-medium text-black max-md:text-4xl">
                 Lorem Ipsum
             </h1>

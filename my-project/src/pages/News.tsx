@@ -61,7 +61,7 @@ export default function News() {
                     </div>
                 </div>
             </section>
-            <section className="mt-[52px] flex flex-row w-full justify-around flex-wrap-reverse  lg:px-0 px-5 gap-6 ">
+            <section className="mt-[52px] flex flex-row w-full justify-around flex-wrap-reverse  lg:px-0 px-5 gap-6  mb-[120px]">
                 <div className="max-w-[1000px]">
                     <Chat />
                     <NewsComments />

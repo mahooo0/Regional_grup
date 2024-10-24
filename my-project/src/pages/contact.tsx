@@ -22,7 +22,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ contactInfo }) => (
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/706f3998d1c1f52f87841c723498b8a4667d4a81285389c564317c69a8f210f7?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&"
             alt=""
-            className="object-cover absolute inset-0 size-full"
+            className="object-cover absolute inset-0 size-full overflow-visible"
         />
         <div className="flex relative flex-col items-start mb-0 max-w-full w-[221px] max-md:mb-2.5">
             {contactInfo.map((info, index) => (

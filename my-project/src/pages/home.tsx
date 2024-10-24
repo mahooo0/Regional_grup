@@ -1,6 +1,29 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer.tsx';
+import InfoSection from '../components/InfoSection.tsx';
+// import { useEffect } from 'react';
+// import gsap from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// const YourComponent = ({ children }) => {
+//     useEffect(() => {
+//         gsap.from('.your-element', {
+//             scrollTrigger: {
+//                 trigger: '.your-element',
+//                 start: 'top 80%', // Start when the element is 80% from the top of the viewport
+//                 end: 'top 30%',
+//                 scrub: true,
+//             },
+//             y: 100, // Move up from 100px initially
+//             duration: 1,
+//         });
+//     }, []);
+
+//     return <div className="your-element">{children}</div>;
+// };
 function scrollToElementById(id: string) {
     const element = document.getElementById(id);
     if (element) {
@@ -13,9 +36,9 @@ function scrollToElementById(id: string) {
 export default function Home() {
     // const [showebaut, setshowebaut] = useState<boolean>(false);
     return (
-        <div className="bg-white  relative">
+        <div className="bg-white  relative ov">
             <Header />
-            <main className=" overflow-x-hidden">
+            <main className=" relative overflow-x-hidden mb-[120px] z-30">
                 <section className="  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  relative justify-center  ">
                     <div
                         className="lg:h-[100vh] md:h-[100vh] h-[25vh]  clip_first_el  lg:w-[130%] md:w-[130%] w-full  z-10 "
@@ -197,21 +220,21 @@ export default function Home() {
                 <section
                     id="ebaut"
                     className={
-                        'w-[100%] min-h-[100vh] flex justify-center items-center px-[20px] pb-[80px] relative mt-[120px]'
+                        'w-[100%] min-h-[100vh] flex justify-center flex-col items-center lg:px-[20px] md:px-[20px] px-0  pb-[80px] relative mt-[120px]'
                     }
                     // style={showebaut ? {} : { display: 'none' }}
                 >
-                    <div className="flex  w-full text-black max-w-[1099px] max-md:max-w-full px-[auto]">
+                    <div className="flex  w-full text-black max-w-[1099px] max-md:max-w-full px-[20px]">
                         <div className="flex z-10 flex-col grow shrink-0 basis-0 w-fit max-md:-mr-0.5 max-md:max-w-full">
-                            <h1 className="self-start ml-14 text-5xl font-semibold max-md:ml-2.5 max-md:text-4xl mt-[24px]">
+                            <h1 className="lg:self-start md:self-start self-center ml-14 text-5xl font-semibold max-md:ml-2.5 max-md:text-4xl mt-[24px]">
                                 About Us
                             </h1>
-                            <div className="flex  gap-6 items-start mt-3.5 text-2xl font-light leading-10">
+                            <div className="flex  lg:gap-6 md:gap-6 gap-0 items-start mt-3.5 text-2xl font-light leading-10">
                                 <img
                                     loading="lazy"
                                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/62d04aab70e94a1734fd0db3ace655da9e42bcdd9fe868b924e40044d36512bf?placeholderIfAbsent=true&apiKey=c6f3c7bb740649e5a32c147b3037a1c2"
                                     alt=""
-                                    className="object-contain shrink-0 self-end mt-32 aspect-[0.19] w-[59px] max-md:mt-10"
+                                    className="object-contain shrink-0 self-end mt-32 aspect-[0.19] w-[59px] max-md:mt-10 lg:block md:block hidden"
                                 />
                                 <div className="flex flex-col justify-center">
                                     <p className="flex-auto self-start max-w-[976px] max-md:max-w-full">
@@ -236,9 +259,6 @@ export default function Home() {
                                         ullamcorper id massa. Hendrerit ipsum eu
                                         nulla molestie diam at.
                                     </p>
-                                    <button className="gap-2.5  self-center p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]">
-                                        Daha çox
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -246,230 +266,55 @@ export default function Home() {
                             loading="lazy"
                             src="https://cdn.builder.io/api/v1/image/assets/TEMP/263ae6e52cae2a3304b76718a2fe5071764199820ebdfb04ebd0a8a4134d4151?placeholderIfAbsent=true&apiKey=c6f3c7bb740649e5a32c147b3037a1c2"
                             alt=""
-                            className="object-contain shrink-0 self-start mt-14 aspect-[0.11] w-[29px] max-md:mt-10"
+                            className="object-contain shrink-0 self-start mt-14 aspect-[0.11] w-[29px] max-md:mt-10 lg:block md:block hidden"
                         />
                     </div>
+                    <button className="gap-2.5  self-center p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]">
+                        Daha çox
+                    </button>
                     {/* <img src="/svg/mause_blue.svg" />
                      */}
                     <img
                         src="/svg/mause_blue.svg"
                         alt=""
-                        className="z-30 absolute bottom-[-50px] animate-bounce"
+                        className="z-30 absolute bottom-[-50px] animate-bounce lg:block md:block hidden"
                     />
                 </section>
-                <section className="mt-[200px] relative pb-[126px]">
-                    <div className=" flex flex-row lg:justify-end justify-start gap-6 flex-wrap">
-                        <h2 className="text-[48px] font-semibold">
-                            Sea Transport
-                        </h2>
-                        <div className=" border-b-[6px] border-[#2758A3]  lg:w-1/2 w-full  h-fit">
-                            <img src="/svg/cater.svg" alt="" />
-                        </div>
-                    </div>
-                    <div className="flex justify-center px-[auto] mt-[54px]">
-                        <div className="flex flex-wrap gap-10 items-start justify-center self-start mt-14 ml-9 max-md:mt-10 max-md:max-w-full">
-                            <img
-                                loading="lazy"
-                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/56a7049deb9d85245293cf7d433414682d4560aead2a45416afbef7cd376339e?placeholderIfAbsent=true&apiKey=c6f3c7bb740649e5a32c147b3037a1c2"
-                                alt="Sea Transport illustration"
-                                className="object-contain aspect-[1.11] min-w-[240px] w-[392px]"
-                            />
-                            <div className="flex flex-col min-w-[240px] w-[701px] max-md:max-w-full">
-                                <h1 className="text-3xl font-medium text-black max-md:max-w-full">
-                                    Sea Transport
-                                </h1>
-                                <div className="flex flex-col mt-3 w-full max-md:max-w-full">
-                                    <p className="text-xl leading-7 text-black max-md:max-w-full">
-                                        Lorem ipsum dolor sit amet consectetur.
-                                        Enim rutrum hac amet sagittis. Morbi
-                                        enim integer odio varius bibendum. Ac
-                                        mattis ullamcorper id massa. Hendrerit
-                                        ipsum eu nulla molestie diam at. Lorem
-                                        ipsum dolor sit amet consectetur. Enim
-                                        rutrum hac amet sagittis. Morbi enim
-                                        integer odio varius bibendum. Ac mattis
-                                        ullamcorper id massa. Hendrerit ipsum eu
-                                        nulla molestie diam at. Lorem ipsum
-                                        dolor sit amet consectetur. Enim rutrum
-                                        hac amet sagittis. Morbi enim integer
-                                        odio varius bibendum. Ac mattis
-                                        ullamcorper id massa.
-                                    </p>
-                                    <button className="gap-2.5 self-stretch p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]">
-                                        Daha çox
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="w-full flex justify-center mt-[64px]">
-                        <img
-                            src="/svg/mause_blue.svg"
-                            alt=""
-                            className="z-30   animate-bounce"
-                        />
-                    </div>
-                </section>
-                <section className="mt-[200px] relative  pb-[126px]">
-                    <div className=" flex flex-row-reverse lg:justify-end justify-start gap-6 flex-wrap">
-                        <h2 className="text-[48px] font-semibold">
-                            Sea Transport
-                        </h2>
-                        <div className=" border-b-[6px] border-[#2758A3]  lg:w-1/2 w-full flex justify-end  h-fit">
-                            <img src="/svg/cater.svg" alt="" />
-                        </div>
-                    </div>
-                    <div className="flex justify-center px-[auto] mt-[54px]">
-                        <div className="flex flex-wrap gap-10 items-start justify-center self-start mt-14 ml-9 max-md:mt-10 max-md:max-w-full">
-                            <div className="flex flex-col min-w-[240px] w-[701px] max-md:max-w-full">
-                                <h1 className="text-3xl font-medium text-black max-md:max-w-full">
-                                    Sea Transport
-                                </h1>
-                                <div className="flex flex-col mt-3 w-full max-md:max-w-full">
-                                    <p className="text-xl leading-7 text-black max-md:max-w-full">
-                                        Lorem ipsum dolor sit amet consectetur.
-                                        Enim rutrum hac amet sagittis. Morbi
-                                        enim integer odio varius bibendum. Ac
-                                        mattis ullamcorper id massa. Hendrerit
-                                        ipsum eu nulla molestie diam at. Lorem
-                                        ipsum dolor sit amet consectetur. Enim
-                                        rutrum hac amet sagittis. Morbi enim
-                                        integer odio varius bibendum. Ac mattis
-                                        ullamcorper id massa. Hendrerit ipsum eu
-                                        nulla molestie diam at. Lorem ipsum
-                                        dolor sit amet consectetur. Enim rutrum
-                                        hac amet sagittis. Morbi enim integer
-                                        odio varius bibendum. Ac mattis
-                                        ullamcorper id massa.
-                                    </p>
-                                    <button className="gap-2.5 self-stretch p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]">
-                                        Daha çox
-                                    </button>
-                                </div>
-                            </div>
-                            <img
-                                loading="lazy"
-                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/56a7049deb9d85245293cf7d433414682d4560aead2a45416afbef7cd376339e?placeholderIfAbsent=true&apiKey=c6f3c7bb740649e5a32c147b3037a1c2"
-                                alt="Sea Transport illustration"
-                                className="object-contain aspect-[1.11] min-w-[240px] w-[392px]"
-                            />
-                        </div>
-                    </div>
-                    <div className="w-full flex justify-center mt-[64px]">
-                        <img
-                            src="/svg/mause_blue.svg"
-                            alt=""
-                            className="z-30   animate-bounce"
-                        />
-                    </div>
-                </section>
-                <section className="mt-[200px] relative  pb-[126px]">
-                    <div className=" flex flex-row lg:justify-end justify-start gap-6 flex-wrap">
-                        <h2 className="text-[48px] font-semibold">
-                            Sea Transport
-                        </h2>
-                        <div className=" border-b-[6px] border-[#2758A3]  lg:w-1/2 w-full  h-fit">
-                            <img src="/svg/cater.svg" alt="" />
-                        </div>
-                    </div>
-                    <div className="flex justify-center px-[auto] mt-[54px]">
-                        <div className="flex flex-wrap gap-10 items-start justify-center self-start mt-14 ml-9 max-md:mt-10 max-md:max-w-full">
-                            <img
-                                loading="lazy"
-                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/56a7049deb9d85245293cf7d433414682d4560aead2a45416afbef7cd376339e?placeholderIfAbsent=true&apiKey=c6f3c7bb740649e5a32c147b3037a1c2"
-                                alt="Sea Transport illustration"
-                                className="object-contain aspect-[1.11] min-w-[240px] w-[392px]"
-                            />
-                            <div className="flex flex-col min-w-[240px] w-[701px] max-md:max-w-full">
-                                <h1 className="text-3xl font-medium text-black max-md:max-w-full">
-                                    Sea Transport
-                                </h1>
-                                <div className="flex flex-col mt-3 w-full max-md:max-w-full">
-                                    <p className="text-xl leading-7 text-black max-md:max-w-full">
-                                        Lorem ipsum dolor sit amet consectetur.
-                                        Enim rutrum hac amet sagittis. Morbi
-                                        enim integer odio varius bibendum. Ac
-                                        mattis ullamcorper id massa. Hendrerit
-                                        ipsum eu nulla molestie diam at. Lorem
-                                        ipsum dolor sit amet consectetur. Enim
-                                        rutrum hac amet sagittis. Morbi enim
-                                        integer odio varius bibendum. Ac mattis
-                                        ullamcorper id massa. Hendrerit ipsum eu
-                                        nulla molestie diam at. Lorem ipsum
-                                        dolor sit amet consectetur. Enim rutrum
-                                        hac amet sagittis. Morbi enim integer
-                                        odio varius bibendum. Ac mattis
-                                        ullamcorper id massa.
-                                    </p>
-                                    <button className="gap-2.5 self-stretch p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]">
-                                        Daha çox
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="w-full flex justify-center mt-[64px]">
-                        <img
-                            src="/svg/mause_blue.svg"
-                            alt=""
-                            className="z-30   animate-bounce"
-                        />
-                    </div>
-                </section>
-                <section className="mt-[200px] relative  pb-[126px]">
-                    <div className=" flex flex-row-reverse lg:justify-end justify-start gap-6 flex-wrap">
-                        <h2 className="text-[48px] font-semibold">
-                            Sea Transport
-                        </h2>
-                        <div className=" border-b-[6px] border-[#2758A3]  lg:w-1/2 w-full flex justify-end  h-fit">
-                            <img src="/svg/cater.svg" alt="" />
-                        </div>
-                    </div>
-                    <div className="flex justify-center px-[auto] mt-[54px]">
-                        <div className="flex flex-wrap gap-10 items-start justify-center self-start mt-14 ml-9 max-md:mt-10 max-md:max-w-full">
-                            <div className="flex flex-col min-w-[240px] w-[701px] max-md:max-w-full">
-                                <h1 className="text-3xl font-medium text-black max-md:max-w-full">
-                                    Sea Transport
-                                </h1>
-                                <div className="flex flex-col mt-3 w-full max-md:max-w-full">
-                                    <p className="text-xl leading-7 text-black max-md:max-w-full">
-                                        Lorem ipsum dolor sit amet consectetur.
-                                        Enim rutrum hac amet sagittis. Morbi
-                                        enim integer odio varius bibendum. Ac
-                                        mattis ullamcorper id massa. Hendrerit
-                                        ipsum eu nulla molestie diam at. Lorem
-                                        ipsum dolor sit amet consectetur. Enim
-                                        rutrum hac amet sagittis. Morbi enim
-                                        integer odio varius bibendum. Ac mattis
-                                        ullamcorper id massa. Hendrerit ipsum eu
-                                        nulla molestie diam at. Lorem ipsum
-                                        dolor sit amet consectetur. Enim rutrum
-                                        hac amet sagittis. Morbi enim integer
-                                        odio varius bibendum. Ac mattis
-                                        ullamcorper id massa.
-                                    </p>
-                                    <button className="gap-2.5 self-stretch p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]">
-                                        Daha çox
-                                    </button>
-                                </div>
-                            </div>
-                            <img
-                                loading="lazy"
-                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/56a7049deb9d85245293cf7d433414682d4560aead2a45416afbef7cd376339e?placeholderIfAbsent=true&apiKey=c6f3c7bb740649e5a32c147b3037a1c2"
-                                alt="Sea Transport illustration"
-                                className="object-contain aspect-[1.11] min-w-[240px] w-[392px]"
-                            />
-                        </div>
-                    </div>
-                    <div className="w-full flex justify-center mt-[64px]">
-                        <img
-                            src="/svg/mause_blue.svg"
-                            alt=""
-                            className="z-30   animate-bounce"
-                        />
-                    </div>
-                </section>
+                <InfoSection direction="row" />
+                <InfoSection direction="col" />
+                <InfoSection direction="row" />
+                <InfoSection direction="col" />
             </main>
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute top-[220vh] z-0"
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute top-[300vh] -right-[300px]  z-0"
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute top-[420vh]"
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute top-[500vh] -right-[300px] "
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute top-[620vh]"
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute top-[700vh] -right-[300px] "
+            />
             <Footer />
         </div>
     );
