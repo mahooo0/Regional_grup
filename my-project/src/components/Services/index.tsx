@@ -41,77 +41,78 @@ const servicesData = [
 
 export const ServicesLayout: React.FC = () => {
     return (
-        <div className="flex flex-col items-center pr-2 mb-[120px] mt-[120px]">
-            <h1 className="text-5xl font-medium text-black max-md:text-4xl">
-                Lorem Ipsum
-            </h1>
+        <div className=" w-full flex justify-center">
+            <div className="flex flex-col items-center pr-2 mb-[120px] mt-[120px] max-w-[1224px] min-w-[1224px]">
+                <h1 className="text-5xl font-medium text-black max-md:text-4xl">
+                    Lorem Ipsum
+                </h1>
 
-            <ServiceCard
-                title={servicesData[0].title}
-                description={servicesData[0].description}
-                imageUrl={servicesData[0].imageUrl}
-                imagePosition="top"
-            />
+                <ServiceCard
+                    title={servicesData[0].title}
+                    description={servicesData[0].description}
+                    imageUrl={servicesData[0].imageUrl}
+                    imagePosition="top"
+                />
 
-            <section className="self-stretch max-md:max-w-full justify-center ">
-                <div className="flex gap-[14%] lg:flex-row flex-col justify-center items-center">
-                    <div className="flex flex-col max-w-[480px]">
-                        <div className="flex z-10 flex-col  w-full text-right max-md:max-w-full ">
-                            <ServiceCard
-                                title={servicesData[1].title}
-                                description={servicesData[1].description}
-                                imageUrl={servicesData[1].imageUrl}
-                            />
-                            <ServiceCard
-                                title={servicesData[1].title}
-                                description={servicesData[1].description}
-                                imageUrl={servicesData[1].imageUrl}
-                            />
+                <section className="self-stretch max-md:max-w-full justify-center ">
+                    <div className="flex gap-[14%] lg:flex-row flex-col justify-center items-center">
+                        <div className="flex flex-col max-w-[480px]">
+                            <div className="flex z-10 flex-col  w-full text-right max-md:max-w-full ">
+                                <ServiceCard
+                                    title={servicesData[1].title}
+                                    description={servicesData[1].description}
+                                    imageUrl={servicesData[1].imageUrl}
+                                />
+                                <ServiceCard
+                                    title={servicesData[1].title}
+                                    description={servicesData[1].description}
+                                    imageUrl={servicesData[1].imageUrl}
+                                />
+                            </div>
                         </div>
-                    </div>
-
-                    <div className=" absolute  w-full  justify-center lg:flex hidden">
-                        <div className="flex flex-col  w-[22%] max-md:ml-0 max-md:w-full">
-                            <div className="flex flex-col justify-center px-12 py-12 mt-3 border border-sky-900 border-solid rounded-[330px] max-md:px-5">
-                                <div className="flex overflow-hidden flex-col justify-center items-center px-11 bg-white aspect-square rounded-[151px] shadow-[0px_0px_11px_rgba(0,0,0,0.12)] max-md:px-5">
-                                    <img
-                                        loading="lazy"
-                                        src={servicesData[2].imageUrl}
-                                        alt="Service icon"
-                                        className="object-contain aspect-[1.14] w-[118px]"
-                                    />
+                        <div className=" absolute  w-full  justify-center lg:flex hidden ">
+                            <div className="flex flex-col  w-[22%] max-md:ml-0 max-md:w-full justify-center items-center">
+                                <div className="flex flex-col justify-center px-12 py-12 mt-3 border border-sky-900 border-solid rounded-[330px] max-md:px-5 w-[300px]">
+                                    <div className="flex overflow-hidden flex-col justify-center items-center px-11 bg-white aspect-square rounded-[151px] shadow-[0px_0px_11px_rgba(0,0,0,0.12)] max-md:px-5">
+                                        <img
+                                            loading="lazy"
+                                            src={servicesData[2].imageUrl}
+                                            alt="Service icon"
+                                            className="object-contain aspect-[1.14] w-[118px]"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex flex-col   max-w-[480px]">
-                        <div className="flex flex-col w-full max-md:max-w-full ">
-                            <ServiceCard
-                                title={servicesData[2].title}
-                                description={servicesData[2].description}
-                                imageUrl={servicesData[2].imageUrl}
-                                imagePosition="left"
-                            />
+                        <div className="flex flex-col   max-w-[480px]">
+                            <div className="flex flex-col w-full max-md:max-w-full ">
+                                <ServiceCard
+                                    title={servicesData[2].title}
+                                    description={servicesData[2].description}
+                                    imageUrl={servicesData[2].imageUrl}
+                                    imagePosition="left"
+                                />
 
-                            <ServiceCard
-                                title={servicesData[3].title}
-                                description={servicesData[3].description}
-                                imageUrl={servicesData[3].imageUrl}
-                                imagePosition="left"
-                            />
+                                <ServiceCard
+                                    title={servicesData[3].title}
+                                    description={servicesData[3].description}
+                                    imageUrl={servicesData[3].imageUrl}
+                                    imagePosition="left"
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section className="flex z-10 flex-col justify-center  max-w-full text-center w-[479px]">
-                <ServiceCard
-                    title={servicesData[4].title}
-                    description={servicesData[4].description}
-                    imageUrl={servicesData[4].imageUrl}
-                    imagePosition="bottom"
-                />
-            </section>
+                <section className="flex z-10 flex-col justify-center  max-w-full text-center w-[479px] ">
+                    <ServiceCard
+                        title={servicesData[4].title}
+                        description={servicesData[4].description}
+                        imageUrl={servicesData[4].imageUrl}
+                        imagePosition="bottom"
+                    />
+                </section>
+            </div>
         </div>
     );
 };

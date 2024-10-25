@@ -22,11 +22,13 @@ export default function Header() {
                         />
                     </svg>
                     <div className=" w-[20%] h-full z-50 absolute top-0 left-0  flex justify-end">
-                        <img
-                            className="h-full"
-                            src="https://s3-alpha-sig.figma.com/img/7e61/1388/9b68b91790cc47d8228cc0648b592052?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf7tNs0k0JK6liW9Gm52aTwdd0SQXAlNWQORiuQ4zaMudAA4cSH01x1X9NLbCD3VMUfwGGB0yY3BR9C8bQWEeGpUCqtZDKMXMPq5bx0mMglwjVR9QuYdaoOLAMLf4UI8WA~xWY9xCDROjWJbvo19ElF8Gj-ENWDuL5~dU1m4Cb4~ku6s6LCT~AhXh935AU3mXZiraGc~rRCf-z6YSBglItLTy-jNNieCp5b0FyXsjvGmnnjh6pzKtacVae3C2MhvKiWI1dKgAjnO76ANR3ikGxQWY1mZTmI1ydrtteVBd3zm0wpMDqp2cUPI8Rm46T8DZscN~qA7eTVbqgLFLiYnHQ__"
-                            alt=""
-                        />
+                        <Link to="/">
+                            <img
+                                className="h-full"
+                                src="https://s3-alpha-sig.figma.com/img/7e61/1388/9b68b91790cc47d8228cc0648b592052?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf7tNs0k0JK6liW9Gm52aTwdd0SQXAlNWQORiuQ4zaMudAA4cSH01x1X9NLbCD3VMUfwGGB0yY3BR9C8bQWEeGpUCqtZDKMXMPq5bx0mMglwjVR9QuYdaoOLAMLf4UI8WA~xWY9xCDROjWJbvo19ElF8Gj-ENWDuL5~dU1m4Cb4~ku6s6LCT~AhXh935AU3mXZiraGc~rRCf-z6YSBglItLTy-jNNieCp5b0FyXsjvGmnnjh6pzKtacVae3C2MhvKiWI1dKgAjnO76ANR3ikGxQWY1mZTmI1ydrtteVBd3zm0wpMDqp2cUPI8Rm46T8DZscN~qA7eTVbqgLFLiYnHQ__"
+                                alt=""
+                            />
+                        </Link>
                     </div>
                     <div className=" w-[50%] h-full z-50 absolute top-0 left-[20%]  flex items-center justify-center">
                         <ul className="text-white gap-4 text-[16px] font-normal flex flex-row">
@@ -84,7 +86,7 @@ export default function Header() {
                 <img
                     src="/imges/headerbg.png"
                     alt=" "
-                    className="w-full max-h-[61px] lg:hidden md:hidden block"
+                    className="w-full max-h-[80px] lg:hidden md:hidden block"
                 />
                 <div className=" absolute top-0 w-full h-full flex lg:justify-around md:justify-between justify-around items-center lg:px-0 md:px-6 px-0">
                     <div className="relative ml-3">
@@ -136,11 +138,14 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    <img
-                        className="w-[64px] h-[64px] mt-[-3%] lg:block md:hidden block"
-                        src="https://s3-alpha-sig.figma.com/img/7e61/1388/9b68b91790cc47d8228cc0648b592052?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf7tNs0k0JK6liW9Gm52aTwdd0SQXAlNWQORiuQ4zaMudAA4cSH01x1X9NLbCD3VMUfwGGB0yY3BR9C8bQWEeGpUCqtZDKMXMPq5bx0mMglwjVR9QuYdaoOLAMLf4UI8WA~xWY9xCDROjWJbvo19ElF8Gj-ENWDuL5~dU1m4Cb4~ku6s6LCT~AhXh935AU3mXZiraGc~rRCf-z6YSBglItLTy-jNNieCp5b0FyXsjvGmnnjh6pzKtacVae3C2MhvKiWI1dKgAjnO76ANR3ikGxQWY1mZTmI1ydrtteVBd3zm0wpMDqp2cUPI8Rm46T8DZscN~qA7eTVbqgLFLiYnHQ__"
-                        alt=""
-                    />
+                    <Link to="/">
+                        <img
+                            className="w-[64px] h-[64px] mt-[-3%] lg:block md:hidden block"
+                            src="https://s3-alpha-sig.figma.com/img/7e61/1388/9b68b91790cc47d8228cc0648b592052?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf7tNs0k0JK6liW9Gm52aTwdd0SQXAlNWQORiuQ4zaMudAA4cSH01x1X9NLbCD3VMUfwGGB0yY3BR9C8bQWEeGpUCqtZDKMXMPq5bx0mMglwjVR9QuYdaoOLAMLf4UI8WA~xWY9xCDROjWJbvo19ElF8Gj-ENWDuL5~dU1m4Cb4~ku6s6LCT~AhXh935AU3mXZiraGc~rRCf-z6YSBglItLTy-jNNieCp5b0FyXsjvGmnnjh6pzKtacVae3C2MhvKiWI1dKgAjnO76ANR3ikGxQWY1mZTmI1ydrtteVBd3zm0wpMDqp2cUPI8Rm46T8DZscN~qA7eTVbqgLFLiYnHQ__"
+                            alt=""
+                        />
+                    </Link>
+
                     <div className="w-[33px] h-[33px] aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
                         <svg
                             width="24"

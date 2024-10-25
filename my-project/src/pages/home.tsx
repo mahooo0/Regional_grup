@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer.tsx';
 import InfoSection from '../components/InfoSection.tsx';
@@ -34,12 +34,25 @@ function scrollToElementById(id: string) {
     }
 }
 export default function Home() {
+    const sections = [
+        'hero',
+        'ebaut',
+        'info1',
+        'info2',
+        'info3',
+        'info4',
+        'footer',
+    ];
+    const [sectionindex, setsectionindex] = useState<number>(0);
     // const [showebaut, setshowebaut] = useState<boolean>(false);
     return (
-        <div className="bg-white  relative  overflow-hidden">
+        <div className="bg-white  relative  lg:overflow-hidden overflow-auto lg:h-[100vh] h-fit">
             <Header />
             <main className=" relative overflow-x-hidden mb-[120px] z-30">
-                <section className="  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  relative justify-center  ">
+                <section
+                    className="  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  relative justify-center  "
+                    id="hero"
+                >
                     <div
                         className="lg:h-[100vh] md:h-[100vh] h-[25vh]  clip_first_el  lg:w-[130%] md:w-[130%] w-full  z-10 "
                         style={{
@@ -196,6 +209,7 @@ export default function Home() {
                         className=" absolute bottom-2 animate-bounce z-30  justify-center w-full lg:flex md:flex hidden"
                         onClick={() => {
                             // setshowebaut(true);
+                            setsectionindex(0);
                             scrollToElementById('ebaut');
                         }}
                     >
@@ -275,15 +289,47 @@ export default function Home() {
                     {/* <img src="/svg/mause_blue.svg" />
                      */}
                     <img
+                        onClick={() => {
+                            setsectionindex(1);
+                            scrollToElementById('info1');
+                        }}
                         src="/svg/mause_blue.svg"
                         alt=""
-                        className="z-30 absolute bottom-[-50px] animate-bounce lg:block md:block hidden"
+                        className="z-30 absolute bottom-[-10px] animate-bounce lg:block md:block hidden"
                     />
                 </section>
-                <InfoSection direction="row" />
-                <InfoSection direction="col" />
-                <InfoSection direction="row" />
-                <InfoSection direction="col" />
+                <InfoSection
+                    direction="row"
+                    id="info1"
+                    onaction={() => {
+                        setsectionindex(2);
+                        scrollToElementById('info2');
+                    }}
+                />
+                <InfoSection
+                    direction="col"
+                    id="info2"
+                    onaction={() => {
+                        setsectionindex(3);
+                        scrollToElementById('info3');
+                    }}
+                />
+                <InfoSection
+                    direction="row"
+                    id="info3"
+                    onaction={() => {
+                        setsectionindex(4);
+                        scrollToElementById('info4');
+                    }}
+                />
+                <InfoSection
+                    direction="col"
+                    id="info4"
+                    onaction={() => {
+                        setsectionindex(5);
+                        scrollToElementById('footer');
+                    }}
+                />
             </main>
             <img
                 alt="bgimg"
@@ -315,6 +361,28 @@ export default function Home() {
                 src="/svg/bgAnimateIcon.svg"
                 className=" absolute top-[600vh] -right-[300px] "
             />
+            <div
+                onClick={() => {
+                    scrollToElementById(sections[sectionindex]);
+                    setsectionindex((prew) => prew - 1);
+                }}
+                className=" z-[9999999999999999999999999999]  fixed  w-[64px] h-[64px] rounded-full bg-[#2858A4]  bottom-6  right-6 lg:flex md:flex hidden                       justify-center items-center animate-bounce"
+            >
+                <svg
+                    className=" -rotate-90"
+                    width="34"
+                    height="34"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M16 5C16 5.742 16.733 6.85 17.475 7.78C18.429 8.98 19.569 10.027 20.876 10.826C21.856 11.425 23.044 12 24 12M24 12C23.044 12 21.855 12.575 20.876 13.174C19.569 13.974 18.429 15.021 17.475 16.219C16.733 17.15 16 18.26 16 19M24 12H0"
+                        stroke="white"
+                        stroke-width="1.5"
+                    />
+                </svg>
+            </div>
             <Footer />
         </div>
     );

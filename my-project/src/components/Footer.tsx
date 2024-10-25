@@ -22,7 +22,10 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="flex overflow-hidden flex-col justify-center items-center px-20 py-11 bg-neutral-900 max-md:px-5">
+        <footer
+            className="flex overflow-hidden flex-col justify-center items-center px-20 py-11 bg-neutral-900 max-md:px-5"
+            id="footer"
+        >
             <div className="flex flex-col w-full max-w-[1230px] max-md:max-w-full">
                 <div className="flex gap-10 items-start w-full flex-wrap max-md:max-w-full">
                     <div className="flex flex-col text-base leading-6 text-white">

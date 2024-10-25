@@ -16,7 +16,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
     switch (imagePosition) {
         case 'top':
             return (
-                <section className="flex z-10 lg:flex-col-reverse flex-col justify-center items-center mt-16  text-center max-w-[479px] gap-6 lg:mb-[-4%] mb-[0]">
+                <section className="flex z-10 lg:flex-col-reverse flex-col lg:mb-[-70px] mb-[0] justify-center items-center mt-16  text-center max-w-[479px] gap-6  ">
                     <img
                         loading="lazy"
                         src={imageUrl}
@@ -35,7 +35,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             );
         case 'bottom':
             return (
-                <section className="flex z-10 flex-col justify-center items-center   text-center max-w-[479px] gap-6 lg:mt-[-5%]  mt-6">
+                <section className="flex z-10 flex-col justify-center items-center   text-center max-w-[479px] gap-6   lg:mt-[-60px] mt-0">
                     <img
                         loading="lazy"
                         src={imageUrl}

@@ -61,7 +61,7 @@ export default function Ebout() {
                     ))}
                 </div>
             </section>
-            <section className="flex overflow-hidden flex-col items-start px-20 pt-9 pb-20 mt-32 w-full bg-stone-50 max-md:px-5 max-md:mt-10 max-md:max-w-full">
+            <section className="flex overflow-hidden flex-col items-center px-20 pt-9 pb-20 mt-32 w-full bg-stone-50 max-md:px-5 max-md:mt-10 max-md:max-w-full">
                 <div className="flex flex-col w-full max-w-[1169px] max-md:max-w-full">
                     <h1 className="self-center ml-7 text-5xl font-medium text-black max-md:text-4xl">
                         Haqqımızda
@@ -102,7 +102,7 @@ export default function Ebout() {
                     </div>
                 </div>
             </section>
-            <section className="w-full justify-center">
+            <section className="">
                 <ServicesLayout />
             </section>
             <Footer />
