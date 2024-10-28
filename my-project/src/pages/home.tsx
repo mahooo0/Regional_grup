@@ -21,7 +21,7 @@ import InfoSection from '../components/InfoSection.tsx';
 //             duration: 1,
 //         });
 //     }, []);
-
+//
 //     return <div className="your-element">{children}</div>;
 // };
 function scrollToElementById(id: string) {
