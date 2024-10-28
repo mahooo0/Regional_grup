@@ -366,6 +366,7 @@ export default function Home() {
                     scrollToElementById(sections[sectionindex]);
                     setsectionindex((prew) => prew - 1);
                 }}
+                style={{ zIndex: 99999999999999999 }}
                 className=" z-[9999999999999999999999999999]  fixed  w-[64px] h-[64px] rounded-full bg-[#2858A4]  bottom-6  right-6 lg:flex md:flex hidden                       justify-center items-center animate-bounce"
             >
                 <svg
