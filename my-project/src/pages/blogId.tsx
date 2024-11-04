@@ -39,17 +39,17 @@ export default function BlogID() {
         },
     ];
     return (
-        <div>
+        <div className=" relative">
             <Header />
 
             <section
-                className="flex overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center"
+                className="flex  min-h-[420px] overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center"
                 style={{
                     backgroundImage:
                         "url('https://s3-alpha-sig.figma.com/img/8b02/e377/e396cc186698accba9ebcb781a02b78a?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fJiT4yca6EgjAzDyShJ3mJS0Pkf~2deDnzgTSAIpkoH8aa3DPB~TDho3lhwBqLy-F6hZb~~GaUASmCHlTOMbMBM9cKBVleufuqh4DzYTnqtG1bCASPi8bw4WMNAhN4sh1JepfkrvER4Ja7xYj8iYuyOt9KeEVf-pWzvlFne0FPH-X9mSFtd9ba4rG~jAzCmWOWOsbTtqXQoW0GVgXNmHPMvaGChkR777MdUJUvf~0UqzTTlki7n9vTPCpIhk9U2JeZdBBkaUZBWsn9saHVuO-kZ3goTVEmVszn5cbY9ELP7ddkIfj1IcnY7cPSJHLVExUOz4q3OYtmqfDY0g30IoIA')",
                 }}
             >
-                <div className="w-full h-full  bg-black bg-opacity-70  px-20 pt-20 pb-32 flex justify-center">
+                <div className="w-full h-full  min-h-[420px]  bg-black bg-opacity-70  px-20 pt-20 pb-32 flex justify-center">
                     <div className="flex flex-col mb-0 max-w-full w-[856px] max-md:mb-2.5">
                         <div className="flex flex-col w-full text-center max-md:max-w-full">
                             <h1 className="text-5xl font-semibold max-md:max-w-full max-md:text-4xl mt-11">
@@ -95,6 +95,35 @@ export default function BlogID() {
                         />
                         <span className="self-stretch my-auto">Instagram</span>
                     </a>
+                    <a
+                        className="flex gap-4 items-center mt-4 max-w-full w-[119px]"
+                        aria-label="Visit our Instagram page"
+                    >
+                        {' '}
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12Z"
+                                stroke="#2858A4"
+                                stroke-width="0.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path
+                                d="M2 12C3.6 7.903 7.336 5 12 5C16.664 5 20.4 7.903 22 12C20.4 16.097 16.664 19 12 19C7.336 19 3.6 16.097 2 12Z"
+                                stroke="#2858A4"
+                                stroke-width="0.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                        <span className="self-stretch my-auto">123.45B</span>
+                    </a>
                 </nav>
                 <div className="flex flex-col lg:w-[90%] w-full ">
                     <div className="flex flex-col w-full max-md:max-w-full">
@@ -138,6 +167,11 @@ export default function BlogID() {
             </section>
             {/* <NewsSection /> */}
             <Footer />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute top-[200vh] left-0 "
+            />
         </div>
     );
 }

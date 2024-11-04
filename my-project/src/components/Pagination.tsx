@@ -69,22 +69,38 @@ export const Pagination: React.FC<PaginationProps> = ({
                         isActive={currentPage === 1}
                         onClick={() => onPageChange(1)}
                     />
-                    <PaginationItem
-                        number={2}
-                        isActive={currentPage === 2}
-                        onClick={() => onPageChange(2)}
-                    />
-                    <PaginationItem
-                        number={3}
-                        isActive={currentPage === 3}
-                        onClick={() => onPageChange(3)}
-                    />
-                    <div className="flex gap-1 pb-1 min-h-[6px]"> ...</div>
-                    <PaginationItem
-                        number={totalPages}
-                        isActive={currentPage === totalPages}
-                        onClick={() => onPageChange(totalPages)}
-                    />
+                    {totalPages > 1 && (
+                        <PaginationItem
+                            number={2}
+                            isActive={currentPage === 2}
+                            onClick={() => onPageChange(2)}
+                        />
+                    )}
+
+                    {totalPages > 2 && (
+                        <PaginationItem
+                            number={3}
+                            isActive={currentPage === 3}
+                            onClick={() => onPageChange(3)}
+                        />
+                    )}
+
+                    {totalPages < 4 ? (
+                        <></>
+                    ) : (
+                        <>
+                            {' '}
+                            <div className="flex gap-1 pb-1 min-h-[6px]">
+                                {' '}
+                                ...
+                            </div>
+                            <PaginationItem
+                                number={totalPages}
+                                isActive={currentPage === totalPages}
+                                onClick={() => onPageChange(totalPages)}
+                            />
+                        </>
+                    )}
                 </div>
                 <button
                     className="flex items-center"

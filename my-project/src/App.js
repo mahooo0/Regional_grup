@@ -5,27 +5,32 @@ import Ebout from './pages/ebaut.tsx';
 import Services from './pages/services.tsx';
 import Contact from './pages/contact.tsx';
 import News from './pages/News.tsx';
-import Blog from './pages/blog.tsx';
 import BlogID from './pages/blogId.tsx';
 import Galery from './pages/galery.tsx';
-// import HomePage from './pages/HomePage';
-// import AboutPage from './pages/AboutPage';
-// import ContactPage from './pages/ContactPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { RecoilRoot } from 'recoil';
+
+const queryClient = new QueryClient();
 
 function App() {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about/" element={<Ebout />} />
-                <Route path="/services/" element={<Services />} />
-                <Route path="/contact/" element={<Contact />} />
-                <Route path="/news/" element={<News />} />
-                {/* <Route path="/blog/" element={<Blog />} /> */}
-                <Route path="/news/:id" element={<BlogID />} />
-                <Route path="/galery" element={<Galery />} />
-            </Routes>
-        </Router>
+        <QueryClientProvider client={queryClient}>
+            <RecoilRoot>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about/" element={<Ebout />} />
+                        <Route path="/services/" element={<Services />} />
+                        <Route path="/contact/" element={<Contact />} />
+                        <Route path="/news/" element={<News />} />
+                        <Route path="/news/:id" element={<BlogID />} />
+                        <Route path="/galery" element={<Galery />} />
+                    </Routes>
+                    <ReactQueryDevtools initialIsOpen={false} />
+                </Router>
+            </RecoilRoot>
+        </QueryClientProvider>
     );
 }
 

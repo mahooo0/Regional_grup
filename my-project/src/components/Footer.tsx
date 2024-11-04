@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Footer = () => {
+const Footer = ({ id }: { id?: string }) => {
     const footerData = [
         {
             title: 'Xidmətlər',
@@ -23,11 +23,11 @@ const Footer = () => {
 
     return (
         <footer
-            className="flex overflow-hidden flex-col justify-center items-center px-20 py-11 bg-neutral-900 max-md:px-5"
-            id="footer"
+            className="flex overflow-hidden flex-col justify-center items-center px-20 py-11 bg-neutral-900 max-md:px-5 z-40"
+            id={id}
         >
-            <div className="flex flex-col w-full max-w-[1230px] max-md:max-w-full">
-                <div className="flex gap-10 items-start w-full flex-wrap max-md:max-w-full">
+            <div className="flex flex-col w-full  max-md:max-w-full ">
+                <div className="flex gap-10 items-start w-full flex-wrap max-md:max-w-full justify-between">
                     <div className="flex flex-col text-base leading-6 text-white">
                         <p>
                             Fermentum nulla integer consequat porttitor vitae

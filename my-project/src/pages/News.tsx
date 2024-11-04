@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer.tsx';
 import { Chat } from '../components/Chat.tsx';
 import { NewsAside } from '../components/NewsAside.tsx';
 import { NewsComments } from '../components/newsCommpent.tsx';
+import { useQuery } from '@tanstack/react-query';
+import { fetchBlog, fetchBunner } from '../Services/Requests.js';
+import { useRecoilValue } from 'recoil';
+import { Languege } from '../Atom/index.js';
 interface ContactInfoProps {
     title: string;
     value: string;
@@ -35,38 +39,79 @@ const ContactSection: React.FC<ContactSectionProps> = ({ contactInfo }) => (
     </section>
 );
 export default function News() {
-    const contactInfo = [
-        { title: 'Phone number', value: '+994 123 45 67' },
-        { title: 'Email', value: 'nümunə@gmail.com' },
-        { title: 'Location', value: '221B Baker Street' },
-    ];
+    const [chatData, setChatData] = useState<any[]>([]);
+    const [CommetsData, setCommetsData] = useState<any[]>([]);
+    const [otherBlogs, setotherBlogs] = useState<any[]>([]);
+    const [language, setLanguie] = useRecoilValue(Languege);
+
+    const {
+        data: Blog,
+        isLoading: loadingBlog,
+        error: errorBlog,
+    } = useQuery({
+        queryKey: ['Blog', language],
+        queryFn: fetchBlog,
+    });
+    const {
+        data: Bunner,
+        isLoading: loadingBunner,
+        error: errorBunner,
+    } = useQuery({
+        queryKey: ['Bunner', language],
+        queryFn: fetchBunner,
+    });
+    console.log(Bunner);
+    useEffect(() => {
+        function splitArray(inputArr: any[]) {
+            const firstArr = inputArr.slice(0, 3); // Get the first 4 elements
+            const secondArr = inputArr.slice(3, 7);
+            const thirddArr = inputArr.slice(8);
+
+            setotherBlogs(thirddArr);
+            setChatData(firstArr);
+            setCommetsData(secondArr);
+        }
+        if (Blog) {
+            splitArray(Blog.data);
+        }
+    }, [Blog]);
+
+    if (loadingBlog || loadingBunner) return <div>Loading...</div>;
+    if (errorBlog || errorBunner) return <div>Error loading data</div>;
+    console.log('CommetsData:', CommetsData);
+    // write program
     return (
         <div>
             <Header />
 
             <section
-                className="flex overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center"
+                className="flex overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center min-h-[420px]"
                 style={{
-                    backgroundImage:
-                        "url('https://s3-alpha-sig.figma.com/img/8b02/e377/e396cc186698accba9ebcb781a02b78a?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fJiT4yca6EgjAzDyShJ3mJS0Pkf~2deDnzgTSAIpkoH8aa3DPB~TDho3lhwBqLy-F6hZb~~GaUASmCHlTOMbMBM9cKBVleufuqh4DzYTnqtG1bCASPi8bw4WMNAhN4sh1JepfkrvER4Ja7xYj8iYuyOt9KeEVf-pWzvlFne0FPH-X9mSFtd9ba4rG~jAzCmWOWOsbTtqXQoW0GVgXNmHPMvaGChkR777MdUJUvf~0UqzTTlki7n9vTPCpIhk9U2JeZdBBkaUZBWsn9saHVuO-kZ3goTVEmVszn5cbY9ELP7ddkIfj1IcnY7cPSJHLVExUOz4q3OYtmqfDY0g30IoIA')",
+                    backgroundImage: `url('https://regional.epart.az/storage/${Bunner.data[0].image}')`,
                 }}
             >
-                <div className="w-full h-full  bg-black bg-opacity-70  px-20 pt-20 pb-32 flex justify-center">
+                <div className="w-full h-full  min-h-[420px]  bg-black bg-opacity-70  px-20 pt-20 pb-32 flex justify-center">
                     <div className="flex flex-col mb-0 max-w-full w-[856px] max-md:mb-2.5">
                         <div className="flex flex-col w-full text-center max-md:max-w-full">
                             <h1 className="text-5xl font-semibold max-md:max-w-full max-md:text-4xl">
-                                News{' '}
+                                {Bunner.data[0].title}
                             </h1>
+                            <div
+                                className="mt-[16px]"
+                                dangerouslySetInnerHTML={{
+                                    __html: Bunner.data[0].description,
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
             </section>
-            <section className="mt-[52px] flex flex-row w-full justify-around flex-wrap-reverse  lg:px-0 px-5 gap-6  mb-[120px]">
-                <div className="max-w-[1000px]">
-                    <Chat />
-                    <NewsComments />
+            <section className="mt-[52px] flex flex-row w-full justify-center gap-6 items-start flex-wrap  lg:px-0 px-5   mb-[120px]">
+                <div className="max-w-[1000px] flex justify-center flex-col items-center w-full">
+                    <Chat data={chatData} />
+                    <NewsComments data={CommetsData} />
                 </div>
-                <NewsAside />
+                <NewsAside data={otherBlogs} />
             </section>
 
             <Footer />

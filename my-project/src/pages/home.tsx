@@ -1,29 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer.tsx';
 import InfoSection from '../components/InfoSection.tsx';
-// import { useEffect } from 'react';
-// import gsap from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useQuery } from '@tanstack/react-query';
+import { fetchAboutsShort, fetchAservices } from '../Services/Requests.js';
+import { Link, useNavigate } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { CurrentServiceState, Languege } from '../Atom/index.js';
 
-// gsap.registerPlugin(ScrollTrigger);
-
-// const YourComponent = ({ children }) => {
-//     useEffect(() => {
-//         gsap.from('.your-element', {
-//             scrollTrigger: {
-//                 trigger: '.your-element',
-//                 start: 'top 80%', // Start when the element is 80% from the top of the viewport
-//                 end: 'top 30%',
-//                 scrub: true,
-//             },
-//             y: 100, // Move up from 100px initially
-//             duration: 1,
-//         });
-//     }, []);
-//
-//     return <div className="your-element">{children}</div>;
-// };
 function scrollToElementById(id: string) {
     const element = document.getElementById(id);
     if (element) {
@@ -34,46 +18,84 @@ function scrollToElementById(id: string) {
     }
 }
 export default function Home() {
-    const sections = [
-        'hero',
-        'ebaut',
-        'info1',
-        'info2',
-        'info3',
-        'info4',
-        'footer',
-    ];
+    const [language, setLanguie] = useRecoilValue(Languege);
+
+    const {
+        data: Services,
+        isLoading: loadingServices,
+        error: errorServices,
+    } = useQuery({
+        queryKey: ['Services', language],
+        queryFn: fetchAservices,
+    });
+    const {
+        data: EbautShort,
+        isLoading: loadingEbaut,
+        error: errorEbaut,
+    } = useQuery({
+        queryKey: ['aboutsShort', language],
+        queryFn: fetchAboutsShort,
+    });
+    const navigate = useNavigate();
+
     const [sectionindex, setsectionindex] = useState<number>(0);
-    // const [showebaut, setshowebaut] = useState<boolean>(false);
+    const [HeroServices, setHeroServices] = useState<any[]>([]);
+    const [ServiseARR, setServiseARR] = useState<any[]>([]);
+    const [currentService, setCurrentService] =
+        useRecoilState(CurrentServiceState);
+    useEffect(() => {
+        function splitArray(inputArr: any[]) {
+            const firstArr = inputArr.slice(0, 4); // Get the first 4 elements
+            const secondArr = inputArr.slice(4);
+            setHeroServices(firstArr);
+            setServiseARR(secondArr); // Get the rest of the elements
+        }
+        if (Services) {
+            splitArray(Services.data);
+        }
+    }, [Services]);
+    if (loadingServices || loadingEbaut) return <div>Loading...</div>;
+    if (loadingServices || errorServices) return <div>Error loading data</div>;
+    const slugs = ServiseARR.map((item: any) => item.slug);
+    const sections = ['hero', 'ebaut', ...slugs, 'info10', 'footer'];
+
+    console.log('currentService:', currentService);
     return (
-        <div className="bg-white  relative  lg:overflow-hidden overflow-auto lg:h-[100vh] h-fit">
+        <div className="bg-white  relative  lg:overflow-hidden overflow-hidden lg:h-[100vh] w-[100%] h-fit">
+            {/*  */}
             <Header />
-            <main className=" relative overflow-x-hidden mb-[120px] z-30">
+            <main className=" relative  mb-[120px] z-30 ">
                 <section
-                    className="  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  relative justify-center  "
+                    className="  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  relative justify-center   overflow-x-hidden"
                     id="hero"
                 >
                     <div
-                        className="lg:h-[100vh] md:h-[100vh] h-[25vh]  clip_first_el  lg:w-[130%] md:w-[130%] w-full  z-10 "
+                        className="lg:h-[100vh] md:h-[100vh] h-[25vh]  clip_first_el  lg:w-[130%] md:w-[130%] w-full  z-10 bg-no-repeat	"
                         style={{
-                            background:
-                                "url('https://s3-alpha-sig.figma.com/img/5b15/904e/40cbe8b34a66e9e877a00c0a1cf094da?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dnwqsnk7c7pfFWfBasiOzXfxikEh6b1-H3GXvAxyBR8sKCKY4TLkJzTITfFK26~soxwBT1QUke0BFZ66eGmwT0kDuZkNSTFIPFgj7FcJdb1g4njEltlBdi7jixqyS1Z2b7QFTYA3~U~6S96lNKn7UHnU1IRrnDUABMPIQ11pA4i83dSRzsY2~qPNHIDHbmEe1mNAy2DeAhiIGfB6~7A4j7pxfw0O7mydgPnhOGlcuoIOqB31cBIfMK4h7LAVT64XbHRfoA92DJ8agCgbS8esT~uXd4SNtVdNS8VRIGDssNDcGw09xn2EKn04bksvudGk-UL8uGuCMORLBcnhLzwdIA__')",
+                            backgroundImage: `url('https://regional.epart.az/storage/${HeroServices[0]?.image}')`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
                         }}
                     >
                         <div className="w-full h-full bg-black bg-opacity-50 flex justify-center items-center   px-[20%]">
                             <div className=" max-w-[254px] text-white flex flex-col text-center justify-center">
                                 {' '}
                                 <h4 className="text-[16px] font-semibold">
-                                    Road Tranport
+                                    {HeroServices[0]?.title}
                                 </h4>
                                 <p className="text-[12px] font-normal mt-[10px] lg:block md:block hidden">
-                                    Lorem ipsum dolor sit amet consectetur. Enim
-                                    rutrum hac amet sagittis. Morbi enim integer
-                                    odio varius bibendum.{' '}
+                                    {HeroServices[0]?.short_description}
                                 </p>
-                                <button className="flex flex-row gap-[10px] justify-center mt-[24px]">
+                                <button
+                                    onClick={() => {
+                                        setCurrentService(
+                                            HeroServices[0]?.slug
+                                        );
+                                        navigate('/services');
+                                    }}
+                                    className="flex flex-row gap-[10px] justify-center mt-[24px]"
+                                >
                                     <p>Daha çox</p>
                                     <svg
                                         width="25"
@@ -94,24 +116,30 @@ export default function Home() {
                     <div
                         className="lg:h-[100vh] md:h-[100vh] h-[25vh] clip_second_el  lg:mt-0 md:mt-0 mt-[-9%]    lg:w-[130%] md:w-[130%] w-full  z-10 "
                         style={{
-                            background:
-                                "url('https://s3-alpha-sig.figma.com/img/6af5/c7a8/6019de30cfda48779fd41e4d30b7e676?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TvNoGsK-muy1tf3gRCfk3NLXCuxr-MpKt9Gbaw6d5A1FZu6x9hAHJTUZ8eoMzjBHK30g-HX1DiI1QpHRCy7QCshMk7pZtPpvvLBbcAj1PcCHQHemGnAjQ6epoK-YlnGZsRTqWcuN15RFZIfkJZJB6CBcHbY9T5aC6ko4Yds4txaP5gzw~EfPMwylS0wTMB~FFLRblykjRZ-oH-V3fHpVJOeMqncHfSg327e-02~RiPE7il4sAW86G9NCHkiFwJ0D7FMOl92beo8FC080o1iRX14tQdoHnoM3MRNBBwFElczldEjq6AOWqJFozEYPTu4iNPojLQfY93hSLwK1mzHoPg__')",
+                            backgroundImage: `url('https://regional.epart.az/storage/${HeroServices[1]?.image}')`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
                         }}
                     >
                         <div className="w-full h-full bg-black bg-opacity-50 flex justify-center items-center  px-[25%]">
                             <div className=" max-w-[254px] text-white flex flex-col text-center justify-center">
                                 {' '}
                                 <h4 className="text-[16px] font-semibold">
-                                    Road Tranport
+                                    {HeroServices[1]?.title}{' '}
                                 </h4>
                                 <p className="text-[12px] font-normal mt-[10px] lg:block md:block hidden">
-                                    Lorem ipsum dolor sit amet consectetur. Enim
-                                    rutrum hac amet sagittis. Morbi enim integer
-                                    odio varius bibendum.{' '}
+                                    {HeroServices[1]?.short_description}
                                 </p>
-                                <button className="flex flex-row gap-[10px] justify-center mt-[24px]">
+                                <button
+                                    className="flex flex-row gap-[10px] justify-center mt-[24px]"
+                                    onClick={() => {
+                                        setCurrentService(
+                                            HeroServices[1]?.slug
+                                        );
+                                        navigate('/services');
+                                    }}
+                                >
                                     <p>Daha çox</p>
                                     <svg
                                         width="25"
@@ -132,24 +160,30 @@ export default function Home() {
                     <div
                         className="lg:h-[100vh] md:h-[100vh] h-[25vh] lg:mt-0 md:mt-0 mt-[-9%] clip_therd_el  lg:w-[130%] md:w-[130%] w-full  z-10 "
                         style={{
-                            background:
-                                "url('https://s3-alpha-sig.figma.com/img/120d/882f/3e1cc595f3ab2492b8fccb2c6f7ddfe4?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BEYbKDCLulvNyYXtkyg-qrkWXStiGg8M~n-d41bhnf7-OU3PWLLQEgCETLzn-nlL4VW1VJHppc2jOC9Y0lCq78lfEDDgRa0t9h7gh5HLl2OTKgzYTID8ul5uO~hfWGBJD~WBjsUB-Klecv2uNJfGr7Bs7akL56~yslJrLSwwt3sFvApD0IyxpQCdvaLumSLFRb7j6nVqL8XwDXvlip869ujmpixWPKy8eCGP~3zZW~05e4i3YXKWi3-Iq9znhJJcAbPMlOyU0ZZMUKDeQwrklPSh3v0hojJbLALtS~yNfokmuomAw8QIna35u5DxBOlf1geWsExYhG~sPknFv7jYLw__')",
+                            backgroundImage: `url('https://regional.epart.az/storage/${HeroServices[2]?.image}')`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
                         }}
                     >
                         <div className="w-full h-full bg-black bg-opacity-50 flex justify-center items-center  px-[25%]">
                             <div className=" max-w-[254px] text-white flex flex-col text-center justify-center">
                                 {' '}
                                 <h4 className="text-[16px] font-semibold">
-                                    Road Tranport
+                                    {HeroServices[2]?.title}{' '}
                                 </h4>
                                 <p className="text-[12px] font-normal mt-[10px] lg:block md:block hidden">
-                                    Lorem ipsum dolor sit amet consectetur. Enim
-                                    rutrum hac amet sagittis. Morbi enim integer
-                                    odio varius bibendum.{' '}
+                                    {HeroServices[2]?.short_description}
                                 </p>
-                                <button className="flex flex-row gap-[10px] justify-center mt-[24px]">
+                                <button
+                                    className="flex flex-row gap-[10px] justify-center mt-[24px]"
+                                    onClick={() => {
+                                        setCurrentService(
+                                            HeroServices[2]?.slug
+                                        );
+                                        navigate('/services');
+                                    }}
+                                >
                                     <p>Daha çox</p>
                                     <svg
                                         width="25"
@@ -170,8 +204,9 @@ export default function Home() {
                     <div
                         className="lg:h-[100vh] md:h-[100vh] h-[25vh] clip_4_el lg:mt-0 md:mt-0 mt-[-9%]  lg:w-[130%] md:w-[130%] w-full  z-10 "
                         style={{
-                            background:
-                                "url('https://s3-alpha-sig.figma.com/img/605f/af7d/4ece37737bfdc2788208028bc15bd2bc?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=nVreNc-~0CkE76cQg34NvHhA-RhWRO0YRcE8FwKUaZOvoOXU1zkhOv6K4x2beSRwrKunZlKyIlLpsRuPzm-tqaKjinjB7L6YxnF~EROCeR8soA79DOOdq61wuc8gsxx1BrK5Kx6-ovBl6paYzDIskuMf7xSrv0fKyIWmzFAe~J1HUNrRCcivp2cgjE60wmQoURInizamYQG-eOpIZblI9-nGZjYTUSWV--Q0ZZiYJqaQHh5ckJBuSfGWNu2K20k~0e1p6csivAAf0i91t5fasGIYl8syQUOivLP2l1eybX9kzmGxw3otr8XPziAnRDzF0ixFxv~SNdgpkjMlVMOMkA__')",
+                            backgroundImage: `url('https://regional.epart.az/storage/${HeroServices[3]?.image}')`,
+
+                            backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                         }}
@@ -180,14 +215,20 @@ export default function Home() {
                             <div className=" max-w-[254px] text-white flex flex-col text-center justify-center">
                                 {' '}
                                 <h4 className="text-[16px] font-semibold">
-                                    Road Tranport
+                                    {HeroServices[3]?.title}{' '}
                                 </h4>
                                 <p className="text-[12px] font-normal mt-[10px] lg:block md:block hidden">
-                                    Lorem ipsum dolor sit amet consectetur. Enim
-                                    rutrum hac amet sagittis. Morbi enim integer
-                                    odio varius bibendum.{' '}
+                                    {HeroServices[3]?.short_description}
                                 </p>
-                                <button className="flex flex-row gap-[10px] justify-center mt-[24px]">
+                                <button
+                                    onClick={() => {
+                                        setCurrentService(
+                                            HeroServices[3]?.slug
+                                        );
+                                        navigate('/services');
+                                    }}
+                                    className="flex flex-row gap-[10px] justify-center mt-[24px]"
+                                >
                                     <p>Daha çox</p>
                                     <svg
                                         width="25"
@@ -241,7 +282,7 @@ export default function Home() {
                     <div className="flex  w-full text-black max-w-[1099px] max-md:max-w-full px-[20px]">
                         <div className="flex z-10 flex-col grow shrink-0 basis-0 w-fit max-md:-mr-0.5 max-md:max-w-full">
                             <h1 className="lg:self-start md:self-start self-center ml-14 text-5xl font-semibold max-md:ml-2.5 max-md:text-4xl mt-[24px]">
-                                About Us
+                                {EbautShort.data[0].title}
                             </h1>
                             <div className="flex  lg:gap-6 md:gap-6 gap-0 items-start mt-3.5 text-2xl font-light leading-10">
                                 <img
@@ -251,28 +292,14 @@ export default function Home() {
                                     className="object-contain shrink-0 self-end mt-32 aspect-[0.19] w-[59px] max-md:mt-10 lg:block md:block hidden"
                                 />
                                 <div className="flex flex-col justify-center">
-                                    <p className="flex-auto self-start max-w-[976px] max-md:max-w-full">
-                                        Lorem ipsum dolor sit amet consectetur.
-                                        Enim rutrum hac amet sagittis. Morbi
-                                        enim integer odio varius bibendum. Ac
-                                        mattis ullamcorper id massa. Hendrerit
-                                        ipsum eu nulla molestie diam at. Lorem
-                                        ipsum dolor sit amet consectetur. Enim
-                                        rutrum hac amet sagittis. Morbi enim
-                                        integer odio varius bibendum. Ac mattis
-                                        ullamcorper id massa. Hendrerit ipsum eu
-                                        nulla molestie diam at. Lorem ipsum
-                                        dolor sit amet consectetur. Enim rutrum
-                                        hac amet sagittis. Morbi enim integer
-                                        odio varius bibendum. Ac mattis
-                                        ullamcorper id massa. Hendrerit ipsum eu
-                                        nulla molestie diam at. Lorem ipsum
-                                        dolor sit amet consectetur. Enim rutrum
-                                        hac amet sagittis. Morbi enim integer
-                                        odio varius bibendum. Ac mattis
-                                        ullamcorper id massa. Hendrerit ipsum eu
-                                        nulla molestie diam at.
-                                    </p>
+                                    <div
+                                        className="flex-auto self-start max-w-[976px] max-md:max-w-full"
+                                        dangerouslySetInnerHTML={{
+                                            __html: EbautShort.data[0]
+                                                .description,
+                                        }}
+                                    />
+                                    {}
                                 </div>
                             </div>
                         </div>
@@ -283,53 +310,55 @@ export default function Home() {
                             className="object-contain shrink-0 self-start mt-14 aspect-[0.11] w-[29px] max-md:mt-10 lg:block md:block hidden"
                         />
                     </div>
-                    <button className="gap-2.5  self-center p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]">
-                        Daha çox
-                    </button>
-                    {/* <img src="/svg/mause_blue.svg" />
-                     */}
+                    <Link to="/about">
+                        <button className="gap-2.5  self-center p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]">
+                            Daha çox
+                        </button>
+                    </Link>
+
                     <img
                         onClick={() => {
                             setsectionindex(1);
-                            scrollToElementById('info1');
+                            scrollToElementById(ServiseARR[0].slug);
                         }}
                         src="/svg/mause_blue.svg"
                         alt=""
                         className="z-30 absolute bottom-[-10px] animate-bounce lg:block md:block hidden"
                     />
                 </section>
-                <InfoSection
-                    direction="row"
-                    id="info1"
-                    onaction={() => {
-                        setsectionindex(2);
-                        scrollToElementById('info2');
-                    }}
-                />
-                <InfoSection
-                    direction="col"
-                    id="info2"
-                    onaction={() => {
-                        setsectionindex(3);
-                        scrollToElementById('info3');
-                    }}
-                />
-                <InfoSection
-                    direction="row"
-                    id="info3"
-                    onaction={() => {
-                        setsectionindex(4);
-                        scrollToElementById('info4');
-                    }}
-                />
-                <InfoSection
-                    direction="col"
-                    id="info4"
-                    onaction={() => {
-                        setsectionindex(5);
-                        scrollToElementById('footer');
-                    }}
-                />
+                {ServiseARR?.map((item: any, i: number, list: any[]) => {
+                    if (i % 2 === 1) {
+                        return (
+                            <InfoSection
+                                data={item}
+                                direction="row"
+                                id={`info` + i}
+                                onaction={() => {
+                                    console.log('Idddd', i, list.length);
+                                    i + 1 === list.length
+                                        ? scrollToElementById('footer')
+                                        : scrollToElementById(list[i + 1].slug);
+                                    setsectionindex(i + 2);
+                                }}
+                            />
+                        );
+                    } else {
+                        return (
+                            <InfoSection
+                                data={item}
+                                direction="col"
+                                id={`info` + i}
+                                onaction={() => {
+                                    console.log('Idddd', i, list.length);
+                                    i + 1 === list.length
+                                        ? scrollToElementById('footer')
+                                        : scrollToElementById(list[i + 1].slug);
+                                    setsectionindex(i + 2);
+                                }}
+                            />
+                        );
+                    }
+                })}
             </main>
             <img
                 alt="bgimg"
@@ -384,7 +413,7 @@ export default function Home() {
                     />
                 </svg>
             </div>
-            <Footer />
+            <Footer id={'footer'} />
         </div>
     );
 }

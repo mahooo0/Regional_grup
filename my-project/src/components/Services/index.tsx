@@ -1,5 +1,10 @@
 import * as React from 'react';
 import { ServiceCard } from './ServiceCard.tsx';
+import { fetchAservices, fetchService_extra } from '../../Services/Requests.js';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '../Loading.tsx';
+import { useRecoilValue } from 'recoil';
+import { Languege } from '../../Atom/index.js';
 
 const servicesData = [
     {
@@ -40,17 +45,37 @@ const servicesData = [
 ];
 
 export const ServicesLayout: React.FC = () => {
+    const [language, setLanguie] = useRecoilValue(Languege);
+
+    const {
+        data: Service_extra,
+        isLoading: loadingService_extra,
+        error: errorService_extra,
+    } = useQuery({
+        queryKey: ['Service_extra', language],
+        queryFn: fetchService_extra,
+    });
+    const {
+        data: Services,
+        isLoading: loadingServices,
+        error: errorServices,
+    } = useQuery({
+        queryKey: ['Services', language],
+        queryFn: fetchAservices,
+    });
+    console.log('Services:', Services);
+    if (loadingServices) return <Loading />;
     return (
-        <div className=" w-full flex justify-center">
-            <div className="flex flex-col items-center pr-2 mb-[120px] mt-[120px] max-w-[1224px] min-w-[1224px]">
-                <h1 className="text-5xl font-medium text-black max-md:text-4xl">
-                    Lorem Ipsum
+        <div className=" w-full flex justify-center max-w-[100wh]">
+            <div className="flex flex-col items-center w-full pr-2 mb-[120px] mt-[120px] max-w-[1224px] lg:min-w-[1224px]">
+                <h1 className="text-5xl font-medium text-black max-md:text-4xl text-wrap">
+                    {Service_extra?.data[0]?.main_title}{' '}
                 </h1>
 
                 <ServiceCard
-                    title={servicesData[0].title}
-                    description={servicesData[0].description}
-                    imageUrl={servicesData[0].imageUrl}
+                    title={Services.data[0]?.title}
+                    description={Services.data[0]?.short_description}
+                    imageUrl={Services.data[0]?.icon_about}
                     imagePosition="top"
                 />
 
@@ -59,14 +84,18 @@ export const ServicesLayout: React.FC = () => {
                         <div className="flex flex-col max-w-[480px]">
                             <div className="flex z-10 flex-col  w-full text-right max-md:max-w-full ">
                                 <ServiceCard
-                                    title={servicesData[1].title}
-                                    description={servicesData[1].description}
-                                    imageUrl={servicesData[1].imageUrl}
+                                    title={Services.data[1]?.title}
+                                    description={
+                                        Services.data[1]?.short_description
+                                    }
+                                    imageUrl={Services.data[1]?.image}
                                 />
                                 <ServiceCard
-                                    title={servicesData[1].title}
-                                    description={servicesData[1].description}
-                                    imageUrl={servicesData[1].imageUrl}
+                                    title={Services.data[2]?.title}
+                                    description={
+                                        Services.data[2]?.short_description
+                                    }
+                                    imageUrl={Services.data[2]?.image}
                                 />
                             </div>
                         </div>
@@ -76,7 +105,7 @@ export const ServicesLayout: React.FC = () => {
                                     <div className="flex overflow-hidden flex-col justify-center items-center px-11 bg-white aspect-square rounded-[151px] shadow-[0px_0px_11px_rgba(0,0,0,0.12)] max-md:px-5">
                                         <img
                                             loading="lazy"
-                                            src={servicesData[2].imageUrl}
+                                            src={`https://regional.epart.az/storage/${Service_extra?.data[0]?.image}`}
                                             alt="Service icon"
                                             className="object-contain aspect-[1.14] w-[118px]"
                                         />
@@ -87,16 +116,19 @@ export const ServicesLayout: React.FC = () => {
                         <div className="flex flex-col   max-w-[480px]">
                             <div className="flex flex-col w-full max-md:max-w-full ">
                                 <ServiceCard
-                                    title={servicesData[2].title}
-                                    description={servicesData[2].description}
-                                    imageUrl={servicesData[2].imageUrl}
+                                    title={Services.data[3]?.title}
+                                    description={
+                                        Services.data[3]?.short_description
+                                    }
+                                    imageUrl={Services.data[3]?.image}
                                     imagePosition="left"
                                 />
-
                                 <ServiceCard
-                                    title={servicesData[3].title}
-                                    description={servicesData[3].description}
-                                    imageUrl={servicesData[3].imageUrl}
+                                    title={Services.data[4]?.title}
+                                    description={
+                                        Services.data[4]?.short_description
+                                    }
+                                    imageUrl={Services.data[4]?.image}
                                     imagePosition="left"
                                 />
                             </div>
@@ -106,9 +138,9 @@ export const ServicesLayout: React.FC = () => {
 
                 <section className="flex z-10 flex-col justify-center  max-w-full text-center w-[479px] ">
                     <ServiceCard
-                        title={servicesData[4].title}
-                        description={servicesData[4].description}
-                        imageUrl={servicesData[4].imageUrl}
+                        title={Services.data[5]?.title}
+                        description={Services.data[5]?.short_description}
+                        imageUrl={Services.data[5]?.image}
                         imagePosition="bottom"
                     />
                 </section>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface MessageProps {
     title: string;
@@ -6,6 +7,8 @@ interface MessageProps {
     time: string;
     iconSrc: string;
     variant?: 'default' | 'highlighted';
+    setcurrentBlog: () => void;
+    id: string | number;
 }
 
 const Message: React.FC<MessageProps> = ({
@@ -14,15 +17,19 @@ const Message: React.FC<MessageProps> = ({
     time,
     iconSrc,
     variant = 'default',
+    setcurrentBlog,
+    id,
 }) => {
     const bgColor = variant === 'highlighted' ? 'bg-blue-800' : 'bg-slate-400';
     const borderClass =
         variant === 'highlighted' ? 'border-b border-gray-700' : '';
-
+    const navigate = useNavigate();
     return (
         <div
-            className={`flex flex-col px-4 py-2.5 w-full bg-[#2557A3]  hover:bg-[#7798C9] max-md:max-w-full`}
+            className={`flex flex-col px-4 py-2.5 w-full bg-[#2557A3]  hover:bg-[#7798C9] max-md:max-w-full h-1/3 cursor-pointer`}
             aria-labelledby={`message-title-${title}`}
+            onMouseEnter={() => setcurrentBlog()}
+            onClick={() => navigate(`/news/${id}`)}
         >
             <div className="flex flex-col w-full max-md:max-w-full">
                 <h3
@@ -31,9 +38,10 @@ const Message: React.FC<MessageProps> = ({
                 >
                     {title}
                 </h3>
-                <p className="mt-1.5 text-base text-neutral-200 max-md:max-w-full">
-                    {description}
-                </p>
+                <div
+                    className="mt-1.5 text-base text-neutral-200 max-md:max-w-full"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                />
             </div>
             <time
                 dateTime={time}
@@ -52,7 +60,7 @@ const Message: React.FC<MessageProps> = ({
     );
 };
 
-export const Chat: React.FC = () => {
+export const Chat = ({ data }: { data: any }) => {
     const messages = [
         {
             title: 'Lorem Ipsum',
@@ -79,32 +87,46 @@ export const Chat: React.FC = () => {
                 'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/c1c9cf23cfb70482ab223ce0112032814cbecc20aa5e5bbb9cc6a9e0db328be7?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
         },
     ];
+    const [currentBlog, setcurrentBlog] = React.useState<any>();
+    React.useEffect(() => {
+        setcurrentBlog(data[0]);
+    }, [data]);
+    console.log(currentBlog);
+    const navigate = useNavigate();
 
     return (
-        <div className="flex flex-wrap items-center max-md:max-w-full rounded-lg overflow-hidden">
+        <div className="flex lg:flex-row flex-col items-center max-md:max-w-full rounded-lg overflow-hidden !px-['auto']   w-full ">
             <div
                 style={{
-                    backgroundImage:
-                        "url('https://s3-alpha-sig.figma.com/img/8b02/e377/e396cc186698accba9ebcb781a02b78a?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fJiT4yca6EgjAzDyShJ3mJS0Pkf~2deDnzgTSAIpkoH8aa3DPB~TDho3lhwBqLy-F6hZb~~GaUASmCHlTOMbMBM9cKBVleufuqh4DzYTnqtG1bCASPi8bw4WMNAhN4sh1JepfkrvER4Ja7xYj8iYuyOt9KeEVf-pWzvlFne0FPH-X9mSFtd9ba4rG~jAzCmWOWOsbTtqXQoW0GVgXNmHPMvaGChkR777MdUJUvf~0UqzTTlki7n9vTPCpIhk9U2JeZdBBkaUZBWsn9saHVuO-kZ3goTVEmVszn5cbY9ELP7ddkIfj1IcnY7cPSJHLVExUOz4q3OYtmqfDY0g30IoIA')",
+                    backgroundImage: `url('https://regional.epart.az/storage/${currentBlog?.image}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}
-                className="flex overflow-hidden flex-col items-center self-stretch   text-lg font-medium text-white aspect-square  min-w-[240px] lg:w-[392px] w-full max-h-[400px] "
+                onClick={() => navigate(`/news/${currentBlog?.id}`)}
+                className="flex cursor-pointer overflow-hidden flex-col items-center self-stretch   text-lg font-medium text-white aspect-square  min-w-[240px] lg:!w-[392px] w-full max-h-[400px] "
             >
                 <div className="bg-black bg-opacity-40 w-full h-full pt-52">
                     <p className="px-6 pt-32 pb-9 max-md:px-5 ">
-                        Lorem Ipsum Dolor sit amet
+                        {currentBlog?.title}
                     </p>
                 </div>
             </div>
             <section
-                className="flex flex-col self-stretch  min-w-[240px] lg:w-[520px] w-full max-md:max-w-full"
+                className="flex flex-col self-stretch  min-w-[240px]  lg:!w-[60%] !w-full max-md:max-w-full"
                 aria-label="Chat messages"
             >
-                {messages.map((message, index) => (
+                {data.map((message: any, index: number) => (
                     <Message
+                        setcurrentBlog={() => setcurrentBlog(message)}
+                        title={message.title}
+                        description={message.description}
+                        time={message.date}
+                        id={message.id}
+                        iconSrc={
+                            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/795ed745a72d23670fdcc3a02a9bc3916ef72aee3e31144a1f0488c1d96cc79b?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&'
+                        }
                         key={`message-${index}`}
-                        {...message}
+                        // {...message}
                         variant={index === 0 ? 'default' : 'highlighted'}
                     />
                 ))}

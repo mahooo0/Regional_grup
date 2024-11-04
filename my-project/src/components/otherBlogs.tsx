@@ -1,4 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
 import * as React from 'react';
+import { useRecoilValue } from 'recoil';
+import { Languege } from '../Atom';
+import { fetchBlogByCategory } from '../Services/Requests';
+import { useNavigate } from 'react-router-dom';
 
 interface NewsItem {
     imageUrl: string;
@@ -11,12 +16,16 @@ interface NewsCardProps {
     item: NewsItem;
 }
 
-const NewsCard: React.FC<NewsCardProps> = ({ item }) => {
+const NewsCard = ({ item }: { item: any }) => {
+    const navigate = useNavigate();
     return (
-        <article className="flex gap-2.5 items-center py-3.5 w-full border-b border-gray-200 min-h-[115px]">
+        <div
+            className="flex gap-2.5 items-center py-3.5 w-full border-b border-gray-200 min-h-[115px] cursor-pointer "
+            onClick={() => navigate(`/news/${item.id}`)}
+        >
             <img
                 loading="lazy"
-                src={item.imageUrl}
+                src={`https://regional.epart.az/storage/${item.image}`}
                 alt={item.title}
                 className="object-contain shrink-0 self-stretch my-auto rounded-lg aspect-[1.03] w-[75px]"
             />
@@ -27,75 +36,35 @@ const NewsCard: React.FC<NewsCardProps> = ({ item }) => {
                 <div className="flex gap-2.5 items-center self-start mt-2.5 whitespace-nowrap h-[15px] text-zinc-300">
                     <img
                         loading="lazy"
-                        src={item.timeIconUrl}
+                        src="https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/08eaf81e8d5df27d452b68c9a9376f5d6ccc2e7cff99b48b96f22f836af350c8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&"
                         alt=""
-                        className="object-contain shrink-0 self-stretch my-auto w-4 aspect-square"
+                        className="object-cover shrink-0 self-stretch my-auto w-4 aspect-square"
                     />
-                    <time className="self-stretch my-auto">{item.date}</time>
+                    <time className="self-stretch my-auto">item.date</time>
                 </div>
             </div>
-        </article>
+        </div>
     );
 };
-
-const newsItems: NewsItem[] = [
-    {
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/dd6eeab03b8ddb564a92132e954ef5abde543ee3b90ffdb42675ec013952a4c3?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-        title: 'Lorem Ipsum dolor sit ament Lorem Ipsum dolor',
-        date: '18-10-2024',
-        timeIconUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/08eaf81e8d5df27d452b68c9a9376f5d6ccc2e7cff99b48b96f22f836af350c8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/dd6eeab03b8ddb564a92132e954ef5abde543ee3b90ffdb42675ec013952a4c3?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-        title: 'Lorem Ipsum dolor sit ament Lorem Ipsum dolor',
-        date: '18-10-2024',
-        timeIconUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/08eaf81e8d5df27d452b68c9a9376f5d6ccc2e7cff99b48b96f22f836af350c8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/dd6eeab03b8ddb564a92132e954ef5abde543ee3b90ffdb42675ec013952a4c3?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-        title: 'Lorem Ipsum dolor sit ament Lorem Ipsum dolor',
-        date: '18-10-2024',
-        timeIconUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/08eaf81e8d5df27d452b68c9a9376f5d6ccc2e7cff99b48b96f22f836af350c8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/dd6eeab03b8ddb564a92132e954ef5abde543ee3b90ffdb42675ec013952a4c3?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-        title: 'Lorem Ipsum dolor sit ament Lorem Ipsum dolor',
-        date: '18-10-2024',
-        timeIconUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/08eaf81e8d5df27d452b68c9a9376f5d6ccc2e7cff99b48b96f22f836af350c8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/dd6eeab03b8ddb564a92132e954ef5abde543ee3b90ffdb42675ec013952a4c3?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-        title: 'Lorem Ipsum dolor sit ament Lorem Ipsum dolor',
-        date: '18-10-2024',
-        timeIconUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/08eaf81e8d5df27d452b68c9a9376f5d6ccc2e7cff99b48b96f22f836af350c8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/dd6eeab03b8ddb564a92132e954ef5abde543ee3b90ffdb42675ec013952a4c3?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-        title: 'Lorem Ipsum dolor sit ament Lorem Ipsum dolor',
-        date: '18-10-2024',
-        timeIconUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/08eaf81e8d5df27d452b68c9a9376f5d6ccc2e7cff99b48b96f22f836af350c8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-];
 
 export const OtherBlogs: React.FC = () => {
     const [activeTab, setActiveTab] = React.useState<'popular' | 'latest'>(
         'popular'
     );
+    const [language, setLanguie] = useRecoilValue(Languege);
+
+    const {
+        data: BlogByCategory,
+        isLoading: loadingBlogByCategory,
+        error: errorBlogByCategory,
+    } = useQuery({
+        queryKey: ['BlogByCategory', language, activeTab],
+        queryFn: () => fetchBlogByCategory(activeTab),
+    });
+    console.log('BlogByCategory:', BlogByCategory);
 
     return (
-        <section className="flex flex-col p-3.5 bg-white rounded-lg shadow-[0px_0px_11px_rgba(101,101,101,0.12)] h-fit">
+        <section className="flex flex-col p-3.5 bg-white min-w-[280px] rounded-lg shadow-[0px_0px_11px_rgba(101,101,101,0.12)] h-fit">
             <nav
                 className="flex gap-6 items-center self-center text-base tracking-tight leading-none"
                 role="tablist"
@@ -125,11 +94,19 @@ export const OtherBlogs: React.FC = () => {
                     Son Xəbər
                 </button>
             </nav>
-            <main className="flex flex-col mt-5 w-full text-sm">
-                {newsItems.map((item, index) => (
-                    <NewsCard key={index} item={item} />
-                ))}
-            </main>
+            <div className="flex flex-col mt-5 w-full text-sm">
+                {BlogByCategory && BlogByCategory?.latest_news
+                    ? BlogByCategory.latest_news?.map(
+                          (item: any, index: number) => (
+                              <NewsCard key={index} item={item} />
+                          )
+                      )
+                    : BlogByCategory?.popular_news?.map(
+                          (item: any, index: number) => (
+                              <NewsCard key={index} item={item} />
+                          )
+                      )}
+            </div>
         </section>
     );
 };

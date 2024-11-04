@@ -5,22 +5,49 @@ import 'swiper/css/navigation';
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { NewsCard } from './NewsCard.tsx';
+import { useQuery } from '@tanstack/react-query';
+import { fetchBlog } from '../Services/Requests.js';
+import { useRecoilValue } from 'recoil';
+import { Languege } from '../Atom/index.js';
 
 // Initialize SwiperCore with the Navigation module
 SwiperCore.use([Navigation]);
 
 const BlogSwiper: React.FC = () => {
     const swiperRef = useRef<SwiperCore>();
+    const language = useRecoilValue(Languege);
+
+    const {
+        data: Blog,
+        isLoading: loadingBlog,
+        error: errorBlog,
+    } = useQuery({
+        queryKey: ['Blog', language],
+        queryFn: fetchBlog,
+    });
 
     return (
         <div className="relative w-full h-fit ">
             <Swiper
                 onSwiper={(swiper) => (swiperRef.current = swiper)}
-                slidesPerView={'auto'}
+                slidesPerView={4}
                 spaceBetween={24}
-                className="w-full h-full"
+                className="w-full h-full !pl-[107px]"
             >
-                <SwiperSlide className="!w-fit  pl-[108px]">
+                {Blog?.data?.map((item: any) => (
+                    <SwiperSlide className="!w-fit ">
+                        <NewsCard
+                            id={item.id}
+                            category=" "
+                            date="date"
+                            description={'item.description_short'}
+                            title={item.title}
+                            img={item.image}
+                        />
+                    </SwiperSlide>
+                ))}
+
+                {/* <SwiperSlide className="!w-fit">
                     <NewsCard
                         category="category"
                         date="date"
@@ -67,15 +94,7 @@ const BlogSwiper: React.FC = () => {
                         description="description"
                         title="title"
                     />
-                </SwiperSlide>
-                <SwiperSlide className="!w-fit">
-                    <NewsCard
-                        category="category"
-                        date="date"
-                        description="description"
-                        title="title"
-                    />
-                </SwiperSlide>
+                </SwiperSlide> */}
             </Swiper>
 
             {/* Custom Navigation Buttons */}

@@ -1,8 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { Languege } from '../Atom';
+
+const languages = [
+    { code: 'az', name: 'Azərbaycan', flag: '/svg/az.svg' },
+    {
+        code: 'en',
+        name: 'English',
+        flag: '/svg/en.svg',
+    },
+    { code: 'ru', name: 'Русский', flag: '/svg/ru.svg' },
+];
 
 export default function Header() {
     const [sohowAside, setsohowAside] = useState(false);
+    const [selectedLanguage, setSelectedLanguage] = useState(() => {
+        const storedLangCode = localStorage.getItem('Accept-Language');
+        return storedLangCode
+            ? languages.find((lang) => lang.code === storedLangCode) ||
+                  languages[0]
+            : languages[0];
+    });
+    const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+    const [_, setLanguie] = useRecoilState(Languege);
+
+    const handleLanguageChange = (language) => {
+        setSelectedLanguage(language);
+        setIsLanguageDropdownOpen(false);
+        localStorage.setItem('Accept-Language', language.code);
+        setLanguie(language.code);
+    };
+    useEffect(() => {
+        // Retrieve language from localStorage if available
+        const storedLangCode = localStorage.getItem('Accept-Language');
+        if (storedLangCode) {
+            const language = languages.find(
+                (lang) => lang.code === storedLangCode
+            );
+            if (language) setSelectedLanguage(language);
+        }
+    }, []);
+
+    // useEffect(() => {
+    //     // Save selected language to localStorage on change
+    //     localStorage.setItem('Accept-Language', selectedLanguage.code);
+    // }, [selectedLanguage]);
     return (
         <div>
             <div className=" absolute  lg:block  hidden top-0 w-full z-50">
@@ -30,7 +73,7 @@ export default function Header() {
                             />
                         </Link>
                     </div>
-                    <div className=" w-[50%] h-full z-50 absolute top-0 left-[20%]  flex items-center justify-center">
+                    <div className=" w-[50%] h-full z-50 absolute top-0 left-[20%]  flex items-center justify-center ml-[13px]">
                         <ul className="text-white gap-4 text-[16px] font-normal flex flex-row">
                             <li>
                                 <Link to="/">Əsas</Link>
@@ -59,7 +102,7 @@ export default function Header() {
                                 name=""
                                 id=""
                                 className="bg-none focus:outline-none w-full"
-                                placeholder="Text"
+                                placeholder="Axtar"
                             />
                             <button>
                                 <svg
@@ -79,9 +122,63 @@ export default function Header() {
                                 </svg>
                             </button>
                         </div>
+                        <div className="relative flex flex-col leading-none text-black whitespace-nowrap w-[70px]">
+                            <button
+                                className="flex gap-1.5 justify-center items-center"
+                                onClick={() =>
+                                    setIsLanguageDropdownOpen(
+                                        !isLanguageDropdownOpen
+                                    )
+                                }
+                                aria-haspopup="listbox"
+                                aria-expanded={isLanguageDropdownOpen}
+                            >
+                                <img
+                                    loading="lazy"
+                                    src={selectedLanguage.flag}
+                                    alt={`${selectedLanguage.name} flag`}
+                                    className="object-contain shrink-0 self-stretch my-auto w-5  aspect-square"
+                                />
+                                <div className="self-stretch my-auto text-white">
+                                    {selectedLanguage.code}
+                                </div>
+                            </button>
+                            {isLanguageDropdownOpen && (
+                                <ul
+                                    className="absolute top-full left-[-70px] mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-10 w-fit"
+                                    role="listbox"
+                                >
+                                    {languages.map((language) => (
+                                        <li key={language.code}>
+                                            <button
+                                                className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2 "
+                                                onClick={() =>
+                                                    handleLanguageChange(
+                                                        language
+                                                    )
+                                                }
+                                                role="option"
+                                                aria-selected={
+                                                    language.code ===
+                                                    selectedLanguage.code
+                                                }
+                                            >
+                                                <img
+                                                    src={language.flag}
+                                                    alt={`${language.name} flag`}
+                                                    className="w-5 h-5 "
+                                                />
+                                                {language.name}
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
+            {/* mobile */}
             <div className=" absolute lg:hidden  block top-0 w-full z-50 min-h-[60px] ">
                 <img
                     src="/imges/headerbg.png"
@@ -146,7 +243,7 @@ export default function Header() {
                         />
                     </Link>
 
-                    <div className="w-[33px] h-[33px] aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
+                    {/* <div className="w-[33px] h-[33px] aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
                         <svg
                             width="24"
                             height="24"
@@ -162,6 +259,57 @@ export default function Header() {
                                 stroke-linejoin="round"
                             />
                         </svg>
+                    </div> */}
+                    <div className="relative flex flex-col leading-none text-black whitespace-nowrap w-[70px]">
+                        <button
+                            className="flex gap-1.5 justify-center items-center"
+                            onClick={() =>
+                                setIsLanguageDropdownOpen(
+                                    !isLanguageDropdownOpen
+                                )
+                            }
+                            aria-haspopup="listbox"
+                            aria-expanded={isLanguageDropdownOpen}
+                        >
+                            <img
+                                loading="lazy"
+                                src={selectedLanguage.flag}
+                                alt={`${selectedLanguage.name} flag`}
+                                className="object-contain shrink-0 self-stretch my-auto w-5  aspect-square"
+                            />
+                            <div className="self-stretch my-auto">
+                                {selectedLanguage.code}
+                            </div>
+                        </button>
+                        {isLanguageDropdownOpen && (
+                            <ul
+                                className="absolute top-full left-[-60px] mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-10"
+                                role="listbox"
+                            >
+                                {languages.map((language) => (
+                                    <li key={language.code}>
+                                        <button
+                                            className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
+                                            onClick={() =>
+                                                handleLanguageChange(language)
+                                            }
+                                            role="option"
+                                            aria-selected={
+                                                language.code ===
+                                                selectedLanguage.code
+                                            }
+                                        >
+                                            <img
+                                                src={language.flag}
+                                                alt={`${language.name} flag`}
+                                                className="w-5 h-5 "
+                                            />
+                                            {language.name}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 </div>
             </div>

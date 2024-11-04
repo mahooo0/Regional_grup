@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 // import { NewsCardType } from '../types/NewsTypes';
 export type StatType = {
     icon: string;
@@ -10,7 +11,8 @@ export type NewsCardType = {
     category: string;
     title: string;
     description: string;
-
+    img: string;
+    id: string | number;
     imageClassName?: string;
 };
 
@@ -24,18 +26,20 @@ export const NewsCard: React.FC<NewsCardType> = ({
     category,
     title,
     description,
-
+    img,
     imageClassName,
+    id,
 }) => {
+    const navigate = useNavigate();
     return (
         <div className="flex flex-col grow rounded-lg max-md:mt-6 max-w-[288px]  min-w-[288px]                                    ">
             <div className="flex flex-col w-full max-w-[288px]">
                 <div
+                    onClick={() => navigate(`/news/${id}`)}
                     style={{
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        backgroundImage:
-                            "url('https://s3-alpha-sig.figma.com/img/8b02/e377/e396cc186698accba9ebcb781a02b78a?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fJiT4yca6EgjAzDyShJ3mJS0Pkf~2deDnzgTSAIpkoH8aa3DPB~TDho3lhwBqLy-F6hZb~~GaUASmCHlTOMbMBM9cKBVleufuqh4DzYTnqtG1bCASPi8bw4WMNAhN4sh1JepfkrvER4Ja7xYj8iYuyOt9KeEVf-pWzvlFne0FPH-X9mSFtd9ba4rG~jAzCmWOWOsbTtqXQoW0GVgXNmHPMvaGChkR777MdUJUvf~0UqzTTlki7n9vTPCpIhk9U2JeZdBBkaUZBWsn9saHVuO-kZ3goTVEmVszn5cbY9ELP7ddkIfj1IcnY7cPSJHLVExUOz4q3OYtmqfDY0g30IoIA')",
+                        backgroundImage: `url('https://regional.epart.az/storage/${img}')`,
                     }}
                     className={`flex overflow-hidden flex-col items-start  w-full text-xs leading-6 text-white whitespace-nowrap rounded-lg ${imageClassName}`}
                 >
@@ -85,19 +89,21 @@ export const NewsCard: React.FC<NewsCardType> = ({
                             {description}
                         </p>
                     </div>
-                    <a
-                        href="#"
-                        className="flex gap-2.5 mt-2 max-w-full text-base text-sky-900 w-[110px]"
-                        aria-label={`Read more about ${title}`}
-                    >
-                        <span className="grow">Daha çox</span>
+                    <div className="flex gap-2.5 mt-2 max-w-full text-base text-sky-900 w-[110px]">
+                        <span
+                            className="grow"
+                            onClick={() => navigate(`/news/${id}`)}
+                        >
+                            {' '}
+                            Daha çox
+                        </span>
                         <img
                             loading="lazy"
                             src="https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/46035d282241ce868355623fdf49b9fc680b2f8d5f0cae1f754ec4eed544855e?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&"
                             alt=""
                             className="object-contain shrink-0 w-6 aspect-square"
                         />
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
