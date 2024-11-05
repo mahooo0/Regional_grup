@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { Languege } from '../Atom';
+import { noWait, useRecoilState } from 'recoil';
+import { CurrentServiceState, Languege } from '../Atom';
 import LangText from './langugeComponent.tsx';
 import { useLangText } from '../hooks/useLangText.tsx';
+import { fetchAservices } from '../Services/Requests.js';
+import { useQuery } from '@tanstack/react-query';
 
 const languages = [
     { code: 'az', name: 'Azərbaycan', flag: '/svg/az.svg' },
@@ -17,6 +19,7 @@ const languages = [
 
 export default function Header() {
     const [sohowAside, setsohowAside] = useState(false);
+    const [sohowSech, setsohowSech] = useState(false);
     const [selectedLanguage, setSelectedLanguage] = useState(() => {
         const storedLangCode = localStorage.getItem('Accept-Language');
         return storedLangCode
@@ -24,8 +27,15 @@ export default function Header() {
                   languages[0]
             : languages[0];
     });
+
     const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-    const [_, setLanguie] = useRecoilState(Languege);
+    const [language, setLanguie] = useRecoilState(Languege);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentService, setCurrentService] =
+        useRecoilState(CurrentServiceState);
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
     const handleLanguageChange = (language) => {
         setSelectedLanguage(language);
@@ -33,6 +43,14 @@ export default function Header() {
         localStorage.setItem('Accept-Language', language.code);
         setLanguie(language.code);
     };
+    const {
+        data: Services,
+        isLoading: loadingServices,
+        error: errorServices,
+    } = useQuery({
+        queryKey: ['Services', language],
+        queryFn: fetchAservices,
+    });
     useEffect(() => {
         // Retrieve language from localStorage if available
         const storedLangCode = localStorage.getItem('Accept-Language');
@@ -43,11 +61,20 @@ export default function Header() {
             if (language) setSelectedLanguage(language);
         }
     }, []);
-
+    if (loadingServices) return <div>Loading...</div>;
+    if (errorServices) return <div>Error loading data</div>;
+    const filteredServices = Services.data.filter((service) =>
+        service.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     // useEffect(() => {
     //     // Save selected language to localStorage on change
     //     localStorage.setItem('Accept-Language', selectedLanguage.code);
     // }, [selectedLanguage]);
+    const handleBlur = () => {
+        setTimeout(() => {
+            setsohowSech(false);
+        }, 100);
+    };
     return (
         <div>
             <div className=" absolute  lg:block  hidden top-0 w-full z-50">
@@ -138,19 +165,20 @@ export default function Header() {
                         </ul>
                     </div>
                     <div className="w-[30%] h-full absolute top-0 right-0 flex justify-center items-center">
-                        <div className="w-[212px] h-[35px] rounded-xl px-[16px] py-[6px] bg-white flex flex-row">
+                        <div className="w-[212px] h-fit rounded-xl px-[16px] py-[6px] bg-white  relative flex-row">
                             <input
                                 type="text"
                                 name=""
                                 id=""
+                                onFocus={() => setsohowSech(true)}
+                                onBlur={() => handleBlur(false)}
+                                value={searchTerm}
+                                onChange={handleSearchChange}
                                 className="bg-none focus:outline-none w-full"
-                                placeholder={useLangText({
-                                    azText: 'Axtar',
-                                    enText: 'Search',
-                                    ruText: 'Поиск',
-                                })}
+                                placeholder={'Search'}
                             />
-                            <button>
+
+                            <button className=" absolute top-[5px] right-3">
                                 <svg
                                     width="24"
                                     height="25"
@@ -167,6 +195,42 @@ export default function Header() {
                                     />
                                 </svg>
                             </button>
+
+                            <div
+                                style={
+                                    sohowSech && searchTerm
+                                        ? { borderRadius: '0 8px 8px 0' }
+                                        : { display: 'none' }
+                                }
+                                className="w-full bg-white left-0 h-fit absolute top-[27px] rounded-b-lg  overflow-hidden "
+                            >
+                                {' '}
+                                {filteredServices.length > 0 ? (
+                                    filteredServices.map((service) => (
+                                        <Link to={'/services'}>
+                                            <div
+                                                onClick={() => {
+                                                    setCurrentService(
+                                                        service?.slug
+                                                    );
+                                                }}
+                                                key={service.id}
+                                                className="p-2  bg-white hover:bg-slate-300"
+                                            >
+                                                <h2 className="text-lg ">
+                                                    {service.title}
+                                                </h2>
+                                            </div>
+                                        </Link>
+                                    ))
+                                ) : (
+                                    <div className="p-2  bg-white hover:bg-slate-300">
+                                        <h2 className="text-lg ">
+                                            No services found.
+                                        </h2>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                         <div className="relative flex flex-col leading-none text-black whitespace-nowrap w-[70px]">
                             <button
