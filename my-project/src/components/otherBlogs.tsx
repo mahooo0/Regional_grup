@@ -40,7 +40,7 @@ const NewsCard = ({ item }: { item: any }) => {
                         alt=""
                         className="object-cover shrink-0 self-stretch my-auto w-4 aspect-square"
                     />
-                    <time className="self-stretch my-auto">item.date</time>
+                    <time className="self-stretch my-auto">{item.date}</time>
                 </div>
             </div>
         </div>

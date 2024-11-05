@@ -112,14 +112,14 @@ export const Chat = ({ data }: { data: any }) => {
                 </div>
             </div>
             <section
-                className="flex flex-col self-stretch  min-w-[240px]  lg:!w-[60%] !w-full max-md:max-w-full"
+                className="flex flex-col self-stretch  min-w-[240px]  lg:!w-[60%]  !w-full max-md:max-w-full"
                 aria-label="Chat messages"
             >
                 {data.map((message: any, index: number) => (
                     <Message
                         setcurrentBlog={() => setcurrentBlog(message)}
                         title={message.title}
-                        description={message.description}
+                        description={message.short_description}
                         time={message.date}
                         id={message.id}
                         iconSrc={

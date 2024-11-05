@@ -14,6 +14,7 @@ export type NewsCardType = {
     img: string;
     id: string | number;
     imageClassName?: string;
+    views: string;
 };
 
 export type FeaturedNewsType = {
@@ -29,6 +30,7 @@ export const NewsCard: React.FC<NewsCardType> = ({
     img,
     imageClassName,
     id,
+    views,
 }) => {
     const navigate = useNavigate();
     return (
@@ -57,21 +59,7 @@ export const NewsCard: React.FC<NewsCardType> = ({
                                     alt=""
                                     className="object-contain shrink-0 w-6 aspect-square"
                                 />
-                                <div>123.45B</div>
-                            </div>
-                            <div
-                                key={2}
-                                className="flex gap-2 items-start self-stretch my-auto"
-                            >
-                                <img
-                                    loading="lazy"
-                                    src={
-                                        'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/175ea05ed4605f89db7999a491a9c410afb0f9b2a558b6280fdfff5b9f0104a8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&'
-                                    }
-                                    alt=""
-                                    className="object-contain shrink-0 w-6 aspect-square"
-                                />
-                                <div>123.45B</div>
+                                <div>{views}</div>
                             </div>
                         </div>
                     </div>

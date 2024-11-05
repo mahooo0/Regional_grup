@@ -37,10 +37,11 @@ const BlogSwiper: React.FC = () => {
                 {Blog?.data?.map((item: any) => (
                     <SwiperSlide className="!w-fit ">
                         <NewsCard
+                            views={item.views}
                             id={item.id}
                             category=" "
-                            date="date"
-                            description={'item.description_short'}
+                            date={item.date}
+                            description={item.short_description}
                             title={item.title}
                             img={item.image}
                         />

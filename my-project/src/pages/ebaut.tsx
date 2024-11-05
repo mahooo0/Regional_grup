@@ -12,6 +12,7 @@ import {
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Languege } from '../Atom/index.js';
 import Loading from '../components/Loading.tsx';
+import LangText from '../components/langugeComponent.tsx';
 
 const StatCard = ({ value, label }) => (
     <div className="flex flex-col justify-center self-stretch p-2.5 my-auto w-[233px]">
@@ -73,9 +74,9 @@ export default function Ebout() {
                         backgroundImage: `url('https://regional.epart.az/storage/${EbautBunner.data[0].image}') `,
                     }}
                 >
-                    <div className="w-full !h-[100%] min-h-[420px]  bg-black bg-opacity-70  lg:px-20 px-[30px] pt-20  flex justify-center ">
+                    <div className="w-full !h-[100%] min-h-[420px]  bg-black bg-opacity-70   flex justify-center ">
                         <div className="flex flex-col mb-0 max-w-full w-[856px] max-md:mb-2.5">
-                            <div className="flex flex-col w-full text-center max-md:max-w-full">
+                            <div className="flex flex-col w-full text-center max-md:max-w-full justify-center items-center h-full">
                                 <h1 className="text-5xl font-semibold max-md:max-w-full max-md:text-4xl">
                                     {EbautBunner.data[0].title}
                                 </h1>
@@ -103,7 +104,11 @@ export default function Ebout() {
                 <section className="flex overflow-hidden flex-col items-center px-20 pt-9 pb-20 mt-32 w-full bg-stone-50 max-md:px-5 max-md:mt-10 max-md:max-w-full">
                     <div className="flex flex-col w-full max-w-[1169px] max-md:max-w-full">
                         <h1 className="self-center ml-7 text-5xl font-medium text-black max-md:text-4xl">
-                            Haqqımızda
+                            <LangText
+                                azText="Haqqımızda"
+                                enText="About Us"
+                                ruText="О нас"
+                            />
                         </h1>
                         <div className="mt-14 max-md:mt-10 max-md:max-w-full">
                             <div className="flex gap-5 max-md:flex-col">

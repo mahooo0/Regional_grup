@@ -75,7 +75,7 @@ export const ServicesLayout: React.FC = () => {
                 <ServiceCard
                     title={Services.data[0]?.title}
                     description={Services.data[0]?.short_description}
-                    imageUrl={Services.data[0]?.icon_about}
+                    imageUrl={`https://regional.epart.az/storage/${Services.data[0]?.icon_about}`}
                     imagePosition="top"
                 />
 
@@ -88,14 +88,14 @@ export const ServicesLayout: React.FC = () => {
                                     description={
                                         Services.data[1]?.short_description
                                     }
-                                    imageUrl={Services.data[1]?.image}
+                                    imageUrl={`https://regional.epart.az/storage/${Services.data[1]?.icon_about}`}
                                 />
                                 <ServiceCard
                                     title={Services.data[2]?.title}
                                     description={
                                         Services.data[2]?.short_description
                                     }
-                                    imageUrl={Services.data[2]?.image}
+                                    imageUrl={`https://regional.epart.az/storage/${Services.data[2]?.icon_about}`}
                                 />
                             </div>
                         </div>
@@ -120,7 +120,7 @@ export const ServicesLayout: React.FC = () => {
                                     description={
                                         Services.data[3]?.short_description
                                     }
-                                    imageUrl={Services.data[3]?.image}
+                                    imageUrl={`https://regional.epart.az/storage/${Services.data[3]?.icon_about}`}
                                     imagePosition="left"
                                 />
                                 <ServiceCard
@@ -128,7 +128,7 @@ export const ServicesLayout: React.FC = () => {
                                     description={
                                         Services.data[4]?.short_description
                                     }
-                                    imageUrl={Services.data[4]?.image}
+                                    imageUrl={`https://regional.epart.az/storage/${Services.data[4]?.icon_about}`}
                                     imagePosition="left"
                                 />
                             </div>
@@ -140,7 +140,7 @@ export const ServicesLayout: React.FC = () => {
                     <ServiceCard
                         title={Services.data[5]?.title}
                         description={Services.data[5]?.short_description}
-                        imageUrl={Services.data[5]?.image}
+                        imageUrl={`https://regional.epart.az/storage/${Services.data[5]?.icon_about}`}
                         imagePosition="bottom"
                     />
                 </section>

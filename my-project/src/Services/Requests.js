@@ -123,6 +123,19 @@ export const fetchBlog = async () => {
     });
     return response.data;
 };
+export const fetchBlogById = async (id) => {
+    const language = localStorage.getItem('Accept-Language');
+
+    const response = await axios.get(
+        `https://regional.epart.az/api/news/${id}`,
+        {
+            headers: {
+                'Accept-Language': language, // Change 'en-US' to the desired language code
+            },
+        }
+    );
+    return response.data;
+};
 export const fetchBlogByCategory = async (category) => {
     const language = localStorage.getItem('Accept-Language');
 

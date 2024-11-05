@@ -7,13 +7,15 @@ import { fetchAboutsShort, fetchAservices } from '../Services/Requests.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { CurrentServiceState, Languege } from '../Atom/index.js';
+import langtext from '../components/langugeComponent.tsx';
+import LangText from '../components/langugeComponent.tsx';
 
 function scrollToElementById(id: string) {
     const element = document.getElementById(id);
     if (element) {
         element.scrollIntoView({
             behavior: 'smooth', // Smooth scrolling
-            block: 'start', // Scroll to the top of the element
+            block: 'end', // Scroll to the top of the element
         });
     }
 }

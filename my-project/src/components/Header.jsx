@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { Languege } from '../Atom';
+import LangText from './langugeComponent.tsx';
+import { useLangText } from '../hooks/useLangText.tsx';
 
 const languages = [
     { code: 'az', name: 'Azərbaycan', flag: '/svg/az.svg' },
@@ -68,7 +70,7 @@ export default function Header() {
                         <Link to="/">
                             <img
                                 className="h-full"
-                                src="https://s3-alpha-sig.figma.com/img/7e61/1388/9b68b91790cc47d8228cc0648b592052?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf7tNs0k0JK6liW9Gm52aTwdd0SQXAlNWQORiuQ4zaMudAA4cSH01x1X9NLbCD3VMUfwGGB0yY3BR9C8bQWEeGpUCqtZDKMXMPq5bx0mMglwjVR9QuYdaoOLAMLf4UI8WA~xWY9xCDROjWJbvo19ElF8Gj-ENWDuL5~dU1m4Cb4~ku6s6LCT~AhXh935AU3mXZiraGc~rRCf-z6YSBglItLTy-jNNieCp5b0FyXsjvGmnnjh6pzKtacVae3C2MhvKiWI1dKgAjnO76ANR3ikGxQWY1mZTmI1ydrtteVBd3zm0wpMDqp2cUPI8Rm46T8DZscN~qA7eTVbqgLFLiYnHQ__"
+                                src="/imges/logo.png"
                                 alt=""
                             />
                         </Link>
@@ -76,22 +78,62 @@ export default function Header() {
                     <div className=" w-[50%] h-full z-50 absolute top-0 left-[20%]  flex items-center justify-center ml-[13px]">
                         <ul className="text-white gap-4 text-[16px] font-normal flex flex-row">
                             <li>
-                                <Link to="/">Əsas</Link>
+                                <Link to="/">
+                                    {' '}
+                                    <LangText
+                                        azText="Əsas"
+                                        enText="Home"
+                                        ruText="Главная"
+                                    />
+                                </Link>
                             </li>
                             <li>
-                                <Link to="/about">Haqqımızda</Link>
+                                <Link to="/about">
+                                    <LangText
+                                        azText="Haqqımızda"
+                                        enText="About Us"
+                                        ruText="О нас"
+                                    />
+                                </Link>
                             </li>
                             <li>
-                                <Link to="/services">Xidmətlər</Link>
+                                <Link to="/services">
+                                    {' '}
+                                    <LangText
+                                        azText="Xidmətlər"
+                                        enText="Services"
+                                        ruText="Услуги"
+                                    />
+                                </Link>
                             </li>
                             <li>
-                                <Link to="/news">Blog</Link>
+                                <Link to="/news">
+                                    {' '}
+                                    <LangText
+                                        azText="Blog"
+                                        enText="Blog"
+                                        ruText="Блог"
+                                    />
+                                </Link>
                             </li>
                             <li>
-                                <Link to="/galery">Galereya</Link>
+                                <Link to="/galery">
+                                    <LangText
+                                        azText="Galereya"
+                                        enText="Gallery"
+                                        ruText="Галерея"
+                                    />
+                                </Link>
                             </li>
                             <li>
-                                <Link to="/contact">Əlaqə</Link>
+                                <Link to="/contact">
+                                    {' '}
+                                    <LangText
+                                        azText="Əlaqə"
+                                        enText="Contact"
+                                        ruText="Связь"
+                                    />
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -102,7 +144,11 @@ export default function Header() {
                                 name=""
                                 id=""
                                 className="bg-none focus:outline-none w-full"
-                                placeholder="Axtar"
+                                placeholder={useLangText({
+                                    azText: 'Axtar',
+                                    enText: 'Search',
+                                    ruText: 'Поиск',
+                                })}
                             />
                             <button>
                                 <svg
@@ -215,30 +261,66 @@ export default function Header() {
                         >
                             <div className="block px-4 py-2 text-sm text-gray-700">
                                 <Link to="/" className="w-full">
-                                    Əsas
+                                    <LangText
+                                        azText="Əsas"
+                                        enText="Home"
+                                        ruText="Главная"
+                                    />
                                 </Link>
                             </div>
                             <div className="block px-4 py-2 text-sm text-gray-700">
-                                <Link to="/about">Haqqımızda</Link>
+                                <Link to="/about">
+                                    {' '}
+                                    <LangText
+                                        azText="Haqqımızda"
+                                        enText="About Us"
+                                        ruText="О нас"
+                                    />
+                                </Link>
                             </div>
                             <div className="block px-4 py-2 text-sm text-gray-700">
-                                <Link to="/services">Xidmətlər</Link>
+                                <Link to="/services">
+                                    {' '}
+                                    <LangText
+                                        azText="Xidmətlər"
+                                        enText="Services"
+                                        ruText="Услуги"
+                                    />
+                                </Link>
                             </div>
                             <div className="block px-4 py-2 text-sm text-gray-700">
-                                <Link to="/news">Blog</Link>
+                                <Link to="/news">
+                                    {' '}
+                                    <LangText
+                                        azText="Blog"
+                                        enText="Blog"
+                                        ruText="Блог"
+                                    />
+                                </Link>
                             </div>
                             <div className="block px-4 py-2 text-sm text-gray-700">
-                                <Link to="/galery">Galereya</Link>
+                                <Link to="/galery">
+                                    {' '}
+                                    <LangText
+                                        azText="Galereya"
+                                        enText="Gallery"
+                                        ruText="Галерея"
+                                    />
+                                </Link>
                             </div>
                             <div className="block px-4 py-2 text-sm text-gray-700">
-                                <Link to="/contact">Əlaqə</Link>
+                                <LangText
+                                    azText="Əlaqə"
+                                    enText="Contact"
+                                    ruText="Связь"
+                                />{' '}
                             </div>
                         </div>
                     </div>
                     <Link to="/">
                         <img
                             className="w-[64px] h-[64px] mt-[-3%] lg:block md:hidden block"
-                            src="https://s3-alpha-sig.figma.com/img/7e61/1388/9b68b91790cc47d8228cc0648b592052?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gf7tNs0k0JK6liW9Gm52aTwdd0SQXAlNWQORiuQ4zaMudAA4cSH01x1X9NLbCD3VMUfwGGB0yY3BR9C8bQWEeGpUCqtZDKMXMPq5bx0mMglwjVR9QuYdaoOLAMLf4UI8WA~xWY9xCDROjWJbvo19ElF8Gj-ENWDuL5~dU1m4Cb4~ku6s6LCT~AhXh935AU3mXZiraGc~rRCf-z6YSBglItLTy-jNNieCp5b0FyXsjvGmnnjh6pzKtacVae3C2MhvKiWI1dKgAjnO76ANR3ikGxQWY1mZTmI1ydrtteVBd3zm0wpMDqp2cUPI8Rm46T8DZscN~qA7eTVbqgLFLiYnHQ__"
+                            src="/imges/logo.png"
                             alt=""
                         />
                     </Link>

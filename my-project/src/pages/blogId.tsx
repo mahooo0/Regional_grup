@@ -3,6 +3,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer.tsx';
 import { OtherBlogs } from '../components/otherBlogs.tsx';
 import BlogSwiper from '../components/BlogsSwipper.tsx';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { useRecoilValue } from 'recoil';
+import { Languege } from '../Atom/index.js';
+import { fetchBlogById } from '../Services/Requests.js';
 
 interface ArticleSectionType {
     title: string;
@@ -38,28 +43,39 @@ export default function BlogID() {
                 'In the dynamic world of entrepreneurship, knowledge of contract law is a valuable asset that empowers small business owners to navigate transactions with confidence and protect their interests. By understanding the basics of contract formation, essential elements, and legal principles, entrepreneurs can mitigate risks, foster stronger business relationships, and position their ventures for long-term success. As small business owners continue to grow and expand their enterprises, a solid foundation in contract law remains essential for navigating the complexities of the business landscape with clarity and integrity.',
         },
     ];
+    const [language, setLanguie] = useRecoilValue(Languege);
+
+    const { id } = useParams();
+    console.log(id);
+    const {
+        data: BlogById,
+        isLoading: loadingBlogById,
+        error: errorBlogById,
+    } = useQuery({
+        queryKey: ['BlogById', language, id],
+        queryFn: () => fetchBlogById(id),
+    });
+    if (loadingBlogById) return <div>Loading...</div>;
+    if (errorBlogById) return <div>Error loading data</div>;
+    console.log(BlogById);
+
     return (
         <div className=" relative">
             <Header />
-
             <section
                 className="flex  min-h-[420px] overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center"
                 style={{
-                    backgroundImage:
-                        "url('https://s3-alpha-sig.figma.com/img/8b02/e377/e396cc186698accba9ebcb781a02b78a?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fJiT4yca6EgjAzDyShJ3mJS0Pkf~2deDnzgTSAIpkoH8aa3DPB~TDho3lhwBqLy-F6hZb~~GaUASmCHlTOMbMBM9cKBVleufuqh4DzYTnqtG1bCASPi8bw4WMNAhN4sh1JepfkrvER4Ja7xYj8iYuyOt9KeEVf-pWzvlFne0FPH-X9mSFtd9ba4rG~jAzCmWOWOsbTtqXQoW0GVgXNmHPMvaGChkR777MdUJUvf~0UqzTTlki7n9vTPCpIhk9U2JeZdBBkaUZBWsn9saHVuO-kZ3goTVEmVszn5cbY9ELP7ddkIfj1IcnY7cPSJHLVExUOz4q3OYtmqfDY0g30IoIA')",
+                    backgroundImage: `url('https://regional.epart.az/storage/${BlogById.data.image}')`,
                 }}
             >
                 <div className="w-full h-full  min-h-[420px]  bg-black bg-opacity-70  px-20 pt-20 pb-32 flex justify-center">
                     <div className="flex flex-col mb-0 max-w-full w-[856px] max-md:mb-2.5">
                         <div className="flex flex-col w-full text-center max-md:max-w-full">
                             <h1 className="text-5xl font-semibold max-md:max-w-full max-md:text-4xl mt-11">
-                                Understanding the Basics of Contract Law for
-                                Small Business Owners
+                                {BlogById.data.title}
                             </h1>
                             <p className="mt-7 text-lg leading-6 max-md:max-w-full ">
-                                Learn essential contract law principles to
-                                protect your business interests and avoid common
-                                pitfalls in contractual agreements.
+                                {BlogById.data.short_description}
                             </p>
                         </div>
                     </div>
@@ -122,40 +138,26 @@ export default function BlogID() {
                                 stroke-linejoin="round"
                             />
                         </svg>
-                        <span className="self-stretch my-auto">123.45B</span>
+                        <span className="self-stretch my-auto">
+                            {BlogById.data.views}
+                        </span>
                     </a>
                 </nav>
                 <div className="flex flex-col lg:w-[90%] w-full ">
                     <div className="flex flex-col w-full max-md:max-w-full">
                         <h1 className="text-4xl font-medium tracking-tight leading-10 text-slate-900 max-md:max-w-full">
-                            The Importance of Contract Law for Small Businesses
+                            {BlogById.data.title}
                         </h1>
-                        <p className="mt-4 text-base tracking-wide leading-7 text-neutral-600 max-md:max-w-full">
-                            Contracts are the backbone of business transactions,
-                            serving as legally binding agreements that define
-                            the rights and obligations of parties involved. For
-                            small business owners, understanding the basics of
-                            contract law is crucial for protecting their
-                            interests and minimizing risks. Whether it's a
-                            partnership agreement, client contract, or vendor
-                            agreement, having a solid grasp of contract
-                            fundamentals can help prevent disputes and ensure
-                            smooth business operations.
-                            <br />
-                            <br />
-                            Contract law governs the formation, interpretation,
-                            and enforcement of agreements, providing a framework
-                            for parties to negotiate terms, outline
-                            responsibilities, and resolve conflicts. By
-                            familiarizing themselves with key contract
-                            principles, small business owners can enter into
-                            agreements confidently, knowing their rights are
-                            protected under the law.
-                        </p>
+                        <div
+                            className="mt-4 text-base tracking-wide leading-7 text-neutral-600 max-md:max-w-full"
+                            dangerouslySetInnerHTML={{
+                                __html: BlogById.data.description,
+                            }}
+                        />
                     </div>
-                    {articleSections.map((section, index) => (
+                    {/* {articleSections.map((section, index) => (
                         <ArticleSection key={index} section={section} />
-                    ))}
+                    ))} */}
                 </div>
                 <OtherBlogs />
             </section>

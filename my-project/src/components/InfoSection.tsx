@@ -27,7 +27,7 @@ export default function InfoSection({
             easing: 'ease-in-out', // Easing function for the animation
         });
     }, []);
-    console.log(data);
+    console.log('data:', data);
 
     if (direction === 'row') {
         return (
@@ -38,7 +38,7 @@ export default function InfoSection({
                     </h2>
                     <div className="  border-b-[6px] border-[#2758A3]  lg:w-[60%] md:w-[60%] sm:1/2 w-full   h-fit">
                         <img
-                            src={`https://regional.epart.az/storage/${data.icon}`}
+                            src={`https://regional.epart.az/storage/${data.icon_home}`}
                             alt=""
                             className="w-[42px] h-[42px] object-cover"
                         />
@@ -102,7 +102,7 @@ export default function InfoSection({
                     </h2>
                     <div className=" border-b-[6px] border-[#2758A3]  lg:w-[60%] md:w-[60%] w-full flex justify-end  h-fit">
                         <img
-                            src={`https://regional.epart.az/storage/${data.icon}`}
+                            src={`https://regional.epart.az/storage/${data.icon_home}`}
                             alt=""
                             className="w-[42px] h-[42px] object-cover"
                         />{' '}

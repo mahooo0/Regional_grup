@@ -101,7 +101,7 @@ export const NewsComments = ({ data }: { data: any }) => {
                     id={item.id}
                     imageUrl={`https://regional.epart.az/storage/${item.image}`}
                     title={item.title}
-                    date={'date'}
+                    date={item.date}
                     dateIconUrl={
                         'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/f3c86cb051418b22240ebc8d989a3f8c88b518d5537ffbe3e5f6142f8aebc6d6?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&'
                     }

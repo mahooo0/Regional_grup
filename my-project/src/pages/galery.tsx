@@ -46,12 +46,12 @@ export default function Galery() {
             >
                 <div className="w-full h-full  bg-black bg-opacity-70  px-20 pt-20 pb-32 flex justify-center  min-h-[420px]">
                     <div className="flex flex-col mb-0 max-w-full w-[856px] max-md:mb-2.5">
-                        <div className="flex flex-col w-full text-center max-md:max-w-full">
+                        <div className="flex flex-col w-full text-center max-md:max-w-full justify-center items-center h-full">
                             <h1 className="text-5xl font-semibold max-md:max-w-full max-md:text-4xl">
                                 {GAleryBunner.data[0].title}
                             </h1>
                             <div
-                                className="mt-2"
+                                className="mt-4"
                                 dangerouslySetInnerHTML={{
                                     __html: GAleryBunner.data[0].description,
                                 }}

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
+import LangText from './langugeComponent.tsx';
 
 interface NewsItem {
     title: string;
@@ -70,7 +71,11 @@ export const NewsAside = ({ data }: { data: any }) => {
         <section className="flex flex-col px-4 py-3.5  lg:w-[288px] lg:mx-0 mx-[20px]  w-full bg-white rounded-lg shadow-[0px_0px_11px_rgba(101,101,101,0.12)] max-md:mt-6 h-fit">
             <div className="flex gap-5 justify-between items-center py-5 w-full text-black border-b border-gray-200">
                 <h2 className="self-stretch my-auto text-xl font-medium">
-                    Xəbər lenti
+                    <LangText
+                        azText="Xəbər lenti"
+                        enText="News Feed"
+                        ruText="Новостная лента"
+                    />
                 </h2>
                 {/* <button
                     className="flex gap-2.5 justify-center items-center self-stretch my-auto text-sm rounded"
@@ -103,8 +108,7 @@ export const NewsAside = ({ data }: { data: any }) => {
                                 className="object-contain shrink-0 self-stretch my-auto w-3.5 aspect-square"
                             />
                             <time className="self-stretch my-auto">
-                                {/* {item.time} */}
-                                date
+                                {item.date}
                             </time>
                         </div>
                     </div>
