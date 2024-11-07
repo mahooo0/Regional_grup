@@ -1,4 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { Languege } from '../Atom';
+import { fetchFooterData } from '../Services/Requests';
 
 const Footer = ({ id }: { id?: string }) => {
     const footerData = [
@@ -20,6 +24,17 @@ const Footer = ({ id }: { id?: string }) => {
             items: ['Regional Group haqqında', 'Lorem Ipsum'],
         },
     ];
+    const [language, setLanguie] = useRecoilValue(Languege);
+
+    const {
+        data: FooterData,
+        isLoading: loadingFooterData,
+        error: errorFooterData,
+    } = useQuery({
+        queryKey: ['FooterData', language],
+        queryFn: fetchFooterData,
+    });
+    console.log(FooterData);
 
     return (
         <footer

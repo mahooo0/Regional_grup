@@ -13,7 +13,7 @@ export default function LangText({ azText, enText, ruText }: LangTextProps) {
     const [result, setResult] = useState('');
 
     useEffect(() => {
-        const language = localStorage.getItem('Accept-Language');
+        const language = localStorage.getItem('Accept-Language') || 'az';
 
         switch (language) {
             case 'az':

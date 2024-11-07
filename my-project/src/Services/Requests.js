@@ -162,6 +162,16 @@ export const fetchBunner = async () => {
     );
     return response.data;
 };
+export const fetchFooterData = async () => {
+    const language = localStorage.getItem('Accept-Language');
+
+    const response = await axios.get('https://regional.epart.az/api/footer', {
+        headers: {
+            'Accept-Language': language, // Change 'en-US' to the desired language code
+        },
+    });
+    return response.data;
+};
 export const fetcGalery = async (page) => {
     const response = await axios.get(
         `https://regional.epart.az/api/galery?page=${page}`
