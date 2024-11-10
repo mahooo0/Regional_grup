@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetcGalery, fetcGaleryBunner } from '../Services/Requests.js';
 import { useRecoilValue } from 'recoil';
 import { Languege } from '../Atom/index.js';
+import Loading from '../components/Loading.tsx';
 
 export default function Galery() {
     const [show, setshow] = useState<boolean>(false);
@@ -31,7 +32,7 @@ export default function Galery() {
         queryKey: ['GaleryBunner', language],
         queryFn: fetcGaleryBunner,
     });
-    if (loadingGAlery || loadingGAleryBunner) return <div>Loading...</div>;
+    if (loadingGAlery || loadingGAleryBunner) return <Loading />;
     if (errorGAlery || errorGAleryBunner) return <div>Error loading data</div>;
     console.log('GAlery:0', GAlery);
 

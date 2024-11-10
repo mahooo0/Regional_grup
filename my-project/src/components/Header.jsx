@@ -61,7 +61,7 @@ export default function Header() {
             if (language) setSelectedLanguage(language);
         }
     }, []);
-    if (loadingServices) return <div>Loading...</div>;
+    if (loadingServices) return <div></div>;
     if (errorServices) return <div>Error loading data</div>;
     const filteredServices = Services.data.filter((service) =>
         service.title.toLowerCase().includes(searchTerm.toLowerCase())

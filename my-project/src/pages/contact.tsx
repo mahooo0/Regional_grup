@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchContact, fetchContactBunner } from '../Services/Requests.js';
 import { useRecoilValue } from 'recoil';
 import { Languege } from '../Atom/index.js';
+import Loading from '../components/Loading.tsx';
 interface ContactInfoProps {
     title: string;
     value: string;
@@ -63,7 +64,7 @@ export default function Contact() {
         { title: 'Email', value: 'nümunə@gmail.com' },
         { title: 'Location', value: '221B Baker Street' },
     ];
-    if (loadingContactBunner || loadingContact) return <div>Loading...</div>;
+    if (loadingContactBunner || loadingContact) return <Loading />;
     if (errorContactBunner || errorContact)
         return <div>Error loading data</div>;
     console.log(Contact.filter((item: any) => item.data));

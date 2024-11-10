@@ -8,12 +8,14 @@ export default function InfoSection({
     direction,
     id,
     onaction,
+    onaction2 = () => {},
     data,
     dasHaveButton = true,
 }: {
     direction: 'row' | 'col';
     id: string;
     onaction: () => void;
+    onaction2?: () => void;
     data: any;
     dasHaveButton?: boolean;
 }) {
@@ -83,10 +85,16 @@ export default function InfoSection({
                         </div>
                     </div>
                 </div>
-                <div className="w-full  justify-center mt-[64px] lg:flex md:flex hidden ">
+                <div className="w-full  justify-center mt-[64px] lg:flex md:flex hidden gap-6 ">
                     <img
                         onClick={() => onaction()}
                         src="/svg/mause_blue.svg"
+                        alt=""
+                        className="z-30   animate-bounce"
+                    />
+                    <img
+                        onClick={() => onaction2()}
+                        src="/svg/mouseToTop.svg"
                         alt=""
                         className="z-30   animate-bounce"
                     />
@@ -147,10 +155,16 @@ export default function InfoSection({
                         />
                     </div>
                 </div>
-                <div className="w-full  justify-center mt-[64px] lg:flex md:flex hidden ">
+                <div className="w-full  justify-center mt-[64px] lg:flex md:flex hidden gap-6 ">
                     <img
                         onClick={() => onaction()}
                         src="/svg/mause_blue.svg"
+                        alt=""
+                        className="z-30   animate-bounce"
+                    />
+                    <img
+                        onClick={() => onaction2()}
+                        src="/svg/mouseToTop.svg"
                         alt=""
                         className="z-30   animate-bounce"
                     />

@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchBlog, fetchBunner } from '../Services/Requests.js';
 import { useRecoilValue } from 'recoil';
 import { Languege } from '../Atom/index.js';
+import Loading from '../components/Loading.tsx';
 interface ContactInfoProps {
     title: string;
     value: string;
@@ -76,7 +77,7 @@ export default function News() {
         }
     }, [Blog]);
 
-    if (loadingBlog || loadingBunner) return <div>Loading...</div>;
+    if (loadingBlog || loadingBunner) return <Loading />;
     if (errorBlog || errorBunner) return <div>Error loading data</div>;
     console.log('CommetsData:', CommetsData);
     // write program

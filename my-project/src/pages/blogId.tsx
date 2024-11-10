@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
 import { Languege } from '../Atom/index.js';
 import { fetchBlogById } from '../Services/Requests.js';
+import Loading from '../components/Loading.tsx';
 
 interface ArticleSectionType {
     title: string;
@@ -55,7 +56,7 @@ export default function BlogID() {
         queryKey: ['BlogById', language, id],
         queryFn: () => fetchBlogById(id),
     });
-    if (loadingBlogById) return <div>Loading...</div>;
+    if (loadingBlogById) return <Loading />;
     if (errorBlogById) return <div>Error loading data</div>;
     console.log(BlogById);
 

@@ -9,6 +9,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { CurrentServiceState, Languege } from '../Atom/index.js';
 import langtext from '../components/langugeComponent.tsx';
 import LangText from '../components/langugeComponent.tsx';
+import Loading from '../components/Loading.tsx';
 
 function scrollToElementById(id: string) {
     const element = document.getElementById(id);
@@ -56,7 +57,7 @@ export default function Home() {
             splitArray(Services.data);
         }
     }, [Services]);
-    if (loadingServices || loadingEbaut) return <div>Loading...</div>;
+    if (loadingServices || loadingEbaut) return <Loading />;
     if (loadingServices || errorServices) return <div>Error loading data</div>;
     const slugs = ServiseARR.map((item: any) => item.slug);
     const sections = ['hero', 'ebaut', ...slugs, 'info10', 'footer'];
@@ -248,30 +249,31 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                    <div
-                        className=" absolute bottom-2 animate-bounce z-30  justify-center w-full lg:flex md:flex hidden"
-                        onClick={() => {
-                            // setshowebaut(true);
-                            setsectionindex(0);
-                            scrollToElementById('ebaut');
-                        }}
-                    >
-                        <svg
-                            width="50"
-                            height="86"
-                            viewBox="0 0 50 86"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                    <div className=" absolute bottom-2 animate-bounce z-30  justify-center w-full lg:flex md:flex hidden">
+                        <div
+                            onClick={() => {
+                                // setshowebaut(true);
+                                setsectionindex(0);
+                                scrollToElementById('ebaut');
+                            }}
                         >
-                            <path
-                                d="M25 1.25C16.8021 1.25 10.1562 7.89584 10.1562 16.0938V33.9063C10.1562 42.1042 16.8021 48.75 25 48.75C33.1979 48.75 39.8438 42.1042 39.8438 33.9063V16.0938C39.8438 7.89584 33.1979 1.25 25 1.25ZM27.9688 16.0938C27.9688 17.7331 26.6393 19.0625 25 19.0625C23.3607 19.0625 22.0312 17.7331 22.0312 16.0938V10.1563C22.0312 8.51691 23.3607 7.1875 25 7.1875C26.6393 7.1875 27.9688 8.51691 27.9688 10.1563V16.0938Z"
-                                fill="white"
-                            />
-                            <path
-                                d="M24.9998 84.9167C24.5664 84.9167 24.158 84.7477 23.8503 84.4411L12.1211 72.7108L12.887 71.9448L24.6163 83.6741C24.821 83.8788 25.1774 83.8788 25.3822 83.6741L37.1114 71.9448L37.8773 72.7108L26.1481 84.44C25.8415 84.7466 25.4331 84.9156 24.9987 84.9156L24.9998 84.9167ZM25.51 74.9186L37.8784 62.5502L37.1125 61.7843L24.9998 73.8959L12.887 61.7832L12.1211 62.5502L24.4906 74.9186C24.6303 75.0583 24.8145 75.1277 24.9987 75.1277C25.1828 75.1277 25.3681 75.0594 25.51 74.9186Z"
-                                fill="white"
-                            />
-                        </svg>
+                            <svg
+                                width="50"
+                                height="86"
+                                viewBox="0 0 50 86"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M25 1.25C16.8021 1.25 10.1562 7.89584 10.1562 16.0938V33.9063C10.1562 42.1042 16.8021 48.75 25 48.75C33.1979 48.75 39.8438 42.1042 39.8438 33.9063V16.0938C39.8438 7.89584 33.1979 1.25 25 1.25ZM27.9688 16.0938C27.9688 17.7331 26.6393 19.0625 25 19.0625C23.3607 19.0625 22.0312 17.7331 22.0312 16.0938V10.1563C22.0312 8.51691 23.3607 7.1875 25 7.1875C26.6393 7.1875 27.9688 8.51691 27.9688 10.1563V16.0938Z"
+                                    fill="white"
+                                />
+                                <path
+                                    d="M24.9998 84.9167C24.5664 84.9167 24.158 84.7477 23.8503 84.4411L12.1211 72.7108L12.887 71.9448L24.6163 83.6741C24.821 83.8788 25.1774 83.8788 25.3822 83.6741L37.1114 71.9448L37.8773 72.7108L26.1481 84.44C25.8415 84.7466 25.4331 84.9156 24.9987 84.9156L24.9998 84.9167ZM25.51 74.9186L37.8784 62.5502L37.1125 61.7843L24.9998 73.8959L12.887 61.7832L12.1211 62.5502L24.4906 74.9186C24.6303 75.0583 24.8145 75.1277 24.9987 75.1277C25.1828 75.1277 25.3681 75.0594 25.51 74.9186Z"
+                                    fill="white"
+                                />
+                            </svg>
+                        </div>
                     </div>
                 </section>
                 <section
@@ -317,16 +319,26 @@ export default function Home() {
                             Daha çox
                         </button>
                     </Link>
-
-                    <img
-                        onClick={() => {
-                            setsectionindex(1);
-                            scrollToElementById(ServiseARR[0].slug);
-                        }}
-                        src="/svg/mause_blue.svg"
-                        alt=""
-                        className="z-30 absolute bottom-[-10px] animate-bounce lg:block md:block hidden"
-                    />
+                    <div className="absolute bottom-[-10px] flex-row flex gap-6">
+                        <img
+                            onClick={() => {
+                                setsectionindex(1);
+                                scrollToElementById(ServiseARR[0].slug);
+                            }}
+                            src="/svg/mause_blue.svg"
+                            alt=""
+                            className="z-30  animate-bounce lg:block md:block hidden"
+                        />{' '}
+                        <img
+                            onClick={() => {
+                                scrollToElementById(sections[sectionindex]);
+                                setsectionindex((prew) => prew - 1);
+                            }}
+                            src="/svg/mouseToTop.svg"
+                            alt=""
+                            className="z-30   animate-bounce"
+                        />
+                    </div>
                 </section>
                 {ServiseARR?.map((item: any, i: number, list: any[]) => {
                     if (i % 2 === 1) {
@@ -342,6 +354,10 @@ export default function Home() {
                                         : scrollToElementById(list[i + 1].slug);
                                     setsectionindex(i + 2);
                                 }}
+                                onaction2={() => {
+                                    scrollToElementById(sections[sectionindex]);
+                                    setsectionindex((prew) => prew - 1);
+                                }}
                             />
                         );
                     } else {
@@ -351,11 +367,14 @@ export default function Home() {
                                 direction="col"
                                 id={`info` + i}
                                 onaction={() => {
-                                    console.log('Idddd', i, list.length);
                                     i + 1 === list.length
                                         ? scrollToElementById('footer')
                                         : scrollToElementById(list[i + 1].slug);
                                     setsectionindex(i + 2);
+                                }}
+                                onaction2={() => {
+                                    scrollToElementById(sections[sectionindex]);
+                                    setsectionindex((prew) => prew - 1);
                                 }}
                             />
                         );
@@ -394,7 +413,7 @@ export default function Home() {
             />
             <div
                 onClick={() => {
-                    scrollToElementById(sections[sectionindex]);
+                    scrollToElementById('hero');
                     setsectionindex((prew) => prew - 1);
                 }}
                 style={{ zIndex: 99999999999999999 }}

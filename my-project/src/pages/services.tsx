@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchAservices, fetchAservicesBunner } from '../Services/Requests.js';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { CurrentServiceState, Languege } from '../Atom/index.js';
+import Loading from '../components/Loading.tsx';
 function scrollToElementById(id: string) {
     const element = document.getElementById(id);
     if (element) {
@@ -41,7 +42,7 @@ export default function Services() {
         queryKey: ['ServicesBunner', language],
         queryFn: fetchAservicesBunner,
     });
-    if (loadingServices || loadingServicesBunner) return <div>Loading...</div>;
+    if (loadingServices || loadingServicesBunner) return <Loading />;
     if (loadingServices || errorServicesBunner)
         return <div>Error loading data</div>;
     console.log('ServicesBunner', ServicesBunner);
