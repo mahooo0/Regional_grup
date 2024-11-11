@@ -15,8 +15,9 @@ function scrollToElementById(id: string) {
     const element = document.getElementById(id);
     if (element) {
         element.scrollIntoView({
-            behavior: 'smooth', // Smooth scrolling
+            behavior: 'smooth', // Smooth scrolling effect
             block: 'end', // Scroll to the top of the element
+            inline: 'nearest', // Align the nearest point in the horizontal axis
         });
     }
 }
@@ -57,6 +58,20 @@ export default function Home() {
             splitArray(Services.data);
         }
     }, [Services]);
+    const [scrollPosition, setScrollPosition] = useState(0);
+
+    useEffect(() => {
+        // Function to update scroll position
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY);
+        };
+
+        // Attach scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Clean up the event listener on component unmount
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
     if (loadingServices || loadingEbaut) return <Loading />;
     if (loadingServices || errorServices) return <div>Error loading data</div>;
     const slugs = ServiseARR.map((item: any) => item.slug);
@@ -64,10 +79,10 @@ export default function Home() {
 
     console.log('currentService:', currentService);
     return (
-        <div className="bg-white  relative  lg:overflow-hidden overflow-hidden lg:h-[100vh] w-[100%] h-fit">
+        <div className="bg-white  relative  lg:overflow-hidden overflow-hidden lg:h-[100vh]  w-[100%] h-fit">
             {/*  */}
             <Header />
-            <main className=" relative  mb-[120px] z-30 ">
+            <main className=" relative  mb-[120px] z-30  ">
                 <section
                     className="  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  relative justify-center   overflow-x-hidden"
                     id="hero"
@@ -384,19 +399,40 @@ export default function Home() {
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[120vh] z-0"
+                className="absolute"
+                style={{ top: `calc(120vh - ${scrollPosition}px)` }}
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[200vh] -right-[300px]  z-0"
+                className=" absolute -right-[300px]  z-0"
+                style={{ top: `calc(180vh - ${scrollPosition}px )` }}
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[320vh]"
+                className=" absolute  "
+                style={{ top: `calc(260vh - ${scrollPosition}px )` }}
+            />{' '}
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute -right-[300px]  z-0"
+                style={{ top: `calc(280vh - ${scrollPosition}px )` }}
             />
             <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute  "
+                style={{ top: `calc(360vh - ${scrollPosition}px )` }}
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute -right-[300px]  z-0"
+                style={{ top: `calc(420vh - ${scrollPosition}px )` }}
+            />
+            {/* <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
                 className=" absolute top-[400vh] -right-[300px] "
@@ -410,7 +446,7 @@ export default function Home() {
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
                 className=" absolute top-[600vh] -right-[300px] "
-            />
+            /> */}
             <div
                 onClick={() => {
                     scrollToElementById('hero');

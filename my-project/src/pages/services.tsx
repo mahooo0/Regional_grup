@@ -80,6 +80,7 @@ export default function Services() {
                 if (i % 2 === 1) {
                     return (
                         <InfoSection
+                            showup={false}
                             dasHaveButton={false}
                             data={item}
                             direction="row"
@@ -94,6 +95,7 @@ export default function Services() {
                 } else {
                     return (
                         <InfoSection
+                            showup={false}
                             dasHaveButton={false}
                             data={item}
                             direction="col"

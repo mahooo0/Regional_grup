@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export default function InfoSection({
     direction,
     id,
+    showup = true,
     onaction,
     onaction2 = () => {},
     data,
@@ -17,6 +18,7 @@ export default function InfoSection({
     onaction: () => void;
     onaction2?: () => void;
     data: any;
+    showup?: boolean;
     dasHaveButton?: boolean;
 }) {
     const [currentService, setCurrentService] =
@@ -93,6 +95,7 @@ export default function InfoSection({
                         className="z-30   animate-bounce"
                     />
                     <img
+                        style={showup ? {} : { display: 'none' }}
                         onClick={() => onaction2()}
                         src="/svg/mouseToTop.svg"
                         alt=""
@@ -163,6 +166,7 @@ export default function InfoSection({
                         className="z-30   animate-bounce"
                     />
                     <img
+                        style={showup ? {} : { display: 'none' }}
                         onClick={() => onaction2()}
                         src="/svg/mouseToTop.svg"
                         alt=""

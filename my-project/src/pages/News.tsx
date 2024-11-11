@@ -85,7 +85,7 @@ export default function News() {
         <div>
             <Header />
 
-            <section
+            {/* <section
                 className="flex overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center min-h-[420px]"
                 style={{
                     backgroundImage: `url('https://regional.epart.az/storage/${Bunner.data[0].image}')`,
@@ -106,8 +106,8 @@ export default function News() {
                         </div>
                     </div>
                 </div>
-            </section>
-            <section className="mt-[52px] flex flex-row w-full justify-center gap-6 items-start flex-wrap  lg:px-0 px-5   mb-[120px]">
+            </section> */}
+            <section className="mt-[252px] flex flex-row w-full justify-center gap-6 items-start flex-wrap  lg:px-0 px-5   mb-[120px]">
                 <div className="max-w-[1000px] flex justify-center flex-col items-center w-full">
                     <Chat data={chatData} />
                     <NewsComments data={CommetsData} />
