@@ -48,12 +48,25 @@ const Footer = ({ id }: { id?: string }) => {
                             Fermentum nulla integer consequat porttitor vitae
                             nulla scelerisque at
                         </p>
-                        <img
+                        <div className="flex flex-row gap-6 mt-8">
+                            {FooterData?.filter((item: any) =>
+                                item.title === 'Privacy Policy' ? false : true
+                            )?.map((item: any) => (
+                                <a href={item?.links} key={item?.links}>
+                                    <img
+                                        src={`https://regional.epart.az/storage/${item?.icon}`}
+                                        alt=""
+                                        className="w-[22px] h-[22px]"
+                                    />
+                                </a>
+                            ))}
+                        </div>
+                        {/* <img
                             loading="lazy"
                             src="https://cdn.builder.io/api/v1/image/assets/TEMP/4340594156e3153af78d8c8f01367c7b78f29e8a8712bb31125953e11dfbb8ca?placeholderIfAbsent=true&apiKey=c6f3c7bb740649e5a32c147b3037a1c2"
                             alt="Company logo"
                             className="object-contain mt-8 max-w-full aspect-[9.62] w-[202px]"
-                        />
+                        /> */}
                     </div>
                     {footerData.map((column, index) => (
                         <div
