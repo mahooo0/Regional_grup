@@ -81,7 +81,7 @@ export default function Home() {
     return (
         <div className="bg-white  relative  lg:overflow-hidden overflow-hidden lg:h-[100vh]  w-[100%] h-fit">
             {/*  */}
-            <Header />
+            <Header ishome={true} />
             <main className=" relative  mb-[120px] z-30  ">
                 <section
                     className="  grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  relative justify-center   overflow-x-hidden"

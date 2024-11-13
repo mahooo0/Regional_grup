@@ -17,7 +17,7 @@ const languages = [
     { code: 'ru', name: 'Русский', flag: '/svg/ru.svg' },
 ];
 
-export default function Header({ isBlog = false }) {
+export default function Header({ isBlog = false, ishome = false }) {
     const [sohowAside, setsohowAside] = useState(false);
     const [sohowSech, setsohowSech] = useState(false);
     const [selectedLanguage, setSelectedLanguage] = useState(() => {
@@ -107,7 +107,9 @@ export default function Header({ isBlog = false }) {
                         <ul
                             className={`${
                                 isBlog ? 'text-black' : 'text-white'
-                            } gap-[26%] text-[16px] font-normal flex flex-row`}
+                            } ${
+                                ishome ? 'gap-[26%]' : ' gap-4'
+                            }  text-[16px] font-normal flex flex-row`}
                         >
                             <div className="flex flex-row gap-4">
                                 <li>
