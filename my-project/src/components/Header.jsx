@@ -107,66 +107,70 @@ export default function Header({ isBlog = false }) {
                         <ul
                             className={`${
                                 isBlog ? 'text-black' : 'text-white'
-                            } gap-4 text-[16px] font-normal flex flex-row`}
+                            } gap-[26%] text-[16px] font-normal flex flex-row`}
                         >
-                            <li>
-                                <Link to="/">
-                                    {' '}
-                                    <LangText
-                                        azText="Əsas"
-                                        enText="Home"
-                                        ruText="Главная"
-                                    />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/about">
-                                    <LangText
-                                        azText="Haqqımızda"
-                                        enText="About Us"
-                                        ruText="О нас"
-                                    />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/services">
-                                    {' '}
-                                    <LangText
-                                        azText="Xidmətlər"
-                                        enText="Services"
-                                        ruText="Услуги"
-                                    />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/news">
-                                    {' '}
-                                    <LangText
-                                        azText="Blog"
-                                        enText="Blog"
-                                        ruText="Блог"
-                                    />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/galery">
-                                    <LangText
-                                        azText="Galereya"
-                                        enText="Gallery"
-                                        ruText="Галерея"
-                                    />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/contact">
-                                    {' '}
-                                    <LangText
-                                        azText="Əlaqə"
-                                        enText="Contact"
-                                        ruText="Связь"
-                                    />
-                                </Link>
-                            </li>
+                            <div className="flex flex-row gap-4">
+                                <li>
+                                    <Link to="/">
+                                        {' '}
+                                        <LangText
+                                            azText="Əsas"
+                                            enText="Home"
+                                            ruText="Главная"
+                                        />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/about">
+                                        <LangText
+                                            azText="Haqqımızda"
+                                            enText="About Us"
+                                            ruText="О нас"
+                                        />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/services">
+                                        {' '}
+                                        <LangText
+                                            azText="Xidmətlər"
+                                            enText="Services"
+                                            ruText="Услуги"
+                                        />
+                                    </Link>
+                                </li>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <li className="ml-2">
+                                    <Link to="/news">
+                                        {' '}
+                                        <LangText
+                                            azText="Blog"
+                                            enText="Blog"
+                                            ruText="Блог"
+                                        />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/galery">
+                                        <LangText
+                                            azText="Galereya"
+                                            enText="Gallery"
+                                            ruText="Галерея"
+                                        />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/contact">
+                                        {' '}
+                                        <LangText
+                                            azText="Əlaqə"
+                                            enText="Contact"
+                                            ruText="Связь"
+                                        />
+                                    </Link>
+                                </li>
+                            </div>
                         </ul>
                     </div>
                     <div className="w-[30%] h-full absolute top-0 right-0 flex justify-center items-center">
@@ -357,7 +361,7 @@ export default function Header({ isBlog = false }) {
                                     />
                                 </Link>
                             </div>
-                            <div className="block px-4 py-2 text-sm text-gray-700">
+                            <div className="block px-4 py-2 text-sm text-gray-700  ">
                                 <Link to="/news">
                                     {' '}
                                     <LangText
