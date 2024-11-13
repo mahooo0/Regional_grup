@@ -17,7 +17,7 @@ const languages = [
     { code: 'ru', name: 'Русский', flag: '/svg/ru.svg' },
 ];
 
-export default function Header() {
+export default function Header({ isBlog = false }) {
     const [sohowAside, setsohowAside] = useState(false);
     const [sohowSech, setsohowSech] = useState(false);
     const [selectedLanguage, setSelectedLanguage] = useState(() => {
@@ -80,6 +80,7 @@ export default function Header() {
             <div className=" absolute  lg:block  hidden top-0 w-full z-50">
                 <div className="relative">
                     <svg
+                        className="drop-shadow-2xl"
                         width="100%"
                         viewBox="0 0 1440 88"
                         fill="none"
@@ -103,7 +104,11 @@ export default function Header() {
                         </Link>
                     </div>
                     <div className=" w-[50%] h-full z-50 absolute top-0 left-[20%]  flex items-center justify-center ml-[13px]">
-                        <ul className="text-white gap-4 text-[16px] font-normal flex flex-row">
+                        <ul
+                            className={`${
+                                isBlog ? 'text-black' : 'text-white'
+                            } gap-4 text-[16px] font-normal flex flex-row`}
+                        >
                             <li>
                                 <Link to="/">
                                     {' '}
@@ -293,12 +298,12 @@ export default function Header() {
                 <img
                     src="/imges/headerbg.png"
                     alt=" "
-                    className="w-full max-h-[80px] lg:hidden md:hidden block"
+                    className="w-full shadow-2xl max-h-[80px] lg:hidden md:hidden block"
                 />
                 <div className=" absolute top-0 w-full h-full flex lg:justify-around md:justify-between justify-around items-center lg:px-0 md:px-6 px-0">
                     <div className="relative ml-3">
                         <div onClick={() => setsohowAside((prew) => !prew)}>
-                            <div className="w-[33px] h-[33px] aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
+                            <div className="w-[33px] h-[33px]   aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
                                 <svg
                                     width="24"
                                     height="24"
@@ -308,7 +313,7 @@ export default function Header() {
                                 >
                                     <path
                                         d="M4 17.27V16.27H20V17.27H4ZM4 12.5V11.5H20V12.5H4ZM4 7.72998V6.72998H20V7.72998H4Z"
-                                        fill="white"
+                                        fill={isBlog ? 'black' : 'white'}
                                     />
                                 </svg>
                             </div>

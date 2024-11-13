@@ -83,7 +83,7 @@ export default function News() {
     // write program
     return (
         <div>
-            <Header />
+            <Header isBlog={true} />
 
             {/* <section
                 className="flex overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center min-h-[420px]"
