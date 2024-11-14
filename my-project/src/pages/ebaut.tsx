@@ -25,12 +25,20 @@ const StatCard = ({ value, label }) => (
     </div>
 );
 export default function Ebout() {
-    // const stats = [
-    //     { value: '10+', label: 'Təcrübə' },
-    //     { value: '2000+', label: 'Müştəri' },
-    //     { value: '1000+', label: 'Proffesional işçi' },
-    //     { value: '1000+', label: 'Daşınma' },
-    // ];
+    const [scrollPosition, setScrollPosition] = useState(0);
+
+    useEffect(() => {
+        // Function to update scroll position
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY);
+        };
+
+        // Attach scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Clean up the event listener on component unmount
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
     const [language, setLanguie] = useRecoilValue(Languege);
 
     const {
@@ -145,12 +153,26 @@ export default function Ebout() {
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[200vh] -right-[300px]  z-0"
+                className=" absolute  -right-[300px]  z-0"
+                style={{ top: `calc(200vh - ${scrollPosition}px)` }}
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[155vh]  left-0  z-0"
+                className=" absolute  left-0  z-0"
+                style={{ top: `calc(155vh - ${scrollPosition}px)` }}
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute  -right-[300px]  z-0"
+                style={{ top: `calc(400vh - ${scrollPosition}px)` }}
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute  left-0  z-0"
+                style={{ top: `calc(355vh - ${scrollPosition}px)` }}
             />
             <Footer />
         </div>

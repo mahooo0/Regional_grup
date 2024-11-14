@@ -5,7 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading.tsx';
 import { useRecoilValue } from 'recoil';
 import { Languege } from '../../Atom/index.js';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const servicesData = [
     {
         title: 'Dəniz nəqliyyatı',
@@ -64,6 +65,9 @@ export const ServicesLayout: React.FC = () => {
         queryFn: fetchAservices,
     });
     console.log('Services:', Services);
+    React.useEffect(() => {
+        AOS.init({ duration: 1000, once: false }); // Adjust duration and other options as needed
+    }, []);
     if (loadingServices) return <Loading />;
     return (
         <div className=" w-full flex justify-center max-w-[100wh]">
@@ -80,7 +84,7 @@ export const ServicesLayout: React.FC = () => {
                 />
 
                 <section className="self-stretch max-md:max-w-full justify-center ">
-                    <div className="flex gap-[14%] lg:flex-row flex-col justify-center items-center">
+                    <div className="flex gap-[23%] lg:flex-row flex-col justify-center items-center">
                         <div className="flex flex-col max-w-[480px]">
                             <div className="flex z-10 flex-col  w-full text-right max-md:max-w-full ">
                                 <ServiceCard
@@ -101,12 +105,13 @@ export const ServicesLayout: React.FC = () => {
                         </div>
                         <div className=" absolute  w-full  justify-center lg:flex hidden ">
                             <div className="flex flex-col  w-[22%] max-md:ml-0 max-md:w-full justify-center items-center">
-                                <div className="flex flex-col justify-center px-12 py-12 mt-3 border border-sky-900 border-solid rounded-[330px] max-md:px-5 w-[300px]">
+                                <div className="flex flex-col justify-center px-12 py-12 mt-3  border-[#2858A4] border-[10px] border-solid rounded-[330px] max-md:px-5 w-[400px]">
                                     <div className="flex overflow-hidden flex-col justify-center items-center px-11 bg-white aspect-square rounded-[151px] shadow-[0px_0px_11px_rgba(0,0,0,0.12)] max-md:px-5">
                                         <img
                                             loading="lazy"
                                             src={`https://regional.epart.az/storage/${Service_extra?.data[0]?.image}`}
                                             alt="Service icon"
+                                            // data-aos="zoom-in"
                                             className="object-contain aspect-[1.14] w-[118px]"
                                         />
                                     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer.tsx';
 import { useQuery } from '@tanstack/react-query';
@@ -23,12 +23,12 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ title, value }) => (
 );
 const ContactSection = ({ contactInfo }: { contactInfo: any }) => (
     <section className="flex relative flex-col items-start px-20 pt-3 pb-64 mt-10 max-w-full tracking-tight leading-none min-h-[517px] w-[521px] max-md:px-5 max-md:pb-24 max-md:mt-10 overflow-visible">
-        <img
+        {/* <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/706f3998d1c1f52f87841c723498b8a4667d4a81285389c564317c69a8f210f7?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&"
             alt=""
             className="object-cover absolute inset-0 size-full overflow-visible"
-        />
+        /> */}
         <div className="flex relative flex-col items-start mb-0 max-w-full w-[221px] max-md:mb-2.5">
             {contactInfo.map((info: any, index: number) => (
                 <ContactInfo
@@ -64,13 +64,27 @@ export default function Contact() {
         { title: 'Email', value: 'nümunə@gmail.com' },
         { title: 'Location', value: '221B Baker Street' },
     ];
+    const [scrollPosition, setScrollPosition] = useState(0);
+
+    useEffect(() => {
+        // Function to update scroll position
+        const handleScroll = () => {
+            setScrollPosition(window.scrollY);
+        };
+
+        // Attach scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Clean up the event listener on component unmount
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
     if (loadingContactBunner || loadingContact) return <Loading />;
     if (errorContactBunner || errorContact)
         return <div>Error loading data</div>;
     console.log(Contact.filter((item: any) => item.data));
 
     return (
-        <div>
+        <div className="bg-white  relative  lg:overflow-hidden overflow-hidden   w-[100%] h-fit">
             <Header />
 
             <section
@@ -114,14 +128,7 @@ export default function Contact() {
                             />
                         </div>
                     </div>
-                    <div className=" flex-col ml-5 w-[34%] max-md:ml-0 max-md:w-full lg:flex  hidden">
-                        <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/5db661975b7e72a78524e9cd53b2bf875cb5225fa1f3bfe8a93823c2e030c8cd?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&"
-                            alt=""
-                            className="object-contain w-full aspect-[1.01] max-md:max-w-full"
-                        />
-                    </div>
+                    <div className=" flex-col ml-5 w-[34%] max-md:ml-0 max-md:w-full lg:flex  hidden"></div>
                 </div>
             </main>
             <div
@@ -129,14 +136,18 @@ export default function Contact() {
                     __html: Contact.find((item: any) => item.frame).frame[0],
                 }}
             />
-            {}
-            {/* <iframe
-                className="w-full"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24286.86161896974!2d49.64509244999999!3d40.45628635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4030849e9792d103%3A0xb558e38a2b0c0c2b!2s28%20May!5e0!3m2!1sru!2saz!4v1729704487186!5m2!1sru!2saz"
-                width="600"
-                height="450"
-                loading="lazy"
-            ></iframe> */}
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute  -right-[300px]  z-0"
+                style={{ top: `calc(120vh - ${scrollPosition}px)` }}
+            />
+            <img
+                alt="bgimg"
+                src="/svg/bgAnimateIcon.svg"
+                className=" absolute  left-0  z-0"
+                style={{ top: `calc(75vh - ${scrollPosition}px)` }}
+            />
             <Footer />
         </div>
     );
