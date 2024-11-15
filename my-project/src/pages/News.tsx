@@ -107,7 +107,7 @@ export default function News() {
                     </div>
                 </div>
             </section> */}
-            <section className="mt-[252px] flex flex-row w-full justify-center gap-6 items-start flex-wrap  lg:px-0 px-5   mb-[120px]">
+            <section className="mt-[152px] flex flex-row w-full justify-center gap-6 items-start flex-wrap  lg:px-0 px-5   mb-[120px]">
                 <div className="max-w-[1000px] flex justify-center flex-col items-center w-full">
                     <Chat data={chatData} />
                     <NewsComments data={CommetsData} />

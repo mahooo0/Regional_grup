@@ -80,7 +80,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             );
         case 'left':
             return (
-                <section className="flex z-10 lg:flex-row flex-col justify-center items-center   text-center max-w-[479px] gap-6  min-h-[180px] lg:mt-0 mt-6 ">
+                <section className="flex z-10 lg:flex-row flex-col justify-center items-center   text-center max-w-[479px] gap-6   lg:mt-0 mt-6 ">
                     <div
                         className=" rounded-[151px] w-[112px] flex justify-center items-center bg-[#2858A4] h-[112px]"
                         data-aos="zoom-in"
@@ -111,7 +111,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             );
         case 'right':
             return (
-                <section className="flex z-10 lg:flex-row flex-col-reverse justify-center items-center   text-center max-w-[479px] gap-6  min-h-[180px]  lg:mt-0 mt-6">
+                <section className="flex z-10 lg:flex-row flex-col-reverse justify-center items-center   text-center max-w-[479px] gap-6    lg:mt-0 mt-6">
                     <>
                         <div className="flex flex-col justify-center  my-auto min-w-[240px] w-[306px]">
                             <h3

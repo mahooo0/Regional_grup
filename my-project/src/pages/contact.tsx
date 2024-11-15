@@ -118,7 +118,11 @@ export default function Contact() {
                                     Contact{' '}
                                 </h2>
                                 <div className=" border-b-[6px] border-[#2758A3]   w-full flex justify-end  h-fit">
-                                    <img src="/svg/cater.svg" alt="" />
+                                    <img
+                                        src="/svg/cater.svg"
+                                        alt=""
+                                        className="w-[42px] h-[42px]"
+                                    />
                                 </div>
                             </div>
                             <ContactSection
