@@ -88,35 +88,35 @@ export const ServicesLayout: React.FC = () => {
                         <div className="flex flex-col w-full justify-end items-end">
                             <div className="flex z-10 flex-col  w-full text-right max-md:max-w-full gap-[45px]  justify-end items-end">
                                 <ServiceCard
-                                    title={Services.data[1]?.title}
+                                    title={Services.data[0]?.title}
                                     description={
-                                        Services.data[1]?.short_description
+                                        Services.data[0]?.short_description
                                     }
-                                    imageUrl={`https://regional.epart.az/storage/${Services.data[1]?.icon_about}`}
+                                    imageUrl={`https://regional.epart.az/storage/${Services.data[0]?.icon_about}`}
                                 />
                                 <div className="mr-[22%] flex flex-col gap-[45px]">
-                                    <ServiceCard
-                                        title={Services.data[2]?.title}
-                                        description={
-                                            Services.data[2]?.short_description
-                                        }
-                                        imageUrl={`https://regional.epart.az/storage/${Services.data[2]?.icon_about}`}
-                                    />{' '}
                                     <ServiceCard
                                         title={Services.data[1]?.title}
                                         description={
                                             Services.data[1]?.short_description
                                         }
                                         imageUrl={`https://regional.epart.az/storage/${Services.data[1]?.icon_about}`}
+                                    />{' '}
+                                    <ServiceCard
+                                        title={Services.data[2]?.title}
+                                        description={
+                                            Services.data[2]?.short_description
+                                        }
+                                        imageUrl={`https://regional.epart.az/storage/${Services.data[2]?.icon_about}`}
                                     />
                                 </div>
 
                                 <ServiceCard
-                                    title={Services.data[2]?.title}
+                                    title={Services.data[3]?.title}
                                     description={
-                                        Services.data[2]?.short_description
+                                        Services.data[3]?.short_description
                                     }
-                                    imageUrl={`https://regional.epart.az/storage/${Services.data[2]?.icon_about}`}
+                                    imageUrl={`https://regional.epart.az/storage/${Services.data[3]?.icon_about}`}
                                 />
                             </div>
                         </div>
@@ -137,38 +137,38 @@ export const ServicesLayout: React.FC = () => {
                         <div className="flex flex-col   w-full">
                             <div className="flex flex-col w-full max-md:max-w-full gap-[45px] items-start">
                                 <ServiceCard
-                                    title={Services.data[3]?.title}
-                                    description={
-                                        Services.data[3]?.short_description
-                                    }
-                                    imageUrl={`https://regional.epart.az/storage/${Services.data[3]?.icon_about}`}
-                                    imagePosition="left"
-                                />
-                                <div className="ml-[22%] flex flex-col gap-[45px]">
-                                    <ServiceCard
-                                        title={Services.data[4]?.title}
-                                        description={
-                                            Services.data[4]?.short_description
-                                        }
-                                        imageUrl={`https://regional.epart.az/storage/${Services.data[4]?.icon_about}`}
-                                        imagePosition="left"
-                                    />
-                                    <ServiceCard
-                                        title={Services.data[3]?.title}
-                                        description={
-                                            Services.data[3]?.short_description
-                                        }
-                                        imageUrl={`https://regional.epart.az/storage/${Services.data[3]?.icon_about}`}
-                                        imagePosition="left"
-                                    />
-                                </div>
-
-                                <ServiceCard
                                     title={Services.data[4]?.title}
                                     description={
                                         Services.data[4]?.short_description
                                     }
                                     imageUrl={`https://regional.epart.az/storage/${Services.data[4]?.icon_about}`}
+                                    imagePosition="left"
+                                />
+                                <div className="ml-[22%] flex flex-col gap-[45px]">
+                                    <ServiceCard
+                                        title={Services.data[5]?.title}
+                                        description={
+                                            Services.data[5]?.short_description
+                                        }
+                                        imageUrl={`https://regional.epart.az/storage/${Services.data[5]?.icon_about}`}
+                                        imagePosition="left"
+                                    />
+                                    <ServiceCard
+                                        title={Services.data[6]?.title}
+                                        description={
+                                            Services.data[6]?.short_description
+                                        }
+                                        imageUrl={`https://regional.epart.az/storage/${Services.data[6]?.icon_about}`}
+                                        imagePosition="left"
+                                    />
+                                </div>
+
+                                <ServiceCard
+                                    title={Services.data[7]?.title}
+                                    description={
+                                        Services.data[7]?.short_description
+                                    }
+                                    imageUrl={`https://regional.epart.az/storage/${Services.data[7]?.icon_about}`}
                                     imagePosition="left"
                                 />
                             </div>

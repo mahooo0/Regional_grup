@@ -122,7 +122,7 @@ export default function Header({ isBlog = false, ishome = false }) {
                                         />
                                     </Link>
                                 </li>
-                                <li>
+                                <li className="text-nowrap">
                                     <Link to="/about">
                                         <LangText
                                             azText="Haqqımızda"
