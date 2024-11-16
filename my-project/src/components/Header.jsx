@@ -103,15 +103,23 @@ export default function Header({ isBlog = false, ishome = false }) {
                             />
                         </Link>
                     </div>
-                    <div className=" w-[50%] h-full z-50 absolute top-0 left-[20%]  flex items-center justify-center ml-[13px]">
+                    <div
+                        className={` w-[50%] h-full z-50 absolute top-0 ${
+                            ishome ? 'left-[25%]' : 'left-[20%]'
+                        }   flex items-center justify-center ml-[13px]`}
+                    >
                         <ul
                             className={`${
                                 isBlog ? 'text-black' : 'text-white'
                             } ${
-                                ishome ? 'gap-[26%]' : ' gap-4'
+                                ishome ? ' w-full' : ' gap-4'
                             }  text-[16px] font-normal flex flex-row`}
                         >
-                            <div className="flex flex-row gap-4">
+                            <div
+                                className={`flex flex-row gap-4 ${
+                                    ishome ? 'w-[50%] justify-center' : ''
+                                }`}
+                            >
                                 <li>
                                     <Link to="/">
                                         {' '}
@@ -142,7 +150,11 @@ export default function Header({ isBlog = false, ishome = false }) {
                                     </Link>
                                 </li>
                             </div>
-                            <div className="flex flex-row gap-4">
+                            <div
+                                className={`flex flex-row gap-4 ${
+                                    ishome ? 'w-[50%] justify-center' : ''
+                                }`}
+                            >
                                 <li className="ml-2">
                                     <Link to="/news">
                                         {' '}
@@ -175,7 +187,7 @@ export default function Header({ isBlog = false, ishome = false }) {
                             </div>
                         </ul>
                     </div>
-                    <div className="w-[30%] h-full absolute top-0 right-0 flex justify-center items-center">
+                    <div className="w-[25%] h-full absolute top-0 right-0 flex justify-center items-center">
                         <div className="w-[212px] h-fit rounded-xl px-[16px] py-[6px] bg-white  relative flex-row">
                             <input
                                 type="text"
