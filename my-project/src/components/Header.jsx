@@ -63,8 +63,8 @@ export default function Header({ isBlog = false, ishome = false }) {
     }, []);
     if (loadingServices) return <div></div>;
     if (errorServices) return <div>Error loading data</div>;
-    const filteredServices = Services.data.filter((service) =>
-        service.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredServices = Services?.data?.filter((service) =>
+        service?.title?.toLowerCase()?.includes(searchTerm?.toLowerCase())
     );
     // useEffect(() => {
     //     // Save selected language to localStorage on change
