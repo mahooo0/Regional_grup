@@ -10,7 +10,7 @@ import { CurrentServiceState, Languege } from '../Atom/index.js';
 import langtext from '../components/langugeComponent.tsx';
 import LangText from '../components/langugeComponent.tsx';
 import Loading from '../components/Loading.tsx';
-
+import { HashLink } from 'react-router-hash-link';
 function scrollToElementById(id: string) {
     const element = document.getElementById(id);
     if (element) {
@@ -105,7 +105,20 @@ export default function Home() {
                                 <p className="text-[12px] font-normal mt-[10px] lg:block md:block hidden">
                                     {HeroServices[0]?.short_description}
                                 </p>
-                                <button
+                                <HashLink
+                                    to={`${'/services'}#${
+                                        HeroServices[0]?.slug
+                                    }`}
+                                    scroll={(el) =>
+                                        el.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start',
+                                        })
+                                    }
+                                >
+                                    Daha cox
+                                </HashLink>
+                                {/* <button
                                     onClick={() => {
                                         setCurrentService(
                                             HeroServices[0]?.slug
@@ -127,7 +140,7 @@ export default function Home() {
                                             fill="white"
                                         />
                                     </svg>
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>

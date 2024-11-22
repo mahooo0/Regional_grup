@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import { useRecoilState } from 'recoil';
 import { CurrentServiceState } from '../Atom';
 import { useNavigate } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 export default function InfoSection({
     direction,
     id,
@@ -31,7 +32,7 @@ export default function InfoSection({
             easing: 'ease-in-out', // Easing function for the animation
         });
     }, []);
-    console.log('data:', data);
+    // console.log('data:', data);
 
     if (direction === 'row') {
         return (
@@ -67,13 +68,37 @@ export default function InfoSection({
                                         __html: data.description,
                                     }}
                                 />
-
-                                <button
-                                    onClick={() => {
-                                        setCurrentService(data?.slug);
-                                        navigate('/services');
-                                        console.log('Click');
-                                    }}
+                                <HashLink
+                                    to={`/services#${data.slug}`}
+                                    scroll={(el) =>
+                                        el.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start',
+                                        })
+                                    }
+                                >
+                                    <button
+                                        // onClick={() => {
+                                        //     setCurrentService(data?.slug);
+                                        //     navigate('/services');
+                                        //     console.log('Click');
+                                        // }}
+                                        style={
+                                            !dasHaveButton
+                                                ? { display: 'none' }
+                                                : {}
+                                        }
+                                        className="gap-2.5 lg:self-stretch md:self-stretch self-center  p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]"
+                                    >
+                                        Daha çox
+                                    </button>{' '}
+                                </HashLink>
+                                {/* <button
+                                    // onClick={() => {
+                                    //     setCurrentService(data?.slug);
+                                    //     navigate('/services');
+                                    //     console.log('Click');
+                                    // }}
                                     style={
                                         !dasHaveButton
                                             ? { display: 'none' }
@@ -82,7 +107,7 @@ export default function InfoSection({
                                     className="gap-2.5 lg:self-stretch md:self-stretch self-center  p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]"
                                 >
                                     Daha çox
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>
@@ -132,8 +157,32 @@ export default function InfoSection({
                                         __html: data.description,
                                     }}
                                 />
-
-                                <button
+                                <HashLink
+                                    to={`/services#${data.slug}`}
+                                    scroll={(el) =>
+                                        el.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start',
+                                        })
+                                    }
+                                >
+                                    <button
+                                        // onClick={() => {
+                                        //     setCurrentService(data?.slug);
+                                        //     navigate('/services');
+                                        //     console.log('Click');
+                                        // }}
+                                        style={
+                                            !dasHaveButton
+                                                ? { display: 'none' }
+                                                : {}
+                                        }
+                                        className="gap-2.5 lg:self-stretch md:self-stretch self-center  p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]"
+                                    >
+                                        Daha çox
+                                    </button>{' '}
+                                </HashLink>
+                                {/* <button
                                     onClick={() => {
                                         setCurrentService(data?.slug);
                                         navigate('/services');
@@ -147,7 +196,7 @@ export default function InfoSection({
                                     className="gap-2.5 lg:self-stretch md:self-stretch self-center p-2.5 mt-7 max-w-full text-base text-white bg-blue-800 rounded w-[184px]"
                                 >
                                     Daha çox
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                         <img

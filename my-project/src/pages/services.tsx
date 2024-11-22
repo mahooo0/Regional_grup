@@ -7,17 +7,29 @@ import { fetchAservices, fetchAservicesBunner } from '../Services/Requests.js';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { CurrentServiceState, Languege } from '../Atom/index.js';
 import Loading from '../components/Loading.tsx';
-function scrollToElementById(id: string) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.scrollIntoView({
-            behavior: 'smooth', // Smooth scrolling
-            block: 'start', // Scroll to the top of the element
-        });
-    }
-}
 export default function Services() {
     const [language, setLanguie] = useRecoilValue(Languege);
+    const [showimages, setShowimages] = useState(false);
+    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+    function scrollToElementById(id: string) {
+        setTimeout(() => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth', // Smooth scrolling
+                    block: 'start', // Scroll to the top of the element
+                });
+            } else {
+                console.log('element not found');
+            }
+        }, 300);
+    }
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShowimages(true);
+        }, 1000);
+    }, []);
     const [currentService, setCurrentService] =
         useRecoilState(CurrentServiceState);
     useEffect(() => {
@@ -43,9 +55,11 @@ export default function Services() {
         queryFn: fetchAservicesBunner,
     });
     const [scrollPosition, setScrollPosition] = useState(0);
+    console.log(window.scrollY);
 
     useEffect(() => {
         // Function to update scroll position
+        console.log(window.scrollY);
         const handleScroll = () => {
             setScrollPosition(window.scrollY);
         };
@@ -59,12 +73,12 @@ export default function Services() {
     if (loadingServices || loadingServicesBunner) return <Loading />;
     if (loadingServices || errorServicesBunner)
         return <div>Error loading data</div>;
-    console.log('ServicesBunner', ServicesBunner);
+    // console.log('ServicesBunner', ServicesBunner);
 
     return (
         <div className="bg-white  relative  lg:overflow-hidden overflow-hidden   w-[100%] h-fit">
             <Header />
-            <main>
+            <main className=" relative z-[100]">
                 <section
                     className="flex overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center min-h-[420px]"
                     style={{
@@ -125,102 +139,141 @@ export default function Services() {
                 })}
                 <div className="mb-[120px]"></div>
             </main>
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  -right-[300px]  z-0"
-                style={{ top: `calc(200vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  left-0  z-0"
-                style={{ top: `calc(155vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  -right-[300px]  z-0"
-                style={{ top: `calc(400vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  left-0  z-0"
-                style={{ top: `calc(355vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  -right-[300px]  z-0"
-                style={{ top: `calc(600vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  left-0  z-0"
-                style={{ top: `calc(555vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  -right-[300px]  z-0"
-                style={{ top: `calc(800vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  left-0  z-0"
-                style={{ top: `calc(755vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  -right-[300px]  z-0"
-                style={{ top: `calc(1000vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  left-0  z-0"
-                style={{ top: `calc(955vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  -right-[300px]  z-0"
-                style={{ top: `calc(1200vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  left-0  z-0"
-                style={{ top: `calc(1155vh - ${scrollPosition}px)` }}
-            />{' '}
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  -right-[300px]  z-0"
-                style={{ top: `calc(1400vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  left-0  z-0"
-                style={{ top: `calc(1355vh - ${scrollPosition}px)` }}
-            />{' '}
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  -right-[300px]  z-0"
-                style={{ top: `calc(1600vh - ${scrollPosition}px)` }}
-            />
-            <img
-                alt="bgimg"
-                src="/svg/bgAnimateIcon.svg"
-                className=" absolute  left-0  z-0"
-                style={{ top: `calc(1555vh - ${scrollPosition}px)` }}
-            />
+            {showimages && (
+                <>
+                    {' '}
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed -right-[300px]  z-[-1]"
+                        style={{
+                            top: `calc(200vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed left-0 z-[-1]"
+                        style={{
+                            top: `calc(155vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed -right-[300px] z-0"
+                        style={{
+                            top: `calc(400vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed left-0 z-[-1]"
+                        style={{
+                            top: `calc(355vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed -right-[300px] z-0"
+                        style={{
+                            top: `calc(600vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed left-0 z-[-1]"
+                        style={{
+                            top: `calc(555vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed -right-[300px] z-0"
+                        style={{
+                            top: `calc(800vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed left-0 z-[-1]"
+                        style={{
+                            top: `calc(755vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed -right-[300px] z-0"
+                        style={{
+                            top: `calc(1000vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed left-0 z-[-1]"
+                        style={{
+                            top: `calc(955vh - ${scrollPosition}px * 0.6)`,
+                        }}
+                    />
+                    <div className="fixed w-full h-full top-[1000vh]">
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed -right-[300px] z-0"
+                            style={{
+                                top: `calc(200vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed left-0 z-[-1]"
+                            style={{
+                                top: `calc(155vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed -right-[300px] z-0"
+                            style={{
+                                top: `calc(400vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed left-0 z-[-1]"
+                            style={{
+                                top: `calc(355vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed -right-[300px] z-0"
+                            style={{
+                                top: `calc(600vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed left-0 z-[-1]"
+                            style={{
+                                top: `calc(555vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                    </div>
+                </>
+            )}
             <Footer id={`footer`} />
         </div>
     );

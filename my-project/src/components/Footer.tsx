@@ -34,7 +34,7 @@ const Footer = ({ id }: { id?: string }) => {
         queryKey: ['FooterData', language],
         queryFn: fetchFooterData,
     });
-    console.log(FooterData);
+    // console.log(FooterData);
 
     return (
         <footer
