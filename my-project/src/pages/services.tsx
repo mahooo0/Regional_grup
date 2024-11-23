@@ -77,8 +77,9 @@ export default function Services() {
 
     return (
         <div className="bg-white  relative  lg:overflow-hidden overflow-hidden   w-[100%] h-fit">
-            <Header />
             <main className=" relative z-[100]">
+                <Header />
+
                 <section
                     className="flex overflow-hidden flex-col items-center w-full text-white bg-black bg-opacity-70 max-md:max-w-full bg-cover bg-center min-h-[420px]"
                     style={{
@@ -147,7 +148,15 @@ export default function Services() {
                         src="/svg/bgAnimateIcon.svg"
                         className="fixed -right-[300px]  z-[-1]"
                         style={{
-                            top: `calc(200vh - ${scrollPosition}px * 0.6)`,
+                            top: `calc(${scrollPosition}px )`,
+                        }}
+                    />
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed -right-[300px]  z-[-1]"
+                        style={{
+                            top: `calc(200vh - ${scrollPosition}px )`,
                         }}
                     />
                     <img
@@ -155,7 +164,7 @@ export default function Services() {
                         src="/svg/bgAnimateIcon.svg"
                         className="fixed left-0 z-[-1]"
                         style={{
-                            top: `calc(155vh - ${scrollPosition}px * 0.6)`,
+                            top: `calc(55vh - ${scrollPosition}px )`,
                         }}
                     />
                     <img

@@ -2,9 +2,23 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { Languege } from '../Atom';
-import { fetchFooterData } from '../Services/Requests';
+import { fetchAservices, fetchFooterData } from '../Services/Requests';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const Footer = ({ id }: { id?: string }) => {
+    const language = useRecoilValue(Languege);
+
+    const {
+        data: Services,
+        isLoading: loadingServices,
+        error: errorServices,
+    } = useQuery({
+        queryKey: ['Services', language],
+        queryFn: fetchAservices,
+    });
+    console.log(Services);
+
     const footerData = [
         {
             title: 'Xidmətlər',
@@ -24,7 +38,6 @@ const Footer = ({ id }: { id?: string }) => {
             items: ['Regional Group haqqında', 'Lorem Ipsum'],
         },
     ];
-    const [language, setLanguie] = useRecoilValue(Languege);
 
     const {
         data: FooterData,
@@ -34,7 +47,7 @@ const Footer = ({ id }: { id?: string }) => {
         queryKey: ['FooterData', language],
         queryFn: fetchFooterData,
     });
-    // console.log(FooterData);
+    console.log('FooterData', FooterData);
 
     return (
         <footer
@@ -68,29 +81,59 @@ const Footer = ({ id }: { id?: string }) => {
                             className="object-contain mt-8 max-w-full aspect-[9.62] w-[202px]"
                         /> */}
                     </div>
-                    {footerData.map((column, index) => (
-                        <div
-                            key={index}
-                            className="flex flex-col self-stretch text-base text-white"
-                        >
-                            <h2 className="font-bold">{column.title}</h2>
-                            <nav className="flex flex-col mt-9">
-                                {column.items.map(
-                                    (item: any, itemIndex: number) => (
-                                        <a
-                                            href="//"
-                                            key={itemIndex}
-                                            className={
-                                                itemIndex > 0 ? 'mt-3' : ''
-                                            }
+
+                    <div className="flex flex-col self-stretch text-base text-white">
+                        <h2 className="font-bold">Xidmətlər</h2>
+                        <nav className="flex flex-col mt-9">
+                            {Services?.data?.map((item: any, index: number) => {
+                                if (index > 3) return null;
+                                return (
+                                    <HashLink
+                                        to={`/services/#${item?.slug}`}
+                                        scroll={(el) =>
+                                            el.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start',
+                                            })
+                                        }
+                                    >
+                                        <div
+                                            key={item?.slug}
+                                            className={'mt-3'}
                                         >
-                                            {item}
-                                        </a>
-                                    )
-                                )}
-                            </nav>
-                        </div>
-                    ))}
+                                            {item?.title}
+                                        </div>
+                                    </HashLink>
+                                );
+                            })}
+                        </nav>
+                    </div>
+                    <div className="flex flex-col self-stretch text-base text-white">
+                        <h2 className="font-bold">Gizlilik siyasəti</h2>
+                        <nav className="flex flex-col mt-9">
+                            <a
+                                href={`https://regional.epart.az/storage/${
+                                    FooterData?.find(
+                                        (item: any) =>
+                                            item.title === 'Privacy Policy'
+                                    )?.links
+                                }`}
+                                className={'mt-3'}
+                            >
+                                Şərtlər və qaydalar{' '}
+                            </a>
+                        </nav>
+                    </div>
+                    <div className="flex flex-col self-stretch text-base text-white">
+                        <h2 className="font-bold">Şirkət</h2>
+                        <nav className="flex flex-col mt-9">
+                            <Link to={'/about'}>
+                                <div className={'mt-3'}>
+                                    Regional Group haqqında
+                                </div>
+                            </Link>
+                        </nav>
+                    </div>
                 </div>
                 <div className="flex flex-col mt-10 text-sm text-white max-md:max-w-full">
                     <hr className="w-full min-h-0 border border-solid border-zinc-800 max-md:max-w-full" />

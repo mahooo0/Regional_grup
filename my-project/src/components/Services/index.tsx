@@ -86,7 +86,7 @@ export const ServicesLayout: React.FC = () => {
                 <section className="self-stretch max-md:max-w-full justify-center ">
                     <div className="flex gap-[13%] lg:flex-row flex-col justify-center items-center">
                         <div className="flex flex-col w-full justify-end items-end">
-                            <div className="flex z-10 flex-col  w-full text-right max-md:max-w-full gap-[45px]  justify-end items-end">
+                            <div className="flex z-10 flex-col  w-full text-right max-md:max-w-full gap-[45px]  justify-end lg:items-end items-center">
                                 <ServiceCard
                                     title={Services.data[0]?.title}
                                     description={
@@ -94,7 +94,7 @@ export const ServicesLayout: React.FC = () => {
                                     }
                                     imageUrl={`https://regional.epart.az/storage/${Services.data[0]?.icon_about}`}
                                 />
-                                <div className="mr-[22%] flex flex-col gap-[45px]">
+                                <div className="lg:mr-[22%] mr-0 flex flex-col gap-[45px]">
                                     <ServiceCard
                                         title={Services.data[1]?.title}
                                         description={
@@ -135,7 +135,7 @@ export const ServicesLayout: React.FC = () => {
                             </div>
                         </div>
                         <div className="flex flex-col   w-full">
-                            <div className="flex flex-col w-full max-md:max-w-full gap-[45px] items-start">
+                            <div className="flex flex-col w-full max-md:max-w-full gap-[45px] lg:items-start items-center">
                                 <ServiceCard
                                     title={Services.data[4]?.title}
                                     description={
@@ -144,7 +144,7 @@ export const ServicesLayout: React.FC = () => {
                                     imageUrl={`https://regional.epart.az/storage/${Services.data[4]?.icon_about}`}
                                     imagePosition="left"
                                 />
-                                <div className="ml-[22%] flex flex-col gap-[45px]">
+                                <div className="lg:ml-[22%] ml-0 flex flex-col gap-[45px]">
                                     <ServiceCard
                                         title={Services.data[5]?.title}
                                         description={
