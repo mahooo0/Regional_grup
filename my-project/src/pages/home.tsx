@@ -487,17 +487,20 @@ export default function Home() {
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[400vh] -right-[300px] "
+                className=" absolute"
+                style={{ top: `calc(480vh - ${scrollPosition}px )` }}
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[520vh]"
+                className=" absolute -right-[300px] z-0"
+                style={{ top: `calc(540vh - ${scrollPosition}px )` }}
             />
             <img
                 alt="bgimg"
                 src="/svg/bgAnimateIcon.svg"
-                className=" absolute top-[600vh] -right-[300px] "
+                className=" absolute"
+                style={{ top: `calc(600vh - ${scrollPosition}px )` }}
             />
             <div
                 onClick={() => {

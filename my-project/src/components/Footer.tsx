@@ -101,7 +101,10 @@ const Footer = ({ id }: { id?: string }) => {
                                             key={item?.slug}
                                             className={'mt-3'}
                                         >
-                                            {item?.title}
+                                            {item?.title?.length > 20
+                                                ? item?.title?.slice(0, 20) +
+                                                  '...'
+                                                : item?.title}
                                         </div>
                                     </HashLink>
                                 );
