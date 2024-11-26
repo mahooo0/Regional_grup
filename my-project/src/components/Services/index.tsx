@@ -7,43 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { Languege } from '../../Atom/index.js';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-const servicesData = [
-    {
-        title: 'Dəniz nəqliyyatı',
-        description:
-            'Konteynerlərdə yüklərin daşınması, gəmilərin və barjaların kirayələnməsi, terminal əməliyyatları və limanlarda gömrük rəsmiləşdirilməsi',
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/85ad817edcbb739d056408163c1214b5d638ff95e05569a375e265a221fc8d2d?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        title: 'Multimodal nəqliyyat',
-        description:
-            'Şərtləri və xərcləri optimallaşdırmaq üçün fərdi daşıma sxeminin inkişafı ilə yerli və beynəlxalq yük daşımaları "qapıdan qapıya"',
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/84875b39da1d7736989377a5f6df5f4b95f5470f96f20b0ec9a0b9b3e1ca9571?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        title: 'Yük daşımaları',
-        description:
-            'LTL/FTL yükləri, o cümlədən böyük ölçülü, ağır, təhlükəli, kövrək, tez xarab olan və temperatura həssas yüklər',
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/84875b39da1d7736989377a5f6df5f4b95f5470f96f20b0ec9a0b9b3e1ca9571?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        title: 'Dəmir yolu nəqliyyatı',
-        description:
-            'Böyük ölçülü yüklərin sxemlərinin işlənib hazırlanması və xüsusi temperatur tələbləri ilə müxtəlif qeyri-standart yüklərin, o cümlədən təhlükəli və tez xarab olan yüklərin daşınmasının təşkili',
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/bf3fdcff6c04aa3b9583d9d696b2a3d2523fbdc8de990d8d10084f4cb4c8dab8?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-    {
-        title: 'Hava nəqliyyatı',
-        description:
-            'İxrac/idxal, tranzit, təcili çatdırılma, o cümlədən təhlükəli və tez xarab olan mallar. Təyyarə ilə charter daşınması',
-        imageUrl:
-            'https://cdn.builder.io/api/v1/image/assets/c6f3c7bb740649e5a32c147b3037a1c2/68121318f45ca54c21961fe0cb44310d860ebb528bb0f9ce59582606f7f171f9?apiKey=c6f3c7bb740649e5a32c147b3037a1c2&',
-    },
-];
+import { HashLink } from 'react-router-hash-link';
 
 export const ServicesLayout: React.FC = () => {
     const [language, setLanguie] = useRecoilValue(Languege);
@@ -87,37 +51,79 @@ export const ServicesLayout: React.FC = () => {
                     <div className="flex gap-[13%] lg:flex-row flex-col justify-center items-center">
                         <div className="flex flex-col w-full justify-end items-end">
                             <div className="flex z-10 flex-col  w-full text-right max-md:max-w-full gap-[45px]  justify-end lg:items-end items-center">
-                                <ServiceCard
-                                    title={Services.data[0]?.title}
-                                    description={
-                                        Services.data[0]?.short_description
+                                <HashLink
+                                    to={`/services/#${Services.data[0]?.slug}`}
+                                    scroll={(el) =>
+                                        el.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start',
+                                        })
                                     }
-                                    imageUrl={`https://regional.epart.az/storage/${Services.data[0]?.icon_about}`}
-                                />
-                                <div className="lg:mr-[22%] mr-0 flex flex-col gap-[45px]">
+                                >
                                     <ServiceCard
-                                        title={Services.data[1]?.title}
+                                        title={Services.data[0]?.title}
                                         description={
-                                            Services.data[1]?.short_description
+                                            Services.data[0]?.short_description
                                         }
-                                        imageUrl={`https://regional.epart.az/storage/${Services.data[1]?.icon_about}`}
-                                    />{' '}
-                                    <ServiceCard
-                                        title={Services.data[2]?.title}
-                                        description={
-                                            Services.data[2]?.short_description
-                                        }
-                                        imageUrl={`https://regional.epart.az/storage/${Services.data[2]?.icon_about}`}
+                                        imageUrl={`https://regional.epart.az/storage/${Services.data[0]?.icon_about}`}
                                     />
+                                </HashLink>
+                                <div className="lg:mr-[22%] mr-0 flex flex-col gap-[45px]">
+                                    <HashLink
+                                        to={`/services/#${Services.data[1]?.slug}`}
+                                        scroll={(el) =>
+                                            el.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start',
+                                            })
+                                        }
+                                    >
+                                        <ServiceCard
+                                            title={Services.data[1]?.title}
+                                            description={
+                                                Services.data[1]
+                                                    ?.short_description
+                                            }
+                                            imageUrl={`https://regional.epart.az/storage/${Services.data[1]?.icon_about}`}
+                                        />
+                                    </HashLink>{' '}
+                                    <HashLink
+                                        to={`/services/#${Services.data[2]?.slug}`}
+                                        scroll={(el) =>
+                                            el.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start',
+                                            })
+                                        }
+                                    >
+                                        <ServiceCard
+                                            title={Services.data[2]?.title}
+                                            description={
+                                                Services.data[2]
+                                                    ?.short_description
+                                            }
+                                            imageUrl={`https://regional.epart.az/storage/${Services.data[2]?.icon_about}`}
+                                        />
+                                    </HashLink>
                                 </div>
 
-                                <ServiceCard
-                                    title={Services.data[3]?.title}
-                                    description={
-                                        Services.data[3]?.short_description
+                                <HashLink
+                                    to={`/services/#${Services.data[3]?.slug}`}
+                                    scroll={(el) =>
+                                        el.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start',
+                                        })
                                     }
-                                    imageUrl={`https://regional.epart.az/storage/${Services.data[3]?.icon_about}`}
-                                />
+                                >
+                                    <ServiceCard
+                                        title={Services.data[3]?.title}
+                                        description={
+                                            Services.data[3]?.short_description
+                                        }
+                                        imageUrl={`https://regional.epart.az/storage/${Services.data[3]?.icon_about}`}
+                                    />
+                                </HashLink>
                             </div>
                         </div>
                         <div className=" absolute  w-full  justify-center lg:flex hidden ">
@@ -136,41 +142,83 @@ export const ServicesLayout: React.FC = () => {
                         </div>
                         <div className="flex flex-col   w-full">
                             <div className="flex flex-col w-full max-md:max-w-full gap-[45px] lg:items-start items-center">
-                                <ServiceCard
-                                    title={Services.data[4]?.title}
-                                    description={
-                                        Services.data[4]?.short_description
+                                <HashLink
+                                    to={`/services/#${Services.data[4]?.slug}`}
+                                    scroll={(el) =>
+                                        el.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start',
+                                        })
                                     }
-                                    imageUrl={`https://regional.epart.az/storage/${Services.data[4]?.icon_about}`}
-                                    imagePosition="left"
-                                />
+                                >
+                                    <ServiceCard
+                                        title={Services.data[4]?.title}
+                                        description={
+                                            Services.data[4]?.short_description
+                                        }
+                                        imageUrl={`https://regional.epart.az/storage/${Services.data[4]?.icon_about}`}
+                                        imagePosition="left"
+                                    />
+                                </HashLink>
                                 <div className="lg:ml-[22%] ml-0 flex flex-col gap-[45px]">
-                                    <ServiceCard
-                                        title={Services.data[5]?.title}
-                                        description={
-                                            Services.data[5]?.short_description
+                                    <HashLink
+                                        to={`/services/#${Services.data[5]?.slug}`}
+                                        scroll={(el) =>
+                                            el.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start',
+                                            })
                                         }
-                                        imageUrl={`https://regional.epart.az/storage/${Services.data[5]?.icon_about}`}
-                                        imagePosition="left"
-                                    />
-                                    <ServiceCard
-                                        title={Services.data[6]?.title}
-                                        description={
-                                            Services.data[6]?.short_description
+                                    >
+                                        <ServiceCard
+                                            title={Services.data[5]?.title}
+                                            description={
+                                                Services.data[5]
+                                                    ?.short_description
+                                            }
+                                            imageUrl={`https://regional.epart.az/storage/${Services.data[5]?.icon_about}`}
+                                            imagePosition="left"
+                                        />
+                                    </HashLink>
+                                    <HashLink
+                                        to={`/services/#${Services.data[6]?.slug}`}
+                                        scroll={(el) =>
+                                            el.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start',
+                                            })
                                         }
-                                        imageUrl={`https://regional.epart.az/storage/${Services.data[6]?.icon_about}`}
-                                        imagePosition="left"
-                                    />
+                                    >
+                                        <ServiceCard
+                                            title={Services.data[6]?.title}
+                                            description={
+                                                Services.data[6]
+                                                    ?.short_description
+                                            }
+                                            imageUrl={`https://regional.epart.az/storage/${Services.data[6]?.icon_about}`}
+                                            imagePosition="left"
+                                        />
+                                    </HashLink>
                                 </div>
 
-                                <ServiceCard
-                                    title={Services.data[7]?.title}
-                                    description={
-                                        Services.data[7]?.short_description
+                                <HashLink
+                                    to={`/services/#${Services.data[7]?.slug}`}
+                                    scroll={(el) =>
+                                        el.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start',
+                                        })
                                     }
-                                    imageUrl={`https://regional.epart.az/storage/${Services.data[7]?.icon_about}`}
-                                    imagePosition="left"
-                                />
+                                >
+                                    <ServiceCard
+                                        title={Services.data[7]?.title}
+                                        description={
+                                            Services.data[7]?.short_description
+                                        }
+                                        imageUrl={`https://regional.epart.az/storage/${Services.data[7]?.icon_about}`}
+                                        imagePosition="left"
+                                    />
+                                </HashLink>
                             </div>
                         </div>
                     </div>
