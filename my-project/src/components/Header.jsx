@@ -231,8 +231,9 @@ export default function Header({ isBlog = false, ishome = false }) {
                             >
                                 {' '}
                                 {filteredServices.length > 0 ? (
-                                    filteredServices.map((service) => (
+                                    filteredServices.map((service, index) => (
                                         <HashLink
+                                            key={index}
                                             to={`/services/#${service?.slug}`}
                                             scroll={(el) =>
                                                 el.scrollIntoView({
