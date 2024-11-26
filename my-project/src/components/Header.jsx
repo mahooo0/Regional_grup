@@ -6,6 +6,7 @@ import LangText from './langugeComponent.tsx';
 import { useLangText } from '../hooks/useLangText.tsx';
 import { fetchAservices } from '../Services/Requests.js';
 import { useQuery } from '@tanstack/react-query';
+import { HashLink } from 'react-router-hash-link';
 
 const languages = [
     { code: 'az', name: 'Azərbaycan', flag: '/svg/az.svg' },
@@ -220,17 +221,26 @@ export default function Header({ isBlog = false, ishome = false }) {
                             </button>
 
                             <div
-                                style={
-                                    sohowSech && searchTerm
-                                        ? { borderRadius: '0 8px 8px 0' }
-                                        : { display: 'none' }
-                                }
-                                className="w-full bg-white left-0 h-fit absolute top-[27px] rounded-b-lg  overflow-hidden "
+                                style={{
+                                    ...(sohowSech && searchTerm
+                                        ? { borderRadius: '8px' }
+                                        : { display: 'none' }),
+                                    '--scrollbar-width': '4px',
+                                }}
+                                className="w-full bg-white left-0 h-fit max-h-[300px] overflow-y-auto absolute top-[27px] rounded-lg overflow-hidden [&::-webkit-scrollbar]:w-[var(--scrollbar-width)] [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-transparent"
                             >
                                 {' '}
                                 {filteredServices.length > 0 ? (
                                     filteredServices.map((service) => (
-                                        <Link to={'/services'}>
+                                        <HashLink
+                                            to={`/services/#${service?.slug}`}
+                                            scroll={(el) =>
+                                                el.scrollIntoView({
+                                                    behavior: 'smooth',
+                                                    block: 'start',
+                                                })
+                                            }
+                                        >
                                             <div
                                                 onClick={() => {
                                                     setCurrentService(
@@ -244,7 +254,7 @@ export default function Header({ isBlog = false, ishome = false }) {
                                                     {service.title}
                                                 </h2>
                                             </div>
-                                        </Link>
+                                        </HashLink>
                                     ))
                                 ) : (
                                     <div className="p-2  bg-white hover:bg-slate-300">
