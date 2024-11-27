@@ -142,35 +142,34 @@ export default function Services() {
             </main>
             {showimages && (
                 <>
-                    {' '}
                     <img
                         alt="bgimg"
                         src="/svg/bgAnimateIcon.svg"
-                        className="fixed -right-[300px]  z-[-1]"
-                        style={{
-                            top: `calc(${scrollPosition}px )`,
-                        }}
-                    />
-                    <img
-                        alt="bgimg"
-                        src="/svg/bgAnimateIcon.svg"
-                        className="fixed -right-[300px]  z-[-1]"
-                        style={{
-                            top: `calc(200vh - ${scrollPosition}px )`,
-                        }}
-                    />
-                    <img
-                        alt="bgimg"
-                        src="/svg/bgAnimateIcon.svg"
-                        className="fixed left-0 z-[-1]"
+                        className="fixed left-0 "
                         style={{
                             top: `calc(55vh - ${scrollPosition}px )`,
                         }}
-                    />
+                    />{' '}
                     <img
                         alt="bgimg"
                         src="/svg/bgAnimateIcon.svg"
-                        className="fixed -right-[300px] z-0"
+                        className="fixed -right-[300px]  "
+                        style={{
+                            top: `calc(100vh - ${scrollPosition}px )`,
+                        }}
+                    />
+                    {/* <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed -right-[300px]  "
+                        style={{
+                            top: `calc(200vh - ${scrollPosition}px )`,
+                        }}
+                    /> */}
+                    <img
+                        alt="bgimg"
+                        src="/svg/bgAnimateIcon.svg"
+                        className="fixed -right-[300px] "
                         style={{
                             top: `calc(400vh - ${scrollPosition}px * 0.6)`,
                         }}
@@ -178,7 +177,7 @@ export default function Services() {
                     <img
                         alt="bgimg"
                         src="/svg/bgAnimateIcon.svg"
-                        className="fixed left-0 z-[-1]"
+                        className="fixed left-0 "
                         style={{
                             top: `calc(355vh - ${scrollPosition}px * 0.6)`,
                         }}
@@ -194,7 +193,7 @@ export default function Services() {
                     <img
                         alt="bgimg"
                         src="/svg/bgAnimateIcon.svg"
-                        className="fixed left-0 z-[-1]"
+                        className="fixed left-0 "
                         style={{
                             top: `calc(555vh - ${scrollPosition}px * 0.6)`,
                         }}
@@ -253,15 +252,7 @@ export default function Services() {
                             src="/svg/bgAnimateIcon.svg"
                             className="fixed -right-[300px] z-0"
                             style={{
-                                top: `calc(400vh - ${scrollPosition}px * 0.6)`,
-                            }}
-                        />
-                        <img
-                            alt="bgimg"
-                            src="/svg/bgAnimateIcon.svg"
-                            className="fixed left-0 z-[-1]"
-                            style={{
-                                top: `calc(355vh - ${scrollPosition}px * 0.6)`,
+                                top: `calc(300vh - ${scrollPosition}px * 0.6)`,
                             }}
                         />
                         <img
@@ -269,13 +260,61 @@ export default function Services() {
                             src="/svg/bgAnimateIcon.svg"
                             className="fixed -right-[300px] z-0"
                             style={{
+                                top: `calc(400vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed left-0 z-0"
+                            style={{
+                                top: `calc(355vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed left-0"
+                            style={{
+                                top: `calc(355vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed left-0"
+                            style={{
+                                top: `calc(470vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed -right-[300px]"
+                            style={{
+                                top: `calc(500vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed -right-[300px]"
+                            style={{
                                 top: `calc(600vh - ${scrollPosition}px * 0.6)`,
                             }}
                         />
                         <img
                             alt="bgimg"
                             src="/svg/bgAnimateIcon.svg"
-                            className="fixed left-0 z-[-1]"
+                            className="fixed -right-[300px]"
+                            style={{
+                                top: `calc(300vh - ${scrollPosition}px * 0.6)`,
+                            }}
+                        />
+                        <img
+                            alt="bgimg"
+                            src="/svg/bgAnimateIcon.svg"
+                            className="fixed left-0"
                             style={{
                                 top: `calc(555vh - ${scrollPosition}px * 0.6)`,
                             }}
