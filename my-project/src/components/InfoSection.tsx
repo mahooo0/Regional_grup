@@ -37,8 +37,8 @@ export default function InfoSection({
     if (direction === 'row') {
         return (
             <section className="mt-[220px] relative " id={data.slug}>
-                <div className=" flex lg:flex-row md:flex-row sm:flex-row flex-col lg:justify-end  md:justify-end justify-start gap-6 ">
-                    <h2 className="text-[48px] font-semibold max-w-[40%] text-wrap text-black">
+                <div className=" flex items-center lg:flex-row md:flex-row sm:flex-row flex-col lg:justify-end  md:justify-end justify-start gap-6 ">
+                    <h2 className="text-[48px] font-semibold max-w-[40%] text-wrap text-black pl-5">
                         {data.title}
                     </h2>
                     <div className="  border-b-[6px] border-[#2758A3]  lg:w-[60%] md:w-[60%] sm:1/2 w-full   h-fit">
@@ -132,8 +132,8 @@ export default function InfoSection({
     } else {
         return (
             <section className="mt-[220px] relative  " id={data.slug}>
-                <div className=" flex lg:flex-row-reverse md:flex-row-reverse sm:flex-row-reverse flex-col lg:justify-end  md:justify-end justify-start gap-6">
-                    <h2 className="text-[48px] font-semibold max-w-[40%]  text-black text-wrap">
+                <div className=" flex items-center lg:flex-row-reverse md:flex-row-reverse sm:flex-row-reverse flex-col lg:justify-end  md:justify-end justify-start gap-6">
+                    <h2 className="text-[48px] font-semibold max-w-[40%]  text-black text-wrap pr-5">
                         {data.title}
                     </h2>
                     <div className=" border-b-[6px] border-[#2758A3]  lg:w-[60%] md:w-[60%] w-full flex justify-end  h-fit">

@@ -330,7 +330,7 @@ export default function Header({ isBlog = false, ishome = false }) {
                     className="w-full shadow-2xl max-h-[80px] lg:hidden md:hidden block"
                 />
                 <div className=" absolute top-0 w-full h-full flex lg:justify-around md:justify-between justify-around items-center lg:px-0 md:px-6 px-0">
-                    <div className="relative ml-3">
+                    <div className="relative ml-3 ">
                         <div onClick={() => setsohowAside((prew) => !prew)}>
                             <div className="w-[33px] h-[33px]   aspect-square rounded-full bg-white bg-opacity-40 bg-blur-[4px] flex justify-center items-center">
                                 <svg
