@@ -72,26 +72,12 @@ export default function Home() {
         // Clean up the event listener on component unmount
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-    useEffect(() => {
-        const fetchNewsDetail = async (slug: string) => {
-            try {
-                const response = await fetch(
-                    `https://emkotech.epart.az/api/news-detail/${slug}`
-                );
-                const data = await response.json();
-                console.log('News Detail:', data);
-            } catch (error) {
-                console.error('Error fetching news detail:', error);
-            }
-        };
-
-        fetchNewsDetail('agilli-siqnalizasiya-sistemi');
-    }, []);
     if (loadingServices || loadingEbaut) return <Loading />;
     if (loadingServices || errorServices) return <div>Error loading data</div>;
     const slugs = ServiseARR.map((item: any) => item.slug);
     const sections = ['hero', 'ebaut', ...slugs, 'info10', 'footer'];
 
+    console.log('currentService:', currentService);
     return (
         <div className="bg-white  relative  lg:overflow-hidden overflow-hidden lg:h-[100vh]  w-[100%] h-fit">
             {/*  */}
